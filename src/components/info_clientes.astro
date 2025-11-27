@@ -1,0 +1,365 @@
+<section
+  id="consulta-equipos"
+  class="flex-column"
+  style="font-family: 'Spartan', sans-serif; text-align: center; padding: 40px;"
+>
+  <h2>Consulta el Estado de tus Equipos</h2>
+  <p>
+    Ingresa tu número de identificación para ver el estado actual de tus equipos
+    con nosotros
+  </p>
+
+  <div class="form-container">
+    <input
+      type="text"
+      id="identificacion"
+      placeholder="Ingresa tu Cédula o NIT"
+    />
+    <button onclick="consultarEstado()">Consultar</button>
+  </div>
+
+  <div id="resultado" class="resultado-container" style="display:none;">
+    <div class="info-header">
+      <h3>Información Encontrada</h3>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="info-label">Identificación:</span>
+        <span class="info-value" id="info-cedula"></span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Equipo:</span>
+        <span class="info-value" id="info-equipo"></span>
+      </div>
+    </div>
+
+    <button onclick="limpiarConsulta()" class="btn-secondary"
+      >Nueva Consulta</button
+    >
+  </div>
+
+  <div id="mensaje-error" class="mensaje-error" style="display:none;">
+    <p>
+      No se encontró información asociada a esta identificación. Por favor
+      verifica el dato ingresado.
+    </p>
+    <button onclick="limpiarConsulta()" class="btn-secondary"
+      >Intentar de nuevo</button
+    >
+  </div>
+
+  <div id="loading" class="loading" style="display:none;">
+    <div class="spinner"></div>
+    <p>Consultando información...</p>
+  </div>
+</section>
+
+<style>
+  #consulta-equipos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  #consulta-equipos h2 {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #195190;
+  }
+
+  #consulta-equipos p {
+    max-width: 600px;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
+
+  #consulta-equipos input {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+  }
+
+  #consulta-equipos input:focus {
+    outline: none;
+    border-color: #195190;
+  }
+
+  #consulta-equipos button {
+    background-color: #195190;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  #consulta-equipos button:hover {
+    background-color: #2361a5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25, 81, 144, 0.3);
+  }
+
+  .btn-secondary {
+    background-color: #6c757d !important;
+    margin-top: 20px;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268 !important;
+  }
+
+  .resultado-container {
+    width: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .info-header h3 {
+    margin: 0;
+    color: #195190;
+    font-size: 24px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .info-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .info-card.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .info-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .info-value {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .mensaje-error {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 25px;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .mensaje-error p {
+    color: #856404;
+    margin-bottom: 15px;
+  }
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #195190;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    #consulta-equipos {
+      padding: 20px;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .info-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  // URL de tu Google Sheet publicado como CSV
+  // Reemplaza esta URL con la tuya
+  const SHEET_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQW9HE0pnzSsXfqoD9qXe28EMfT2D6AFhoM3T_83Z8ajhdKDgL86tE8cSRfTTTtuVVm8j1KZLrHefc_/pubhtml?gid=0&single=true";
+
+  async function buscarDatos(identificacion, url) {
+    const res = await fetch(`${url}&rand=${Date.now()}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const csv = await res.text();
+    const lines = csv.trim().split("\n");
+    const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
+
+    // Índices de las columnas (solo 2 columnas: cedula/nit y equipo)
+    const indices = {
+      cedula: headers.findIndex((h) => h.includes("CEDULA / NIT")),
+      equipo: headers.findIndex((h) => h.includes("EQUIPO")),
+    };
+
+    const id = identificacion.trim().toLowerCase();
+
+    for (let i = 1; i < lines.length; i++) {
+      const cells = lines[i]
+        .split(",")
+        .map((c) => c.trim().replace(/^"|"$/g, ""));
+      const cedulaCelda = cells[indices.cedula]?.toLowerCase() || "";
+
+      if (cedulaCelda === id) {
+        return {
+          cedula: cells[indices.cedula] || "N/A",
+          equipo: cells[indices.equipo] || "N/A",
+        };
+      }
+    }
+
+    return null;
+  }
+
+  async function buscarDatosConReintentos(identificacion, url, intentos = 3) {
+    for (let i = 0; i < intentos; i++) {
+      try {
+        const datos = await buscarDatos(identificacion, url);
+        if (datos) return datos;
+      } catch (e) {
+        console.warn(`Intento ${i + 1} fallido:`, e);
+      }
+      await new Promise((r) => setTimeout(r, 800));
+    }
+    return null;
+  }
+
+  function obtenerClaseEstado(estado) {
+    const estadoLower = estado.toLowerCase();
+    if (estadoLower.includes("revision") || estadoLower.includes("revisión"))
+      return "en-revision";
+    if (
+      estadoLower.includes("reparacion") ||
+      estadoLower.includes("reparación")
+    )
+      return "en-reparacion";
+    if (estadoLower.includes("listo")) return "listo";
+    if (estadoLower.includes("entregado")) return "entregado";
+    return "pendiente";
+  }
+
+  async function consultarEstado() {
+    const identificacion = document.getElementById("identificacion").value;
+
+    if (!identificacion) {
+      alert("Por favor ingresa tu número de identificación.");
+      return;
+    }
+
+    // Mostrar loading
+    document.getElementById("loading").style.display = "flex";
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("mensaje-error").style.display = "none";
+
+    const datos = await buscarDatosConReintentos(identificacion, SHEET_URL);
+
+    // Ocultar loading
+    document.getElementById("loading").style.display = "none";
+
+    if (!datos) {
+      document.getElementById("mensaje-error").style.display = "block";
+      return;
+    }
+
+    // Llenar los datos (solo 2 campos)
+    document.getElementById("info-cedula").textContent = datos.cedula;
+    document.getElementById("info-equipo").textContent = datos.equipo;
+
+    // Mostrar resultado
+    document.getElementById("resultado").style.display = "block";
+  }
+
+  function limpiarConsulta() {
+    document.getElementById("identificacion").value = "";
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("mensaje-error").style.display = "none";
+    document.getElementById("loading").style.display = "none";
+  }
+
+  // Permitir consulta con Enter
+  document
+    .getElementById("identificacion")
+    ?.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        consultarEstado();
+      }
+    });
+
+  window.consultarEstado = consultarEstado;
+  window.limpiarConsulta = limpiarConsulta;
+</script>
