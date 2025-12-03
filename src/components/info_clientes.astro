@@ -1,109 +1,134 @@
-<section
-  id="consulta-equipos"
-  class="flex-column"
-  style="font-family: 'Spartan', sans-serif; text-align: center; padding: 40px;"
->
-  <h2>Consulta el Estado de tus Equipos</h2>
-  <p>
-    Ingresa tu número de identificación para ver el estado actual de tus equipos
-    con nosotros
-  </p>
+---
+import Loader from "./loader.astro";
+---
 
-  <div class="form-container">
-    <input
-      type="text"
-      id="identificacion"
-      placeholder="Ingresa tu Cédula o NIT"
-    />
-    <button onclick="consultarEstado()">Consultar</button>
-  </div>
-
-  <div id="resultado" class="resultado-container" style="display:none;">
-    <div class="info-header">
-      <h3>Información Encontrada</h3>
-    </div>
-
-    <div class="info-grid">
-      <div class="info-card">
-        <span class="info-label">Identificación:</span>
-        <span class="info-value" id="info-cedula"></span>
-      </div>
-      <div class="info-card">
-        <span class="info-label">Equipo:</span>
-        <span class="info-value" id="info-equipo"></span>
-      </div>
-    </div>
-
-    <button onclick="limpiarConsulta()" class="btn-secondary"
-      >Nueva Consulta</button
-    >
-  </div>
-
-  <div id="mensaje-error" class="mensaje-error" style="display:none;">
+<Loader />
+<section id="consulta-equipos" class="flex-column">
+  <div class="flex-column recuadro">
+    <h2>Consulta el Estado de tus Equipos</h2>
     <p>
-      No se encontró información asociada a esta identificación. Por favor
-      verifica el dato ingresado.
+      Ingresa tu número de identificación para ver el estado actual de tus
+      equipos con nosotros
     </p>
-    <button onclick="limpiarConsulta()" class="btn-secondary"
-      >Intentar de nuevo</button
-    >
+
+    <div class="form-container flex-column">
+      <input
+        type="text"
+        id="identificacion"
+        placeholder="Ingresa tu Cédula o NIT"
+      />
+      <button onclick="consultarEstado()">Consultar</button>
+    </div>
   </div>
 
-  <div id="loading" class="loading" style="display:none;">
-    <div class="spinner"></div>
-    <p>Consultando información...</p>
+  <!-- MODAL -->
+  <div
+    id="modal-overlay"
+    class="modal-overlay flex-column"
+    style="display: none;"
+  >
+    <div class="modal-content flex-column">
+      <button class="modal-close" onclick="cerrarModal()">
+        <i class="bi bi-x-lg" aria-label="Cerrar modal"></i>
+      </button>
+      <div id="modal-body">
+        <!-- Aquí irá el contenido dinámico -->
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
+  /* ESTILOS DEL MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #000000bb;
+    z-index: 100;
+    max-width: none;
+  }
+
+  .modal-content {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  #consulta-equipos .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: var(--clr-white);
+    color: var(--clr-dark);
+    border: solid 1px var(--clr-gray);
+    width: fit-content;
+    transition: all 0.3s ease;
+  }
+
+  #consulta-equipos .modal-close:hover {
+    background-color: var(--clr-gray);
+  }
+
+  /* ESTILOS GENERALES */
   #consulta-equipos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto;
+    gap: 10px;
+    background-color: var(--clr-white);
+  }
+
+  .recuadro {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: solid 1px var(--clr-gray);
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
   }
 
   #consulta-equipos h2 {
-    font-weight: 700;
+    text-align: center;
+    border-bottom: solid 2px var(--clr-white);
     margin-bottom: 10px;
-    color: #195190;
   }
 
   #consulta-equipos p {
     max-width: 600px;
     line-height: 1.5;
-    color: #555;
-    margin: 0;
+    color: var(--clr-dark2);
+    margin: 0 0 15px 0;
   }
 
   .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 15px;
     width: 100%;
   }
 
   #consulta-equipos input {
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 2px solid #ccc;
     width: 100%;
-    max-width: 350px;
-    text-align: center;
-    transition: border-color 0.3s ease;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: solid 1px var(--clr-white);
+    background-color: var(--clr-white);
+    transition: var(--transition);
   }
 
   #consulta-equipos input:focus {
     outline: none;
-    border-color: #195190;
+    border-color: var(--clr-gray);
   }
 
   #consulta-equipos button {
-    background-color: #195190;
+    background-color: var(--clr-dark);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -112,66 +137,39 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
   }
 
   #consulta-equipos button:hover {
-    background-color: #2361a5;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(25, 81, 144, 0.3);
+    opacity: 0.9;
+    transform: translateY(-1px);
   }
 
-  .btn-secondary {
-    background-color: #6c757d !important;
-    margin-top: 20px;
+  /* ESTILOS PARA CONTENIDO DEL MODAL */
+  .modal-resultado {
+    text-align: center;
   }
 
-  .btn-secondary:hover {
-    background-color: #5a6268 !important;
-  }
-
-  .resultado-container {
-    width: 100%;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.5s ease;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .info-header h3 {
-    margin: 0;
-    color: #195190;
+  .modal-resultado h3 {
+    margin: 0 0 25px 0;
+    color: var(--clr-dark);
     font-size: 24px;
   }
 
   .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
     margin-bottom: 20px;
   }
 
   .info-card {
-    background: white;
+    background: var(--clr-white);
     padding: 15px;
     border-radius: 10px;
     text-align: left;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  .info-card.full-width {
-    grid-column: 1 / -1;
+    border: solid 1px var(--clr-gray);
   }
 
   .info-label {
@@ -190,43 +188,48 @@
     font-weight: 500;
   }
 
-  .mensaje-error {
-    width: 100%;
-    max-width: 500px;
-    background-color: #fff3cd;
-    border: 2px solid #ffc107;
-    border-radius: 12px;
-    padding: 25px;
-    animation: fadeIn 0.5s ease;
+  .modal-error {
+    text-align: center;
   }
 
-  .mensaje-error p {
+  .modal-error p {
     color: #856404;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
   }
 
-  .loading {
+  .btn-secondary {
+    background-color: #6c757d !important;
+    margin-top: 10px;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268 !important;
+  }
+
+  .modal-loading {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
+    padding: 40px 0;
   }
 
-  .spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #195190;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
+  .modal-loading p {
+    margin: 0;
+    color: var(--clr-dark2);
+    font-weight: 500;
+    font-size: 16px;
   }
 
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
     }
-    100% {
-      transform: rotate(360deg);
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
@@ -235,47 +238,85 @@
       padding: 20px;
     }
 
-    .info-grid {
-      grid-template-columns: 1fr;
+    .modal-content {
+      width: 95%;
+      padding: 30px 20px;
     }
 
-    .info-header {
-      flex-direction: column;
-      align-items: flex-start;
+    .info-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
 
 <script>
-  // @ts-nocheck
+  //@ts-nocheck
   // URL de tu Google Sheet publicado como CSV
-  // Reemplaza esta URL con la tuya
   const SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQW9HE0pnzSsXfqoD9qXe28EMfT2D6AFhoM3T_83Z8ajhdKDgL86tE8cSRfTTTtuVVm8j1KZLrHefc_/pubhtml?gid=0&single=true";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQW9HE0pnzSsXfqoD9qXe28EMfT2D6AFhoM3T_83Z8ajhdKDgL86tE8cSRfTTTtuVVm8j1KZLrHefc_/pub?gid=0&single=true&output=csv";
 
   async function buscarDatos(identificacion, url) {
-    const res = await fetch(`${url}&rand=${Date.now()}`, { cache: "no-store" });
+    const res = await fetch(`${url}&rand=${Date.now()}`, {
+      cache: "no-store",
+      mode: "cors",
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const csv = await res.text();
-    const lines = csv.trim().split("\n");
-    const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
+    console.log("CSV recibido:", csv);
 
-    // Índices de las columnas (solo 2 columnas: cedula/nit y equipo)
+    const lines = csv.trim().split("\n");
+    console.log("Total de líneas:", lines.length);
+
+    if (lines.length < 2) {
+      console.error("No hay datos en el CSV");
+      return null;
+    }
+
+    const headers = lines[0]
+      .split(",")
+      .map((h) => h.trim().toLowerCase().replace(/['"]/g, ""));
+    console.log("Headers encontrados:", headers);
+
     const indices = {
-      cedula: headers.findIndex((h) => h.includes("CEDULA / NIT")),
-      equipo: headers.findIndex((h) => h.includes("EQUIPO")),
+      cedula: headers.findIndex(
+        (h) =>
+          h.includes("cedula") ||
+          h.includes("identificacion") ||
+          h.includes("nit") ||
+          h.includes("cédula"),
+      ),
+      equipo: headers.findIndex((h) => h.includes("equipo")),
     };
 
+    console.log("Índices encontrados:", indices);
+
+    if (indices.cedula === -1 || indices.equipo === -1) {
+      console.error("No se encontraron las columnas necesarias");
+      abrirModal(`
+        <div class="modal-error">
+          <p><strong>Error:</strong> No se encontraron las columnas 'cedula' y 'equipo' en la hoja de cálculo.</p>
+          <p>Columnas encontradas: ${headers.join(", ")}</p>
+        </div>
+      `);
+      return null;
+    }
+
     const id = identificacion.trim().toLowerCase();
+    console.log("Buscando ID:", id);
 
     for (let i = 1; i < lines.length; i++) {
       const cells = lines[i]
         .split(",")
-        .map((c) => c.trim().replace(/^"|"$/g, ""));
-      const cedulaCelda = cells[indices.cedula]?.toLowerCase() || "";
+        .map((c) => c.trim().replace(/^["']|["']$/g, ""));
+      const cedulaCelda = cells[indices.cedula]?.toLowerCase().trim() || "";
+
+      console.log(
+        `Línea ${i}: Cedula='${cedulaCelda}', Equipo='${cells[indices.equipo]}'`,
+      );
 
       if (cedulaCelda === id) {
+        console.log("¡Encontrado!");
         return {
           cedula: cells[indices.cedula] || "N/A",
           equipo: cells[indices.equipo] || "N/A",
@@ -283,6 +324,7 @@
       }
     }
 
+    console.log("No se encontró coincidencia");
     return null;
   }
 
@@ -299,57 +341,79 @@
     return null;
   }
 
-  function obtenerClaseEstado(estado) {
-    const estadoLower = estado.toLowerCase();
-    if (estadoLower.includes("revision") || estadoLower.includes("revisión"))
-      return "en-revision";
-    if (
-      estadoLower.includes("reparacion") ||
-      estadoLower.includes("reparación")
-    )
-      return "en-reparacion";
-    if (estadoLower.includes("listo")) return "listo";
-    if (estadoLower.includes("entregado")) return "entregado";
-    return "pendiente";
-  }
-
   async function consultarEstado() {
     const identificacion = document.getElementById("identificacion").value;
 
+    // Validar que hay identificación
     if (!identificacion) {
-      alert("Por favor ingresa tu número de identificación.");
+      abrirModal(`
+        <div class="modal-error">
+          <p><strong>Campo vacío</strong></p>
+          <p>Por favor ingresa tu número de identificación para realizar la consulta.</p>
+        </div>
+      `);
       return;
     }
 
-    // Mostrar loading
-    document.getElementById("loading").style.display = "flex";
-    document.getElementById("resultado").style.display = "none";
-    document.getElementById("mensaje-error").style.display = "none";
+    // Mostrar loading en modal
+    abrirModal(`
+      <div class="modal-loading">
+        <p>Consultando información...</p>
+      </div>
+    `);
 
     const datos = await buscarDatosConReintentos(identificacion, SHEET_URL);
 
-    // Ocultar loading
-    document.getElementById("loading").style.display = "none";
-
     if (!datos) {
-      document.getElementById("mensaje-error").style.display = "block";
+      // Mostrar error en modal
+      abrirModal(`
+        <div class="modal-error">
+          <p><strong>No se encontró información</strong></p>
+          <p>No se encontró información asociada a esta identificación. Por favor verifica el dato ingresado.</p>
+        </div>
+      `);
       return;
     }
 
-    // Llenar los datos (solo 2 campos)
-    document.getElementById("info-cedula").textContent = datos.cedula;
-    document.getElementById("info-equipo").textContent = datos.equipo;
-
-    // Mostrar resultado
-    document.getElementById("resultado").style.display = "block";
+    // Mostrar resultado en modal
+    abrirModal(`
+      <div class="modal-resultado">
+        <h3>Información Encontrada</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-label">Identificación:</span>
+            <span class="info-value">${datos.cedula}</span>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Equipo:</span>
+            <span class="info-value">${datos.equipo}</span>
+          </div>
+        </div>
+      </div>
+    `);
   }
 
-  function limpiarConsulta() {
+  function abrirModal(contenido) {
+    const modalBody = document.getElementById("modal-body");
+    modalBody.innerHTML = contenido;
+    document.getElementById("modal-overlay").style.display = "flex";
+  }
+
+  function cerrarModal() {
+    document.getElementById("modal-overlay").style.display = "none";
+    document.getElementById("modal-body").innerHTML = "";
+    // Limpiar el input al cerrar
     document.getElementById("identificacion").value = "";
-    document.getElementById("resultado").style.display = "none";
-    document.getElementById("mensaje-error").style.display = "none";
-    document.getElementById("loading").style.display = "none";
   }
+
+  // Cerrar modal al hacer clic fuera del contenido
+  document
+    .getElementById("modal-overlay")
+    ?.addEventListener("click", function (e) {
+      if (e.target === this) {
+        cerrarModal();
+      }
+    });
 
   // Permitir consulta con Enter
   document
@@ -361,5 +425,5 @@
     });
 
   window.consultarEstado = consultarEstado;
-  window.limpiarConsulta = limpiarConsulta;
+  window.cerrarModal = cerrarModal;
 </script>

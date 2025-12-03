@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+---
+
+<div class="loader-container">
+  <i class="bi bi-snow spinning-loader"></i>
+</div>
+
+<style>
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+  }
+
+  .bi-snow {
+    font-size: 2.3em;
+    color: var(--clr-blue);
+    display: inline-block;
+  }
+
+  .spinning-loader {
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+</style>
