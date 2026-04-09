@@ -20,64 +20,51 @@
     </div>
   </div>
 
-  <!-- MODAL -->
-  <div
-    id="modal-overlay"
-    class="modal-overlay flex-column"
-    style="display: none;"
-  >
-    <div class="modal-content flex-column">
-      <button class="modal-close" onclick="cerrarModal()">
-        <i class="bi bi-x-lg" aria-label="Cerrar modal"></i>
+  <!-- ── MODAL ── -->
+  <div id="fs-modal" class="fs-modal-backdrop">
+    <div class="fs-modal-card">
+      <button id="fs-modal-close" class="fs-modal-close" aria-label="Cerrar">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
       </button>
-      <div id="modal-body">
-        <!-- Aquí irá el contenido dinámico -->
+
+      <div class="fs-modal-icon-wrap">
+        <div id="fs-modal-icon" class="fs-modal-icon"></div>
+      </div>
+
+      <div class="fs-modal-header">
+        <span id="fs-modal-title">Aviso</span>
+      </div>
+
+      <div id="fs-modal-body" class="fs-modal-body">
+        <!-- Contenido dinámico -->
+      </div>
+
+      <div class="fs-modal-footer">
+        <button id="fs-modal-ok" class="fs-modal-btn">Entendido</button>
       </div>
     </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div id="fs-toast" class="fs-toast">
+    <span id="fs-toast-icon" class="fs-toast-icon"></span>
+    <span id="fs-toast-msg"></span>
   </div>
 </section>
 
 <style>
-  /* ESTILOS DEL MODAL */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: #000000bb;
-    z-index: 100;
-    max-width: none;
-  }
-
-  .modal-content {
-    background-color: white;
-    padding: 40px 30px;
-    border-radius: 12px;
-    position: relative;
-    width: 90%;
-    max-width: 600px;
-    min-height: 200px;
-    animation: fadeIn 0.3s ease;
-  }
-
-  #consulta-equipos .modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 8px;
-    padding: 8px 12px;
-    background: var(--clr-white);
-    color: var(--clr-dark);
-    border: solid 1px var(--clr-gray);
-    width: fit-content;
-    transition: all 0.3s ease;
-  }
-
-  #consulta-equipos .modal-close:hover {
-    background-color: var(--clr-gray);
-  }
-
-  /* ESTILOS GENERALES */
+  /* ── SECCIÓN GENERAL ── */
   #consulta-equipos {
     gap: 10px;
     background-color: var(--clr-white);
@@ -91,6 +78,7 @@
     width: 100%;
     max-width: 700px;
     text-align: center;
+    box-shadow: var(--shadow-md, 0 4px 20px rgba(3, 33, 50, 0.1));
   }
 
   #consulta-equipos h2 {
@@ -116,133 +104,281 @@
     max-width: 400px;
     padding: 12px;
     font-size: 16px;
-    border-radius: 6px;
-    border: solid 1px var(--clr-white);
-    background-color: var(--clr-white);
+    border-radius: 10px;
+    border: solid 1.5px var(--clr-gray);
+    background-color: #fff;
     transition: var(--transition);
   }
 
   #consulta-equipos input:focus {
     outline: none;
-    border-color: var(--clr-gray);
+    border-color: var(--clr-blue);
+    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.08);
   }
 
   #consulta-equipos button {
-    background-color: var(--clr-dark);
+    background-color: var(--clr-blue);
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 12px 32px;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     width: 100%;
     max-width: 400px;
   }
 
   #consulta-equipos button:hover {
-    opacity: 0.9;
+    opacity: 0.88;
     transform: translateY(-1px);
+    box-shadow: var(--shadow-md, 0 4px 16px rgba(3, 33, 50, 0.18));
   }
 
-  /* ESTILOS PARA CONTENIDO DEL MODAL */
-  .modal-resultado {
-    text-align: center;
-  }
-
+  /* ── RESULTADO DENTRO DEL MODAL ── */
   .modal-resultado h3 {
-    margin: 0 0 25px 0;
+    margin: 0 0 20px 0;
     color: var(--clr-dark);
-    font-size: 24px;
+    font-size: 1rem;
+    letter-spacing: 2px;
   }
 
   .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 4px;
+    text-align: left;
   }
 
   .info-card {
-    background: var(--clr-white);
-    padding: 15px;
+    background: var(--clr-white, #f4f4f4);
+    padding: 14px;
     border-radius: 10px;
-    text-align: left;
-    border: solid 1px var(--clr-gray);
+    border: solid 1px var(--clr-gray, #dcdcdc);
   }
 
   .info-label {
     display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: #666;
+    font-size: 11px;
+    font-weight: 700;
+    color: #888;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
   }
 
   .info-value {
     display: block;
-    font-size: 16px;
-    color: #333;
-    font-weight: 500;
+    font-size: 15px;
+    color: #222;
+    font-weight: 600;
   }
 
-  .modal-error {
-    text-align: center;
-  }
-
-  .modal-error p {
-    color: #856404;
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-
-  .btn-secondary {
-    background-color: #6c757d !important;
-    margin-top: 10px;
-  }
-
-  .btn-secondary:hover {
-    background-color: #5a6268 !important;
-  }
-
-  .modal-loading {
+  /* ── MODAL BACKDROP ── */
+  .fs-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.38);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 40px 0;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+    max-width: none; /* override: section > * { max-width: 900px } */
+    width: 100%;
   }
 
-  .modal-loading p {
-    margin: 0;
-    color: var(--clr-dark2);
-    font-weight: 500;
+  .fs-modal-backdrop.fs-modal-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* ── MODAL CARD ── */
+  .fs-modal-card {
+    position: relative;
+    width: min(460px, 95vw);
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.14),
+      0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transform: translateY(24px) scale(0.96);
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 0.25s ease;
+    opacity: 0;
+  }
+
+  .fs-modal-backdrop.fs-modal-visible .fs-modal-card {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  /* ── BOTÓN CERRAR ── */
+  .fs-modal-close {
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    background: transparent !important;
+    color: #9ca3af !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 4px !important;
+    width: auto !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease !important;
+    box-shadow: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .fs-modal-close:hover {
+    background: transparent !important;
+    color: #374151 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ── ÍCONO MODAL ── */
+  .fs-modal-icon-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 28px 0 4px;
+  }
+
+  .fs-modal-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+
+  .fs-icon-aviso {
+    background: #fef9c3;
+  }
+  .fs-icon-error {
+    background: #fee2e2;
+  }
+  .fs-icon-exito {
+    background: #dcfce7;
+  }
+  .fs-icon-carga {
+    background: #e0f2fe;
+  }
+
+  /* ── HEADER MODAL ── */
+  .fs-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px 0;
+  }
+
+  #fs-modal-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  /* ── BODY MODAL ── */
+  .fs-modal-body {
+    padding: 14px 24px 8px;
+    color: #4b5563;
+    line-height: 1.6;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  /* ── FOOTER MODAL ── */
+  .fs-modal-footer {
+    display: flex;
+    justify-content: center;
+    padding: 16px 24px 28px;
+  }
+
+  .fs-modal-btn {
+    background-color: var(--clr-blue) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 12px !important;
+    padding: 11px 36px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    cursor: pointer;
+    transition: all 0.2s ease !important;
+    width: auto !important;
+    max-width: unset !important;
+  }
+
+  .fs-modal-btn:hover {
+    opacity: 0.88 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* ── TOAST ── */
+  .fs-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%) translateY(16px);
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10000;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.25s ease,
+      transform 0.32s cubic-bezier(0.34, 1.4, 0.64, 1),
+      visibility 0.25s ease;
+    white-space: nowrap;
+    pointer-events: none;
+    max-width: none; /* override: section > * { max-width: 900px } */
+    width: auto;
+  }
+
+  .fs-toast.fs-toast-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .fs-toast-icon {
     font-size: 16px;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+    line-height: 1;
   }
 
   @media (max-width: 768px) {
-    #consulta-equipos {
-      padding: 20px;
-    }
-
-    .modal-content {
-      width: 95%;
-      padding: 30px 20px;
-    }
-
     .info-grid {
       grid-template-columns: 1fr;
     }
@@ -251,10 +387,52 @@
 
 <script>
   //@ts-nocheck
-  // URL de tu Google Sheet publicado como CSV
+
   const SHEET_URL =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQW9HE0pnzSsXfqoD9qXe28EMfT2D6AFhoM3T_83Z8ajhdKDgL86tE8cSRfTTTtuVVm8j1KZLrHefc_/pub?gid=0&single=true&output=csv";
 
+  /* ── TOAST ── */
+  let toastTimer;
+  function fsToast(msg, icono = "🔔") {
+    clearTimeout(toastTimer);
+    const t = document.getElementById("fs-toast");
+    document.getElementById("fs-toast-icon").textContent = icono;
+    document.getElementById("fs-toast-msg").textContent = msg;
+    t.classList.add("fs-toast-visible");
+    toastTimer = setTimeout(() => t.classList.remove("fs-toast-visible"), 3200);
+  }
+
+  /* ── MODAL ── */
+  const VARIANTES = {
+    aviso: { emoji: "💡", clase: "fs-icon-aviso" },
+    error: { emoji: "❌", clase: "fs-icon-error" },
+    exito: { emoji: "✅", clase: "fs-icon-exito" },
+    carga: { emoji: "❄️", clase: "fs-icon-carga" },
+  };
+
+  function fsModalShow({ title, body, variante = "aviso" }) {
+    const v = VARIANTES[variante] || VARIANTES.aviso;
+    const iconEl = document.getElementById("fs-modal-icon");
+    iconEl.textContent = v.emoji;
+    iconEl.className = "fs-modal-icon " + v.clase;
+    document.getElementById("fs-modal-title").textContent = title;
+    document.getElementById("fs-modal-body").innerHTML = body;
+    document.getElementById("fs-modal").classList.add("fs-modal-visible");
+  }
+
+  function fsModalHide() {
+    document.getElementById("fs-modal").classList.remove("fs-modal-visible");
+    document.getElementById("fs-modal-body").innerHTML = "";
+    document.getElementById("identificacion").value = "";
+  }
+
+  document.getElementById("fs-modal-ok").onclick = fsModalHide;
+  document.getElementById("fs-modal-close").onclick = fsModalHide;
+  document.getElementById("fs-modal").addEventListener("click", function (e) {
+    if (e.target === this) fsModalHide();
+  });
+
+  /* ── LÓGICA DE BÚSQUEDA ── */
   async function buscarDatos(identificacion, url) {
     const res = await fetch(`${url}&rand=${Date.now()}`, {
       cache: "no-store",
@@ -264,16 +442,11 @@
 
     const csv = await res.text();
     const lines = csv.trim().split("\n");
-
-    if (lines.length < 2) {
-      console.error("No hay datos en el CSV");
-      return null;
-    }
+    if (lines.length < 2) return null;
 
     const headers = lines[0]
       .split(",")
       .map((h) => h.trim().toLowerCase().replace(/['"]/g, ""));
-
     const indices = {
       cedula: headers.findIndex(
         (h) =>
@@ -286,36 +459,31 @@
     };
 
     if (indices.cedula === -1 || indices.equipo === -1) {
-      console.error("No se encontraron las columnas necesarias");
-      abrirModal(`
-        <div class="modal-error">
-          <p><strong>Error:</strong> No se encontraron las columnas 'cedula' y 'equipo' en la hoja de cálculo.</p>
-          <p>Columnas encontradas: ${headers.join(", ")}</p>
-        </div>
-      `);
+      fsModalShow({
+        title: "Error de configuración",
+        body: `No se encontraron las columnas requeridas.<br><small>Columnas encontradas: ${headers.join(", ")}</small>`,
+        variante: "error",
+      });
       return null;
     }
 
     const id = identificacion.trim().toLowerCase();
-
     for (let i = 1; i < lines.length; i++) {
       const cells = lines[i]
         .split(",")
         .map((c) => c.trim().replace(/^["']|["']$/g, ""));
-      const cedulaCelda = cells[indices.cedula]?.toLowerCase().trim() || "";
-
-      if (cedulaCelda === id) {
+      const cedulaFila = cells[indices.cedula]?.toLowerCase().trim() || "";
+      if (cedulaFila === id) {
         return {
           cedula: cells[indices.cedula] || "N/A",
           equipo: cells[indices.equipo] || "N/A",
         };
       }
     }
-
     return null;
   }
 
-  async function buscarDatosConReintentos(identificacion, url, intentos = 3) {
+  async function buscarConReintentos(identificacion, url, intentos = 3) {
     for (let i = 0; i < intentos; i++) {
       try {
         const datos = await buscarDatos(identificacion, url);
@@ -329,88 +497,64 @@
   }
 
   async function consultarEstado() {
-    const identificacion = document.getElementById("identificacion").value;
+    const identificacion = document
+      .getElementById("identificacion")
+      .value.trim();
 
-    // Validar que hay identificación
     if (!identificacion) {
-      abrirModal(`
-        <div class="modal-error">
-          <p><strong>Campo vacío</strong></p>
-          <p>Por favor ingresa tu número de identificación para realizar la consulta.</p>
-        </div>
-      `);
+      fsModalShow({
+        title: "Campo vacío",
+        body: "Por favor ingresa tu número de cédula o NIT para consultar.",
+        variante: "aviso",
+      });
       return;
     }
 
-    // Mostrar loading en modal
-    abrirModal(`
-      <div class="modal-loading">
-        <p>Consultando información...</p>
-      </div>
-    `);
+    fsToast("Consultando tu información...", "🔍");
 
-    const datos = await buscarDatosConReintentos(identificacion, SHEET_URL);
+    const datos = await buscarConReintentos(identificacion, SHEET_URL);
 
     if (!datos) {
-      // Mostrar error en modal
-      abrirModal(`
-        <div class="modal-error">
-          <p><strong>No se encontró información</strong></p>
-          <p>No se encontró información asociada a esta identificación. Por favor verifica el dato ingresado.</p>
-        </div>
-      `);
+      fsToast("No se encontró el registro", "❌");
+      setTimeout(() => {
+        fsModalShow({
+          title: "Sin resultados",
+          body: "No encontramos información asociada a esta identificación.<br>Verifica el número ingresado o contáctanos.",
+          variante: "error",
+        });
+      }, 600);
       return;
     }
 
-    // Mostrar resultado en modal
-    abrirModal(`
-      <div class="modal-resultado">
-        <h3>Información Encontrada</h3>
-        <div class="info-grid">
-          <div class="info-card">
-            <span class="info-label">Identificación:</span>
-            <span class="info-value">${datos.cedula}</span>
+    fsToast("¡Registro encontrado!", "✅");
+    setTimeout(() => {
+      fsModalShow({
+        title: "Información de tu equipo",
+        body: `
+          <div class="modal-resultado">
+            <div class="info-grid">
+              <div class="info-card">
+                <span class="info-label">Identificación</span>
+                <span class="info-value">${datos.cedula}</span>
+              </div>
+              <div class="info-card">
+                <span class="info-label">Equipo</span>
+                <span class="info-value">${datos.equipo}</span>
+              </div>
+            </div>
           </div>
-          <div class="info-card">
-            <span class="info-label">Equipo:</span>
-            <span class="info-value">${datos.equipo}</span>
-          </div>
-        </div>
-      </div>
-    `);
+        `,
+        variante: "exito",
+      });
+    }, 600);
   }
 
-  function abrirModal(contenido) {
-    const modalBody = document.getElementById("modal-body");
-    modalBody.innerHTML = contenido;
-    document.getElementById("modal-overlay").style.display = "flex";
-  }
-
-  function cerrarModal() {
-    document.getElementById("modal-overlay").style.display = "none";
-    document.getElementById("modal-body").innerHTML = "";
-    // Limpiar el input al cerrar
-    document.getElementById("identificacion").value = "";
-  }
-
-  // Cerrar modal al hacer clic fuera del contenido
-  document
-    .getElementById("modal-overlay")
-    ?.addEventListener("click", function (e) {
-      if (e.target === this) {
-        cerrarModal();
-      }
-    });
-
-  // Permitir consulta con Enter
+  /* ── EVENTOS ── */
   document
     .getElementById("identificacion")
-    ?.addEventListener("keypress", function (e) {
-      if (e.key === "Enter") {
-        consultarEstado();
-      }
+    ?.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") consultarEstado();
     });
 
   window.consultarEstado = consultarEstado;
-  window.cerrarModal = cerrarModal;
 </script>

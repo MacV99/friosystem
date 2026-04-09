@@ -1,31 +1,45 @@
+/* =============================================
+   AC FRIOSYSTEM — Global Styles
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
 :root {
+  /* COLORES */
   --clr-red: #EA4B5E;
-  /* primario */
   --clr-blue: #032132;
-  /* secundario */
+  /* Azul oscuro — primario */
+  --clr-blue-mid: #0a4a73;
+  /* Azul medio — acento hover */
+  --clr-blue-light: #e8f4fd;
+  /* Azul muy claro — fondos */
+  --clr-green: #2b9348;
+  /* 🔧 FIX: variable faltante */
   --clr-green2: #698459;
 
   --clr-dark: #191919;
   --clr-dark2: #464646;
 
   --clr-gray: #dcdcdc;
-  /* fuentes, fondos */
   --clr-white: #f4f4f4;
 
-  --transition: all 0.15s ease;
+  --transition: all 0.2s ease;
 
+  /* SOMBRAS */
+  --shadow-sm: 0 2px 8px rgba(3, 33, 50, 0.08);
+  --shadow-md: 0 4px 20px rgba(3, 33, 50, 0.12);
+  --shadow-lg: 0 8px 40px rgba(3, 33, 50, 0.18);
 }
 
-/* @font-face {
-  font-family: "Lemon/Milk";
-  src: url("/Font/LEMONMILK-Light.otf") format("truetype");
-} */
+/* =============================================
+   BASE
+   ============================================= */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Lemon/Milk", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+  font-family: 'Montserrat', 'Gill Sans', sans-serif !important;
 }
 
 html {
@@ -69,7 +83,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-weight: bold;
+  font-weight: 700;
   letter-spacing: 2px;
   padding-left: 2px;
   text-transform: uppercase;
@@ -78,10 +92,13 @@ h5 {
 p {
   color: var(--clr-dark2);
   font-size: .9rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* FLEX ROW Y FLEX COLUMN */
+/* =============================================
+   FLEX HELPERS
+   ============================================= */
+
 .flex-column {
   display: flex;
   align-items: center;
@@ -96,6 +113,9 @@ p {
   flex-direction: row;
 }
 
+/* =============================================
+   SECTIONS & FOOTER
+   ============================================= */
 
 section,
 footer {
@@ -112,17 +132,23 @@ footer>* {
   max-width: 900px;
 }
 
+/* =============================================
+   BOTONES
+   ============================================= */
+
 a.boton,
 .button1 {
-  padding: 10px 14px;
+  padding: 10px 20px;
   border-radius: 14px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   border: none;
   letter-spacing: 2px;
-  padding-left: 16px;
   cursor: pointer;
   transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .button1 {
@@ -132,8 +158,79 @@ a.boton,
 
 .button1:hover {
   background-color: var(--clr-green2);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
 
+.button2 {
+  padding: 7px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: var(--transition);
+  text-transform: uppercase;
+  border-radius: 12px;
+  border: solid 1px var(--clr-gray);
+  background-color: #fff;
+  letter-spacing: 1px;
+}
 
-/*responsive para pantallas de escritorio */
-@media (min-width: 768px) {}
+.button2.active,
+.button2:hover {
+  background-color: var(--clr-blue);
+  color: #fff;
+  border-color: var(--clr-blue);
+}
+
+/* =============================================
+   ANIMACIÓN BRISA (tema AC)
+   ============================================= */
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0px);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+}

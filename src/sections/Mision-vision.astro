@@ -1,6 +1,9 @@
-<section class="flex-row">
-  <div>
-    <h2><i class="bi bi-graph-up-arrow"></i>MISÍON</h2>
+<section class="mv-section flex-row">
+  <div class="mv-card">
+    <div class="mv-icon">
+      <i class="bi bi-graph-up-arrow"></i>
+    </div>
+    <h2>Misión</h2>
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur sint
       veritatis, itaque rem molestias vel assumenda totam odit non temporibus
@@ -8,8 +11,11 @@
     </p>
   </div>
 
-  <div>
-    <h2><i class="bi bi-lightbulb"></i>VISIÓN</h2>
+  <div class="mv-card">
+    <div class="mv-icon">
+      <i class="bi bi-lightbulb"></i>
+    </div>
+    <h2>Visión</h2>
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur sint
       veritatis, itaque rem molestias vel assumenda totam odit non temporibus
@@ -19,32 +25,65 @@
 </section>
 
 <style>
-  section {
+  .mv-section {
     flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px 20px;
   }
 
-  div {
-    border: var(--clr-white) 1px solid;
-    padding: 30px 20px;
+  .mv-card {
+    border: 1px solid var(--clr-gray);
+    padding: 32px 24px;
     border-radius: 18px;
-    max-width: 400px;
+    max-width: 380px;
+    width: 100%;
     background-color: #fff;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mv-card:hover {
+    border-color: var(--clr-blue);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .mv-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--clr-blue-light, #e8f4fd);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-blue);
+    font-size: 22px;
+    margin-bottom: 4px;
     transition: var(--transition);
   }
 
-  div:hover {
-    border-color: var(--clr-gray);
+  .mv-card:hover .mv-icon {
+    background-color: var(--clr-blue);
+    color: #fff;
   }
 
   h2 {
-    display: flex;
+    color: var(--clr-dark);
+    font-size: 1rem;
+    letter-spacing: 3px;
   }
 
   p {
     color: var(--clr-dark2);
+    line-height: 1.6;
   }
 
   i {
-    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

@@ -1,45 +1,225 @@
-<section class="flex-column">
-  <h1>AC FRIOSYSTEM S.A.S</h1>
-  <a
-    class="boton"
-    href="https://wa.me/523172366425?text=Hola%20quiero%20información"
-    target="_blank">CONTÁCTANOS</a
-  >
+<section class="hero flex-column">
+  <div class="hero-particles" aria-hidden="true">
+    <i class="bi bi-snow p1"></i>
+    <i class="bi bi-snow2 p2"></i>
+    <i class="bi bi-snow p3"></i>
+    <i class="bi bi-snow2 p4"></i>
+    <i class="bi bi-snow p5"></i>
+    <i class="bi bi-snow2 p6"></i>
+    <i class="bi bi-snow p7"></i>
+    <i class="bi bi-snow2 p8"></i>
+    <i class="bi bi-snow p9"></i>
+    <i class="bi bi-snow2 p10"></i>
+    <i class="bi bi-snow p11"></i>
+    <i class="bi bi-snow2 p12"></i>
+  </div>
+
+  <div class="hero-content flex-column">
+    <h1>AC FRIOSYSTEM S.A.S</h1>
+    <p class="hero-sub">Soluciones en climatización y aires acondicionados</p>
+    <a
+      class="boton hero-btn"
+      href="https://wa.me/523172366425?text=Hola%20quiero%20información"
+      target="_blank"
+    >
+      <i class="bi bi-whatsapp"></i>
+      CONTÁCTANOS
+    </a>
+  </div>
 </section>
 
 <style>
-  section {
+  .hero {
+    position: relative;
     text-align: center;
     background-image: url("/img/hero.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center center;
     background-blend-mode: color;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(3, 33, 50, 0.72);
     background-size: cover;
-    height: 300px;
+    height: 340px;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  .hero-content {
+    gap: 12px;
+    z-index: 2;
+    animation: fadeInUp 0.8s ease both;
   }
 
   h1 {
-    font-size: 24px;
-    line-height: normal;
+    font-size: 22px;
+    line-height: 1.2;
     color: #fff;
-    letter-spacing: 7px;
-    padding-left: 7px;
+    letter-spacing: 6px;
+    padding-left: 6px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
   }
 
-  h3 {
-    line-height: normal;
+  .hero-sub {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    animation: fadeInUp 0.8s 0.15s ease both;
   }
 
-  a.boton {
-    background-color: var(--clr-white);
-    color: var(--clr-dark);
+  .hero-btn {
+    background-color: #fff;
+    color: var(--clr-blue);
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 13px;
+    margin-top: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.8s 0.3s ease both;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hero-btn:hover {
+    background-color: var(--clr-blue);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  /* ── PARTÍCULAS ── */
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    max-width: none;
+    width: 100%;
+  }
+
+  /* Base: solo posición y color — animación va en cada .pN */
+  .hero-particles i {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  /* Cada partícula tiene su propia duración y delay dentro del shorthand */
+  .p1 {
+    font-size: 30px;
+    top: 12%;
+    left: 3%;
+    animation: windDrift 4.5s 0s linear infinite;
+  }
+  .p2 {
+    font-size: 20px;
+    top: 65%;
+    left: 10%;
+    animation: windDrift 5.2s 1.2s linear infinite;
+  }
+  .p3 {
+    font-size: 16px;
+    top: 28%;
+    left: 20%;
+    animation: windDrift 3.8s 0.5s linear infinite;
+  }
+  .p4 {
+    font-size: 24px;
+    top: 75%;
+    left: 30%;
+    animation: windDrift 4.8s 2.1s linear infinite;
+  }
+  .p5 {
+    font-size: 18px;
+    top: 18%;
+    left: 42%;
+    animation: windDrift 5.5s 0.8s linear infinite;
+  }
+  .p6 {
+    font-size: 26px;
+    top: 58%;
+    left: 52%;
+    animation: windDrift 4.2s 1.7s linear infinite;
+  }
+  .p7 {
+    font-size: 22px;
+    top: 35%;
+    left: 63%;
+    animation: windDrift 4.9s 0.3s linear infinite;
+  }
+  .p8 {
+    font-size: 14px;
+    top: 80%;
+    left: 72%;
+    animation: windDrift 3.6s 2.5s linear infinite;
+  }
+  .p9 {
+    font-size: 28px;
+    top: 20%;
+    left: 81%;
+    animation: windDrift 5.1s 1s linear infinite;
+  }
+  .p10 {
+    font-size: 18px;
+    top: 60%;
+    left: 88%;
+    animation: windDrift 4.4s 1.8s linear infinite;
+  }
+  .p11 {
+    font-size: 22px;
+    top: 40%;
+    left: 93%;
+    animation: windDrift 5s 0.6s linear infinite;
+  }
+  .p12 {
+    font-size: 16px;
+    top: 82%;
+    left: 97%;
+    animation: windDrift 3.9s 2.8s linear infinite;
+  }
+
+  @keyframes windDrift {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) rotate(0deg);
+    }
+    12% {
+      opacity: 0.55;
+    }
+    85% {
+      opacity: 0.45;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(40px, -55px) rotate(28deg);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (min-width: 700px) {
+    .hero {
+      height: 380px;
+    }
     h1 {
       font-size: 30px;
+      letter-spacing: 8px;
+    }
+    .hero-sub {
+      font-size: 0.85rem;
     }
   }
 </style>

@@ -1,111 +1,535 @@
-<section id="reporte-mantenimiento">
-  <!-- <p>Complete el formulario para generar el reporte en PDF</p> -->
+<section id="reporte-mantenimiento" class="flex-column">
+  <div class="form-card flex-column">
+    <div class="form-header">
+      <div class="form-header-icon">
+        <i class="bi bi-file-earmark-text"></i>
+      </div>
+      <div>
+        <h2>Reporte de Mantenimiento</h2>
+        <p class="form-subtitle">
+          Complete los campos y genere el reporte en imagen
+        </p>
+      </div>
+    </div>
 
-  <div class="form-container">
-    <h2>Reporte de Mantenimiento</h2>
+    <div class="divider"></div>
+
     <div class="form-group">
-      <label for="cliente">Cliente:</label>
-      <input type="text" id="cliente" placeholder="Nombre del cliente" />
+      <label for="cliente">
+        <i class="bi bi-person"></i>
+        Cliente
+      </label>
+      <input
+        type="text"
+        id="cliente"
+        placeholder="Nombre completo del cliente"
+      />
     </div>
 
     <div class="form-group">
-      <label for="marca">Marca Equipo #1:</label>
-      <input type="text" id="marca" placeholder="Marca del equipo" />
+      <label for="marca">
+        <i class="bi bi-wind"></i>
+        Marca Equipo #1
+      </label>
+      <input type="text" id="marca" placeholder="Ej: LG, Samsung, Carrier..." />
     </div>
 
     <div class="form-group">
-      <label for="tecnico">Técnico:</label>
-      <input type="text" id="tecnico" placeholder="Nombre del técnico" />
+      <label for="tecnico">
+        <i class="bi bi-person-badge"></i>
+        Técnico
+      </label>
+      <input
+        type="text"
+        id="tecnico"
+        placeholder="Nombre del técnico responsable"
+      />
     </div>
 
-    <button onclick="generarReporte()" class="btn-generar"
-      >Generar Reporte PDF</button
-    >
+    <button onclick="generarReporte()" class="btn-generar" id="btn-generar">
+      <i class="bi bi-download" id="btn-icon"></i>
+      <span id="btn-texto">Generar Reporte</span>
+    </button>
+
+    <p class="form-note">
+      <i class="bi bi-info-circle"></i>
+      Si los campos están vacíos se usarán valores de prueba
+    </p>
   </div>
 
   <canvas id="reporteCanvas" width="1754" height="2481" style="display:none;"
   ></canvas>
+
+  <!-- ── MODAL ── -->
+  <div id="fsr-modal" class="fsr-modal-backdrop">
+    <div class="fsr-modal-card">
+      <button id="fsr-modal-close" class="fsr-modal-close" aria-label="Cerrar">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="fsr-modal-icon-wrap">
+        <div id="fsr-modal-icon" class="fsr-modal-icon"></div>
+      </div>
+
+      <div class="fsr-modal-header">
+        <span id="fsr-modal-title">Aviso</span>
+      </div>
+
+      <div id="fsr-modal-body" class="fsr-modal-body"></div>
+
+      <div class="fsr-modal-footer">
+        <button id="fsr-modal-ok" class="fsr-modal-btn">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div id="fsr-toast" class="fsr-toast">
+    <span id="fsr-toast-icon" class="fsr-toast-icon"></span>
+    <span id="fsr-toast-msg"></span>
+  </div>
 </section>
 
 <style>
   #reporte-mantenimiento {
+    padding: 40px 20px;
   }
 
-  #reporte-mantenimiento h2 {
-    text-align: center;
-    margin-bottom: 7px;
-    border-bottom: solid 2px var(--clr-white);
-  }
-
-  .form-container {
+  /* ── TARJETA ── */
+  .form-card {
     background: white;
-    padding: 25px 25px;
-    border-radius: 12px;
+    padding: 32px 28px;
+    border-radius: 18px;
     border: solid 1px var(--clr-gray);
     width: 100%;
-    max-width: 700px;
+    max-width: 560px;
+    gap: 0;
+    box-shadow: var(--shadow-md, 0 4px 20px rgba(3, 33, 50, 0.1));
+    align-items: stretch;
   }
 
-  .form-group {
+  /* ── HEADER ── */
+  .form-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     margin-bottom: 20px;
   }
 
-  .form-group label {
-    display: block;
-    margin-bottom: 1px;
-    font-weight: 600;
+  .form-header-icon {
+    width: 52px;
+    height: 52px;
+    background-color: var(--clr-blue);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .form-header h2 {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
     color: var(--clr-dark);
+  }
+
+  .form-subtitle {
+    font-size: 0.8rem;
+    color: var(--clr-dark2);
+    margin: 0;
+  }
+
+  .divider {
+    height: 1px;
+    background-color: var(--clr-gray);
+    margin-bottom: 24px;
+  }
+
+  /* ── CAMPOS ── */
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: var(--clr-dark);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .form-group label .bi {
     font-size: 14px;
+    color: var(--clr-blue);
   }
 
   .form-group input {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: solid 1px var(--clr-white);
-    background-color: var(--clr-white);
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: solid 1.5px var(--clr-gray);
+    background-color: #fff;
     box-sizing: border-box;
     transition: var(--transition);
+    color: var(--clr-dark);
   }
 
   .form-group input:focus {
     outline: none;
-    border-color: var(--clr-gray);
+    border-color: var(--clr-blue);
+    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.08);
   }
 
+  .form-group input::placeholder {
+    color: #bbb;
+    font-size: 14px;
+  }
+
+  /* ── BOTÓN GENERAR ── */
   .btn-generar {
     width: 100%;
-    background-color: var(--clr-dark);
-    color: var(--clr-white);
+    background-color: var(--clr-blue);
+    color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 14px 24px;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin-top: 10px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
   .btn-generar:hover {
-    /* background-color: #2361a5; */
-    /* transform: scale(1.01); */
+    opacity: 0.88;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md, 0 4px 20px rgba(3, 33, 50, 0.18));
+  }
+
+  .btn-generar:active {
+    transform: translateY(0);
+  }
+
+  .btn-generar:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* ── NOTA ── */
+  .form-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 14px;
+    font-size: 0.75rem;
+    color: #aaa;
+  }
+
+  /* ── MODAL BACKDROP ── */
+  .fsr-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.38);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+    max-width: none; /* override: section > * { max-width: 900px } */
+    width: 100%;
+  }
+
+  .fsr-modal-backdrop.fsr-modal-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* ── MODAL CARD ── */
+  .fsr-modal-card {
+    position: relative;
+    width: min(460px, 95vw);
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.14),
+      0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transform: translateY(24px) scale(0.96);
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 0.25s ease;
+    opacity: 0;
+  }
+
+  .fsr-modal-backdrop.fsr-modal-visible .fsr-modal-card {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  /* ── BOTÓN CERRAR ── */
+  .fsr-modal-close {
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    background: transparent !important;
+    color: #9ca3af !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 4px !important;
+    width: auto !important;
+    min-width: unset !important;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .fsr-modal-close:hover {
+    background: transparent !important;
+    color: #374151 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ── ÍCONO MODAL ── */
+  .fsr-modal-icon-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 28px 0 4px;
+  }
+
+  .fsr-modal-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+
+  .fsr-icon-aviso {
+    background: #fef9c3;
+  }
+  .fsr-icon-error {
+    background: #fee2e2;
+  }
+  .fsr-icon-exito {
+    background: #dcfce7;
+  }
+
+  /* ── HEADER MODAL ── */
+  .fsr-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px 0;
+  }
+
+  #fsr-modal-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  /* ── BODY MODAL ── */
+  .fsr-modal-body {
+    padding: 14px 24px 8px;
+    color: #4b5563;
+    line-height: 1.6;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  /* ── FOOTER MODAL ── */
+  .fsr-modal-footer {
+    display: flex;
+    justify-content: center;
+    padding: 16px 24px 28px;
+  }
+
+  .fsr-modal-btn {
+    background-color: var(--clr-blue) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 12px !important;
+    padding: 11px 36px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    cursor: pointer;
+    transition: all 0.2s ease !important;
+    width: auto !important;
+    max-width: unset !important;
+  }
+
+  .fsr-modal-btn:hover {
+    opacity: 0.88 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* ── TOAST ── */
+  .fsr-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%) translateY(16px);
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10000;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.25s ease,
+      transform 0.32s cubic-bezier(0.34, 1.4, 0.64, 1),
+      visibility 0.25s ease;
+    white-space: nowrap;
+    pointer-events: none;
+    max-width: none; /* override: section > * { max-width: 900px } */
+    width: auto;
+  }
+
+  .fsr-toast.fsr-toast-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .fsr-toast-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  @media (max-width: 500px) {
+    .form-card {
+      padding: 24px 18px;
+    }
   }
 </style>
 
 <script>
   // @ts-nocheck
 
-  // VALORES DE PRUEBA - Cambialos según necesites
   const VALORES_PRUEBA = {
     cliente: "JUAN PEREZ GOMEZ",
     marca: "LG",
     tecnico: "CARLOS RODRIGUEZ",
   };
 
+  /* ── TOAST ── */
+  let fsrToastTimer;
+  function fsrToast(msg, icono = "🔔") {
+    clearTimeout(fsrToastTimer);
+    const t = document.getElementById("fsr-toast");
+    document.getElementById("fsr-toast-icon").textContent = icono;
+    document.getElementById("fsr-toast-msg").textContent = msg;
+    t.classList.add("fsr-toast-visible");
+    fsrToastTimer = setTimeout(
+      () => t.classList.remove("fsr-toast-visible"),
+      3200,
+    );
+  }
+
+  /* ── MODAL ── */
+  const FSR_VARIANTES = {
+    aviso: { emoji: "💡", clase: "fsr-icon-aviso" },
+    error: { emoji: "❌", clase: "fsr-icon-error" },
+    exito: { emoji: "✅", clase: "fsr-icon-exito" },
+  };
+
+  function fsrModalShow({ title, body, variante = "aviso" }) {
+    const v = FSR_VARIANTES[variante] || FSR_VARIANTES.aviso;
+    const iconEl = document.getElementById("fsr-modal-icon");
+    iconEl.textContent = v.emoji;
+    iconEl.className = "fsr-modal-icon " + v.clase;
+    document.getElementById("fsr-modal-title").textContent = title;
+    document.getElementById("fsr-modal-body").innerHTML = body;
+    document.getElementById("fsr-modal").classList.add("fsr-modal-visible");
+  }
+
+  function fsrModalHide() {
+    document.getElementById("fsr-modal").classList.remove("fsr-modal-visible");
+  }
+
+  document.getElementById("fsr-modal-ok").onclick = fsrModalHide;
+  document.getElementById("fsr-modal-close").onclick = fsrModalHide;
+  document.getElementById("fsr-modal").addEventListener("click", function (e) {
+    if (e.target === this) fsrModalHide();
+  });
+
+  /* ── BOTÓN: estados visuales ── */
+  function setBtnEstado(estado) {
+    const btn = document.getElementById("btn-generar");
+    const icono = document.getElementById("btn-icon");
+    const texto = document.getElementById("btn-texto");
+
+    const estados = {
+      normal: { icon: "bi-download", txt: "Generar Reporte", disabled: false },
+      cargando: {
+        icon: "bi-hourglass-split",
+        txt: "Generando...",
+        disabled: true,
+      },
+      exito: {
+        icon: "bi-check-circle",
+        txt: "¡Reporte listo!",
+        disabled: true,
+      },
+    };
+
+    const e = estados[estado] || estados.normal;
+    icono.className = `bi ${e.icon}`;
+    texto.textContent = e.txt;
+    btn.disabled = e.disabled;
+  }
+
+  /* ── GENERAR REPORTE ── */
   function generarReporte() {
-    // Si los campos están vacíos, usa los valores de prueba
     const cliente =
       document.getElementById("cliente").value || VALORES_PRUEBA.cliente;
     const marca =
@@ -116,45 +540,56 @@
     const canvas = document.getElementById("reporteCanvas");
     const ctx = canvas.getContext("2d");
 
-    // Cargar la plantilla
+    setBtnEstado("cargando");
+    fsrToast("Generando reporte...", "⏳");
+
     const plantilla = new Image();
     plantilla.crossOrigin = "anonymous";
     plantilla.src = "/img/reporte/plantilla_reporte.jpg";
 
     plantilla.onload = function () {
-      // Limpiar y dibujar la plantilla
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(plantilla, 0, 0, canvas.width, canvas.height);
 
-      // Configuración del texto global
       ctx.fillStyle = "#000000";
-      ctx.font = "24px Arial";
+      ctx.font = "24px Montserrat, Arial";
       ctx.textAlign = "left";
 
-      // CLIENTE (arriba izquierda, después de "CLIENTE:")
       ctx.fillText(cliente.toUpperCase(), 232, 430);
-
-      // MARCA EQUIPO #1 (debajo de "MARCA EQUIPO #1")
       ctx.fillText(marca.toUpperCase(), 310, 535);
-
-      // TÉCNICO (abajo derecha en la sección "Técnico")
       ctx.fillText(tecnico.toUpperCase(), 1105, 2150);
 
-      // Descargar el reporte
       const fecha = new Date();
       const link = document.createElement("a");
-      const nombreArchivo = `Reporte_${cliente.replace(/\s+/g, "_")}_${fecha.getDate()}-${fecha.getMonth() + 1}-${fecha.getFullYear()}.jpg`;
-      link.download = nombreArchivo;
+      const nombre = `Reporte_${cliente.replace(/\s+/g, "_")}_${fecha.getDate()}-${fecha.getMonth() + 1}-${fecha.getFullYear()}.jpg`;
+
+      link.download = nombre;
       link.href = canvas.toDataURL("image/jpeg", 1.0);
       link.click();
 
-      // alert("¡Reporte generado exitosamente!");
+      setBtnEstado("exito");
+      fsrToast("¡Reporte descargado!", "✅");
+
+      setTimeout(() => {
+        fsrModalShow({
+          title: "Reporte generado",
+          body: `El reporte de <strong>${cliente}</strong> fue generado correctamente.<br><small style="color:#888">Archivo: ${nombre}</small>`,
+          variante: "exito",
+        });
+        setBtnEstado("normal");
+      }, 800);
     };
 
     plantilla.onerror = function () {
-      alert(
-        "Error al cargar la plantilla. Verifica que la ruta sea correcta: /img/reporte/plantilla_reporte.jpg",
-      );
+      setBtnEstado("normal");
+      fsrToast("Error al cargar la plantilla", "❌");
+      setTimeout(() => {
+        fsrModalShow({
+          title: "Error de plantilla",
+          body: "No se pudo cargar la imagen base del reporte.<br><small>Verifica que el archivo exista en: <code>/img/reporte/plantilla_reporte.jpg</code></small>",
+          variante: "error",
+        });
+      }, 400);
     };
   }
 

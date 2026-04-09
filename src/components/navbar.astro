@@ -4,7 +4,8 @@
   <div class="flex-column" id="overlay">
     <a href="/">Inicio</a>
     <a href="/reporte">Reporte</a>
-    <a href="/clientes">clientes</a>
+    <!-- 🔧 FIX: "clientes" → "Clientes" (consistencia visual) -->
+    <a href="/clientes">Clientes</a>
     <i class="bi bi-x-lg close-nav" aria-label="Cerrar menú"></i>
   </div>
 </nav>
@@ -17,7 +18,6 @@
     border: solid 1px #dcdcdc;
     border-radius: 12px;
     padding: 11.2px;
-    cursor: pointer;
   }
 
   #overlay {
@@ -48,19 +48,27 @@
   }
 
   #overlay a {
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: 600;
     background: #fff;
-    padding: 10px 17px;
+    padding: 12px 20px;
     border: solid 1px var(--clr-gray);
     border-radius: 12px;
-    letter-spacing: 7px;
+    letter-spacing: 5px;
     width: 210px;
     text-align: center;
     text-transform: uppercase;
     color: var(--clr-dark);
+    transition: var(--transition);
   }
 
-  /* Desktop: no overlay, enlaces inline, sin iconos */
+  #overlay a:hover {
+    background-color: var(--clr-blue);
+    color: #fff;
+    border-color: var(--clr-blue);
+  }
+
+  /* Desktop */
   @media (min-width: 700px) {
     .open-nav,
     .close-nav {
@@ -74,18 +82,18 @@
       width: auto;
       height: auto;
       gap: 7px;
-      backdrop-filter: none;
       background: transparent;
     }
     #overlay a {
-      font-size: 14px;
-      letter-spacing: 0;
+      font-size: 12px;
+      letter-spacing: 2px;
       width: auto;
-      transition: 0.2s ease;
+      padding: 8px 14px;
     }
-
     #overlay a:hover {
-      background-color: #dcdcdc;
+      background-color: var(--clr-blue);
+      color: #fff;
+      border-color: var(--clr-blue);
     }
   }
 </style>
@@ -97,20 +105,26 @@
     const closeBtn = document.querySelector(".close-nav");
 
     const open = () => {
-      if (overlay) {
-        overlay.style.display = "flex";
-      }
+      if (overlay) overlay.style.display = "flex";
     };
-
     const close = () => {
       if (overlay) overlay.style.display = "none";
     };
 
     openBtn?.addEventListener("click", open);
     closeBtn?.addEventListener("click", close);
-
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") close();
+    });
+
+    // Marcar link activo
+    const currentPath = window.location.pathname;
+    overlay?.querySelectorAll("a").forEach((link) => {
+      if (link.getAttribute("href") === currentPath) {
+        link.style.backgroundColor = "var(--clr-blue)";
+        link.style.color = "#fff";
+        link.style.borderColor = "var(--clr-blue)";
+      }
     });
   });
 </script>
