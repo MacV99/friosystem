@@ -35,7 +35,7 @@
     gap: 7px;
     overflow-x: auto;
     max-width: 520px;
-    box-shadow: 0 0 14px rgba(0, 0, 0, 0.7);
+    box-shadow: var(--shadow-panel);
     text-align: left;
     z-index: 100;
   }
@@ -80,7 +80,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: var(--overlay-bg);
     display: none;
     justify-content: center;
     align-items: center;
@@ -95,7 +95,7 @@
     position: absolute;
     top: 25px;
     right: 35px;
-    color: #fff;
+    color: var(--clr-white);
     font-size: 34px;
     cursor: pointer;
     font-weight: bold;
@@ -103,10 +103,10 @@
 
   #v-product button {
     border: solid 1px var(--clr-gray);
-    background-color: #fff;
+    background-color: var(--clr-white);
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 750px) {
     #v-product {
       max-height: 80%;
       margin: auto;
@@ -115,11 +115,11 @@
 
     #v-product .images {
       height: 250px;
-      
     }
 
     #v-product .images img {
       height: 250px;
+    }
   }
 </style>
 

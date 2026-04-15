@@ -156,12 +156,6 @@ a.boton,
   color: var(--clr-white);
 }
 
-.button1:hover {
-  background-color: var(--clr-green2);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
-}
-
 .button2 {
   padding: 7px 14px;
   cursor: pointer;
@@ -171,14 +165,13 @@ a.boton,
   text-transform: uppercase;
   border-radius: 12px;
   border: solid 1px var(--clr-gray);
-  background-color: #fff;
+  background-color: var(--clr-white);
   letter-spacing: 1px;
 }
 
-.button2.active,
-.button2:hover {
+.button2.active {
   background-color: var(--clr-blue);
-  color: #fff;
+  color: var(--clr-white);
   border-color: var(--clr-blue);
 }
 
@@ -225,11 +218,22 @@ a.boton,
   }
 }
 
-/* =============================================
-   RESPONSIVE
-   ============================================= */
+@media (hover: hover) {
+  .button1:hover {
+    background-color: var(--clr-green2);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
 
-@media (min-width: 768px) {
+  .button2:hover {
+    background-color: var(--clr-blue);
+    color: var(--clr-white);
+    border-color: var(--clr-blue);
+  }
+}
+
+
+@media (min-width: 750px) {
   h1 {
     font-size: 2rem;
   }

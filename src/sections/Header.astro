@@ -14,13 +14,14 @@ import Navbar from "../components/navbar.astro";
 </header>
 
 <style>
+  /* BASE */
   header {
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 10px;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 14px rgba(0, 0, 0, 0.35);
+    background: var(--header-bg-mobile);
+    box-shadow: var(--shadow-md);
     border-radius: 20px;
     width: 95%;
     height: 80px;
@@ -45,7 +46,7 @@ import Navbar from "../components/navbar.astro";
 
   /* ICONO CARRITO (global porque lo manipulamos con JS) */
   .icon-cart {
-    background-color: #fff;
+    background-color: var(--clr-white);
     border-radius: 12px;
     padding: 11.2px;
     cursor: pointer;
@@ -54,17 +55,14 @@ import Navbar from "../components/navbar.astro";
     border: solid 1px var(--clr-gray);
   }
 
-  .icon-cart:hover {
-    background-color: var(--clr-gray);
-  }
-
   .icon-cart .bi-cart {
     font-size: 20px;
     color: var(--clr-dark);
   }
+
   .icon-cart span {
     position: absolute;
-    color: #fff;
+    color: var(--clr-white);
     background-color: var(--clr-dark);
     width: 16px;
     height: 16px;
@@ -79,13 +77,24 @@ import Navbar from "../components/navbar.astro";
     padding-top: 1px;
   }
 
-  @media (min-width: 700px) {
+  /* HOVER */
+  @media (hover: hover) {
+    .icon-cart:hover {
+      background-color: var(--clr-gray);
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (min-width: 750px) {
     header {
-      background: rgba(255, 255, 255, 0.6);
+      background: var(--header-bg-desktop);
       backdrop-filter: blur(5px);
       width: 98%;
     }
+  }
 
+  /* HOVER + RESPONSIVE */
+  @media (hover: hover) and (min-width: 750px) {
     header:hover {
       background-color: var(--clr-white);
     }

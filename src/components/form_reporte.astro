@@ -102,20 +102,21 @@
 </section>
 
 <style>
+  /* BASE */
   #reporte-mantenimiento {
     padding: 40px 20px;
   }
 
   /* ── TARJETA ── */
   .form-card {
-    background: white;
-    padding: 32px 28px;
+    background-color: var(--clr-white);
+    padding: 24px 18px;
     border-radius: 18px;
     border: solid 1px var(--clr-gray);
     width: 100%;
     max-width: 560px;
     gap: 0;
-    box-shadow: var(--shadow-md, 0 4px 20px rgba(3, 33, 50, 0.1));
+    box-shadow: var(--shadow-md);
     align-items: stretch;
   }
 
@@ -135,7 +136,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: var(--clr-white);
     font-size: 24px;
     flex-shrink: 0;
   }
@@ -187,7 +188,7 @@
     font-size: 15px;
     border-radius: 10px;
     border: solid 1.5px var(--clr-gray);
-    background-color: #fff;
+    background-color: var(--clr-white);
     box-sizing: border-box;
     transition: var(--transition);
     color: var(--clr-dark);
@@ -196,7 +197,7 @@
   .form-group input:focus {
     outline: none;
     border-color: var(--clr-blue);
-    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.08);
+    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.08); /* ring de foco */
   }
 
   .form-group input::placeholder {
@@ -208,7 +209,7 @@
   .btn-generar {
     width: 100%;
     background-color: var(--clr-blue);
-    color: #fff;
+    color: var(--clr-white);
     border: none;
     border-radius: 12px;
     padding: 14px 24px;
@@ -222,12 +223,6 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-  }
-
-  .btn-generar:hover {
-    opacity: 0.88;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md, 0 4px 20px rgba(3, 33, 50, 0.18));
   }
 
   .btn-generar:active {
@@ -254,7 +249,7 @@
   .fsr-modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.38);
+    background: var(--modal-backdrop);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     display: flex;
@@ -280,7 +275,7 @@
   .fsr-modal-card {
     position: relative;
     width: min(460px, 95vw);
-    background: #ffffff;
+    background-color: var(--clr-white);
     border-radius: 24px;
     box-shadow:
       0 8px 40px rgba(0, 0, 0, 0.14),
@@ -299,31 +294,24 @@
   }
 
   /* ── BOTÓN CERRAR ── */
-  .fsr-modal-close {
-    position: absolute !important;
-    top: 14px !important;
-    right: 14px !important;
-    background: transparent !important;
-    color: #9ca3af !important;
-    border: none !important;
-    border-radius: 6px !important;
-    padding: 4px !important;
-    width: auto !important;
-    min-width: unset !important;
+  .fsr-modal-card .fsr-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: transparent;
+    color: #9ca3af; /* sin variable equivalente */
+    border: none;
+    border-radius: 6px;
+    padding: 4px;
+    width: auto;
+    min-width: unset;
     cursor: pointer;
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.15s ease !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-
-  .fsr-modal-close:hover {
-    background: transparent !important;
-    color: #374151 !important;
-    transform: none !important;
-    box-shadow: none !important;
+    transition: color 0.15s ease;
+    box-shadow: none;
+    transform: none;
   }
 
   /* ── ÍCONO MODAL ── */
@@ -344,13 +332,13 @@
   }
 
   .fsr-icon-aviso {
-    background: #fef9c3;
+    background: var(--clr-modal-aviso);
   }
   .fsr-icon-error {
-    background: #fee2e2;
+    background: var(--clr-modal-error);
   }
   .fsr-icon-exito {
-    background: #dcfce7;
+    background: var(--clr-modal-exito);
   }
 
   /* ── HEADER MODAL ── */
@@ -364,7 +352,7 @@
   #fsr-modal-title {
     font-size: 17px;
     font-weight: 700;
-    color: #111827;
+    color: #111827; /* sin variable equivalente */
     text-align: center;
     letter-spacing: 1px;
   }
@@ -372,7 +360,7 @@
   /* ── BODY MODAL ── */
   .fsr-modal-body {
     padding: 14px 24px 8px;
-    color: #4b5563;
+    color: #4b5563; /* sin variable equivalente */
     line-height: 1.6;
     text-align: center;
     font-size: 14px;
@@ -385,24 +373,19 @@
     padding: 16px 24px 28px;
   }
 
-  .fsr-modal-btn {
-    background-color: var(--clr-blue) !important;
-    color: #fff !important;
+  .fsr-modal-card .fsr-modal-btn {
+    background-color: var(--clr-blue);
+    color: var(--clr-white);
     border: none;
-    border-radius: 12px !important;
-    padding: 11px 36px !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    letter-spacing: 2px !important;
+    border-radius: 12px;
+    padding: 11px 36px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
     cursor: pointer;
-    transition: all 0.2s ease !important;
-    width: auto !important;
-    max-width: unset !important;
-  }
-
-  .fsr-modal-btn:hover {
-    opacity: 0.88 !important;
-    transform: translateY(-1px) !important;
+    transition: all 0.2s ease;
+    width: auto;
+    max-width: unset;
   }
 
   /* ── TOAST ── */
@@ -411,8 +394,8 @@
     left: 50%;
     bottom: 28px;
     transform: translateX(-50%) translateY(16px);
-    background: #1e293b;
-    color: #f8fafc;
+    background: #1e293b; /* sin variable equivalente */
+    color: #f8fafc; /* sin variable equivalente */
     padding: 12px 22px;
     border-radius: 999px;
     font-size: 14px;
@@ -445,9 +428,28 @@
     line-height: 1;
   }
 
-  @media (max-width: 500px) {
+  /* HOVER */
+  @media (hover: hover) {
+    .btn-generar:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .fsr-modal-card .fsr-modal-close:hover {
+      color: #374151; /* sin variable equivalente */
+    }
+
+    .fsr-modal-card .fsr-modal-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (min-width: 500px) {
     .form-card {
-      padding: 24px 18px;
+      padding: 32px 28px;
     }
   }
 </style>

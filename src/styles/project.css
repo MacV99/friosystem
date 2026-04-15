@@ -1,0 +1,44 @@
+/* =============================================
+   AC FRIOSYSTEM — Project Styles
+   ============================================= */
+
+:root {
+  /* Estado — modales (compartidos por form_reporte e info_clientes) */
+  --clr-modal-aviso: #fef9c3;
+  --clr-modal-error: #fee2e2;
+  --clr-modal-exito: #dcfce7;
+  --clr-modal-carga: #e0f2fe;
+
+  /* Overlays con transparencia */
+  --modal-backdrop: rgba(15, 23, 42, 0.38);
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+
+  /* Header con transparencia */
+  --header-bg-mobile: rgba(255, 255, 255, 0.95);
+  --header-bg-desktop: rgba(255, 255, 255, 0.6);
+
+  /* Hero overlay */
+  --hero-overlay: rgba(3, 33, 50, 0.72);
+
+  /* Cart — items zebra */
+  --cart-item-odd: #f5f5f5;
+  --cart-item-even: #ececec;
+
+  /* Footer hover */
+  --footer-hover-bg: rgba(255, 255, 255, 0.07);
+
+  /* Sombra de panel lateral */
+  --shadow-panel: 0 0 14px rgba(0, 0, 0, 0.7);
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+/* ── ESTILOS GLOBALES DEL PROYECTO ── */
+
+#nosotros {
+  text-align: center;
+  background-color: var(--clr-white);
+  gap: 0;
+}

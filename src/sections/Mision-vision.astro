@@ -37,7 +37,7 @@
     border-radius: 18px;
     max-width: 380px;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--clr-white);
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
     display: flex;
@@ -45,16 +45,10 @@
     gap: 10px;
   }
 
-  .mv-card:hover {
-    border-color: var(--clr-blue);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
-
   .mv-icon {
     width: 48px;
     height: 48px;
-    background-color: var(--clr-blue-light, #e8f4fd);
+    background-color: var(--clr-blue-light);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -65,9 +59,18 @@
     transition: var(--transition);
   }
 
-  .mv-card:hover .mv-icon {
-    background-color: var(--clr-blue);
-    color: #fff;
+  /* HOVER */
+  @media (hover: hover) {
+    .mv-card:hover {
+      border-color: var(--clr-blue);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .mv-card:hover .mv-icon {
+      background-color: var(--clr-blue);
+      color: var(--clr-white);
+    }
   }
 
   h2 {

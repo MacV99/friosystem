@@ -45,7 +45,6 @@
   footer {
     position: relative;
     overflow: hidden;
-    background-color: var(--clr-dark);
     margin-top: 20px;
     color: var(--clr-white);
     padding-bottom: 50px;
@@ -54,7 +53,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-blend-mode: color;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* overlay sobre background-image */
     background-size: cover;
     z-index: 0;
   }
@@ -101,9 +100,12 @@
     border-bottom: solid 1px transparent;
   }
 
-  .follow i:hover {
-    color: #fff;
-    background-color: #ffffff11;
+  /* HOVER */
+  @media (hover: hover) {
+    .follow i:hover {
+      color: var(--clr-white);
+      background-color: var(--footer-hover-bg);
+    }
   }
 
   /* ── PARTÍCULAS ── */
