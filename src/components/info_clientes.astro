@@ -21,9 +21,9 @@
   </div>
 
   <!-- ── MODAL ── -->
-  <div id="fs-modal" class="fs-modal-backdrop">
+  <div id="fs-modal" class="fs-modal-backdrop flex-row">
     <div class="fs-modal-card">
-      <button id="fs-modal-close" class="fs-modal-close" aria-label="Cerrar">
+      <button id="fs-modal-close" class="fs-modal-close flex-row" aria-label="Cerrar">
         <svg
           width="16"
           height="16"
@@ -38,8 +38,8 @@
         </svg>
       </button>
 
-      <div class="fs-modal-icon-wrap">
-        <div id="fs-modal-icon" class="fs-modal-icon"></div>
+      <div class="fs-modal-icon-wrap flex-row">
+        <div id="fs-modal-icon" class="fs-modal-icon flex-row"></div>
       </div>
 
       <div class="fs-modal-header">
@@ -50,16 +50,598 @@
         <!-- Contenido dinámico -->
       </div>
 
-      <div class="fs-modal-footer">
+      <div class="fs-modal-footer flex-row">
         <button id="fs-modal-ok" class="fs-modal-btn">Entendido</button>
       </div>
     </div>
   </div>
 
   <!-- ── TOAST ── -->
-  <div id="fs-toast" class="fs-toast">
+  <div id="fs-toast" class="fs-toast flex-row">
     <span id="fs-toast-icon" class="fs-toast-icon"></span>
     <span id="fs-toast-msg"></span>
+  </div>
+
+  <!-- ── PLANTILLA HTML PARA REPORTE V2 (html2canvas) ── -->
+  <div
+    id="reporte-html-preview"
+    style="position:fixed;left:100vw;top:0;pointer-events:none;z-index:-1;width:794px;"
+  >
+    <div
+      id="reporte-html-doc"
+      style="width:794px;font-family:Montserrat,Arial,sans-serif;font-size:9.5px;background:#fff;border:2px solid #032132;color:#000;line-height:1.3;"
+    >
+      <!-- ENCABEZADO -->
+      <div
+        style="display:flex;border-bottom:1px solid #032132;min-height:60px;"
+      >
+        <div
+          style="width:45%;border-right:1px solid #032132;padding:8px 10px;display:flex;flex-direction:column;justify-content:center;"
+        >
+          <div
+            style="font-size:17px;font-weight:900;color:#032132;letter-spacing:1px;"
+          >
+            AC FRIOSYSTEM
+          </div>
+          <div
+            style="font-size:10px;font-weight:700;color:#032132;letter-spacing:2px;"
+          >
+            S.A.S
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;">
+          <div
+            style="background:#032132;color:white;font-weight:700;font-size:13px;letter-spacing:0.5px;padding:8px;text-align:center;flex:1;display:flex;align-items:center;justify-content:center;"
+          >
+            REPORTE DE MANTENIMIENTO
+          </div>
+          <div
+            style="display:flex;border-top:1px solid #032132;font-size:8px;font-weight:600;"
+          >
+            <div
+              style="flex:1;padding:3px 6px;border-right:1px solid #032132;text-align:center;"
+            >
+              FS - R - 005
+            </div>
+            <div
+              style="flex:1;padding:3px 6px;border-right:1px solid #032132;text-align:center;"
+            >
+              VERSIÓN : D
+            </div>
+            <div
+              id="rh-fecha-top"
+              style="flex:1.5;padding:3px 6px;border-right:1px solid #032132;text-align:center;"
+            >
+              —
+            </div>
+            <div style="flex:1;padding:3px 6px;text-align:center;">PAG 1/1</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BARRA AZUL -->
+      <div
+        style="background:#032132;color:white;font-size:7.5px;font-weight:600;letter-spacing:0.5px;padding:4px 8px;text-align:center;border-bottom:1px solid #032132;"
+      >
+        INGENIERÍA, DISEÑO, REFRIGERACIÓN INDUSTRIAL, AIRE ACONDICIONADO Y OBRAS
+        CIVILES
+      </div>
+
+      <!-- DATOS DEL CLIENTE -->
+      <div style="display:flex;border-bottom:1px solid #032132;">
+        <div style="flex:1;border-right:1px solid #032132;">
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:22px;align-items:center;"
+          >
+            <div
+              style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
+            >
+              CLIENTE:
+            </div>
+            <div
+              id="rh-cliente"
+              style="flex:1;padding:3px 6px;border-right:1px solid #032132;font-size:9px;"
+            >
+              —
+            </div>
+            <div
+              style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
+            >
+              NIT:
+            </div>
+            <div id="rh-cedula" style="flex:0.7;padding:3px 6px;font-size:9px;">
+              —
+            </div>
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:22px;align-items:center;"
+          >
+            <div
+              style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
+            >
+              DIRECCIÓN:
+            </div>
+            <div style="flex:1;padding:3px 6px;border-right:1px solid #032132;">
+            </div>
+            <div
+              style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
+            >
+              ZONA DE SERVICIO:
+            </div>
+            <div id="rh-zona" style="flex:0.7;padding:3px 6px;font-size:9px;">
+              —
+            </div>
+          </div>
+          <div style="display:flex;min-height:22px;align-items:center;">
+            <div
+              style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
+            >
+              CIUDAD:
+            </div>
+            <div
+              id="rh-ciudad"
+              style="flex:1;padding:3px 6px;border-right:1px solid #032132;font-size:9px;"
+            >
+              —
+            </div>
+            <div
+              style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
+            >
+              MARCA:
+            </div>
+            <div id="rh-marca" style="flex:0.7;padding:3px 6px;font-size:9px;">
+              —
+            </div>
+          </div>
+        </div>
+        <div
+          style="width:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;text-align:center;"
+        >
+          <div
+            style="font-weight:700;font-size:7.5px;color:#032132;margin-bottom:4px;text-transform:uppercase;"
+          >
+            Fecha de Servicio
+          </div>
+          <div id="rh-fecha" style="font-size:13px;font-weight:700;">—</div>
+        </div>
+      </div>
+
+      <!-- TIPO SERVICIO / INVENTARIO / TIPO EQUIPO -->
+      <div
+        style="background:#032132;color:white;display:flex;border-bottom:1px solid #032132;"
+      >
+        <div
+          style="flex:1;padding:3px 6px;font-weight:700;font-size:8px;text-align:center;border-right:1px solid rgba(255,255,255,0.3);"
+        >
+          TIPO DE SERVICIO
+        </div>
+        <div
+          style="flex:1.2;padding:3px 6px;font-weight:700;font-size:8px;text-align:center;border-right:1px solid rgba(255,255,255,0.3);"
+        >
+          MODELO Y/O INVENTARIO
+        </div>
+        <div
+          style="flex:0.5;padding:3px 6px;font-weight:700;font-size:8px;text-align:center;border-right:1px solid rgba(255,255,255,0.3);"
+        >
+          CAPACIDAD
+        </div>
+        <div
+          style="flex:1;padding:3px 6px;font-weight:700;font-size:8px;text-align:center;"
+        >
+          TIPO DE EQUIPO
+        </div>
+      </div>
+      <div style="display:flex;border-bottom:1px solid #032132;">
+        <div
+          style="flex:1;padding:6px;border-right:1px solid #032132;display:grid;grid-template-columns:1fr 1fr;gap:4px 6px;align-content:center;"
+        >
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-preventivo"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:8px;">Preventivo</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-correctivo"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:8px;">Correctivo</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-instalacion"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:8px;">Instalación</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-revision"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:8px;">Revisión</span>
+          </div>
+        </div>
+        <div
+          id="rh-inventario"
+          style="flex:1.2;padding:6px;border-right:1px solid #032132;display:flex;align-items:center;justify-content:center;font-size:9px;"
+        >
+          —
+        </div>
+        <div
+          id="rh-capacidad"
+          style="flex:0.5;padding:6px;border-right:1px solid #032132;display:flex;align-items:center;justify-content:center;font-size:9px;"
+        >
+          —
+        </div>
+        <div
+          style="flex:1;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px 6px;align-content:center;"
+        >
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-minisplit"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:7px;">MINI SPLIT</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-cassette"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:7px;">CASSETTE</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-central"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:7px;">CENTRAL</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-pisofijo"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:7px;">PISO FIJO</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-chiller"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:7px;">CHILLER</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
+              id="rh-chk-nevera"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:7px;">NEVERA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARÁMETROS + REGISTRO FOTOGRÁFICO -->
+      <div style="display:flex;border-bottom:1px solid #032132;height:380px;">
+        <div
+          style="flex:1;border-right:1px solid #032132;display:flex;flex-direction:column;"
+        >
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 6px;text-align:center;border-bottom:1px solid #032132;"
+          >
+            PARÁMETROS DE OPERACIÓN
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;font-size:7.5px;font-weight:700;text-align:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;text-align:left;font-size:7px;"
+            >
+            </div>
+            <div style="flex:1;padding:2px;border-right:1px solid #032132;">
+              No.1
+            </div>
+            <div style="flex:1;padding:2px;border-right:1px solid #032132;">
+              No.2
+            </div>
+            <div style="flex:1;padding:2px;border-right:1px solid #032132;">
+              No.3
+            </div>
+            <div style="flex:1;padding:2px;">No.4</div>
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              L1(amp)
+            </div>
+            <div
+              id="rh-l1"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:1;border-right:1px solid #032132;"></div><div
+              style="flex:1;border-right:1px solid #032132;"
+            >
+            </div><div style="flex:1;"></div>
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              L2(amp)
+            </div>
+            <div
+              id="rh-l2"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:1;border-right:1px solid #032132;"></div><div
+              style="flex:1;border-right:1px solid #032132;"
+            >
+            </div><div style="flex:1;"></div>
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              L3(amp)
+            </div>
+            <div
+              id="rh-l3"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:1;border-right:1px solid #032132;"></div><div
+              style="flex:1;border-right:1px solid #032132;"
+            >
+            </div><div style="flex:1;"></div>
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              P. Succión
+            </div>
+            <div
+              id="rh-succion"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:1;border-right:1px solid #032132;"></div><div
+              style="flex:1;border-right:1px solid #032132;"
+            >
+            </div><div style="flex:1;"></div>
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              P. Descarga
+            </div>
+            <div
+              id="rh-descp"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:1;border-right:1px solid #032132;"></div><div
+              style="flex:1;border-right:1px solid #032132;"
+            >
+            </div><div style="flex:1;"></div>
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              Voltaje
+            </div>
+            <div
+              id="rh-voltaje"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:1;border-right:1px solid #032132;"></div><div
+              style="flex:1;border-right:1px solid #032132;"
+            >
+            </div><div style="flex:1;"></div>
+          </div>
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 6px;text-align:center;border-bottom:1px solid #032132;"
+          >
+            TEMPERATURA
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              Suministro
+            </div>
+            <div
+              id="rh-tsum"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:0.4;padding:2px 4px;font-size:7px;">°C</div>
+          </div>
+          <div
+            style="display:flex;border-bottom:1px solid #032132;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              Retorno
+            </div>
+            <div
+              id="rh-tret"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:0.4;padding:2px 4px;font-size:7px;">°C</div>
+          </div>
+          <div
+            style="display:flex;min-height:17px;font-size:8px;align-items:center;"
+          >
+            <div
+              style="flex:1.5;padding:2px 4px;border-right:1px solid #032132;font-weight:600;"
+            >
+              Ambiente
+            </div>
+            <div
+              id="rh-tamb"
+              style="flex:1;padding:2px 4px;border-right:1px solid #032132;"
+            >
+              —
+            </div>
+            <div style="flex:0.4;padding:2px 4px;font-size:7px;">°C</div>
+          </div>
+          <!-- DESCRIPCIÓN dentro de la columna izquierda -->
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 6px;text-align:center;border-top:1px solid #032132;border-bottom:1px solid #032132;"
+          >
+            DESCRIPCIÓN DE SERVICIO REALIZADO
+          </div>
+          <div
+            id="rh-descripcion"
+            style="flex:1;overflow:hidden;padding:8px;font-size:9px;line-height:1.5;"
+          >
+            —
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;">
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 6px;text-align:center;border-bottom:1px solid #032132;"
+          >
+            REGISTRO FOTOGRÁFICO
+          </div>
+          <div
+            id="rh-foto"
+            style="flex:1;overflow:hidden;background:#f5f5f5 center/cover no-repeat;"
+          >
+          </div>
+        </div>
+      </div>
+
+      <!-- MATERIAL + FIRMA -->
+      <div style="display:flex;border-bottom:1px solid #032132;">
+        <div style="flex:1;border-right:1px solid #032132;">
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 8px;text-align:center;border-bottom:1px solid #032132;"
+          >
+            MATERIAL UTILIZADO:
+          </div>
+          <div
+            id="rh-material"
+            style="height:80px;overflow:hidden;padding:8px;font-size:9px;line-height:1.5;"
+          >
+            —
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;">
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 8px;text-align:center;border-bottom:1px solid #032132;"
+          >
+            FIRMA TÉCNICO
+          </div>
+          <div
+            style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:8px;"
+          >
+            <div
+              style="width:55%;border-bottom:1px solid #000;margin-bottom:5px;"
+            >
+            </div>
+            <div
+              id="rh-tecnico"
+              style="font-size:9px;font-weight:700;text-align:center;"
+            >
+              —
+            </div>
+            <div style="font-size:7.5px;color:#666;margin-top:10px;">
+              Firma del Cliente
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CALIFICACIÓN + OBSERVACIONES -->
+      <div style="display:flex;">
+        <div style="flex:1;border-right:1px solid #032132;">
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 8px;text-align:center;border-bottom:1px solid #032132;"
+          >
+            CALIFICACIÓN DEL SERVICIO
+          </div>
+          <div
+            style="padding:6px 10px;display:flex;flex-direction:column;gap:5px;"
+          >
+            <div
+              style="display:flex;align-items:center;gap:5px;font-size:8.5px;"
+            >
+              <span
+                id="rh-chk-excelente"
+                style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+              ></span>EXCELENTE
+            </div>
+            <div
+              style="display:flex;align-items:center;gap:5px;font-size:8.5px;"
+            >
+              <span
+                id="rh-chk-bueno"
+                style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+              ></span>BUENO
+            </div>
+            <div
+              style="display:flex;align-items:center;gap:5px;font-size:8.5px;"
+            >
+              <span
+                id="rh-chk-regular"
+                style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+              ></span>REGULAR
+            </div>
+            <div
+              style="display:flex;align-items:center;gap:5px;font-size:8.5px;"
+            >
+              <span
+                id="rh-chk-malo"
+                style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+              ></span>MALO
+            </div>
+          </div>
+        </div>
+        <div style="flex:1.5;display:flex;flex-direction:column;">
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 8px;text-align:center;border-bottom:1px solid #032132;"
+          >
+            OBSERVACIONES
+          </div>
+          <div
+            id="rh-observacion"
+            style="height:60px;overflow:hidden;padding:8px;font-size:9px;line-height:1.5;"
+          >
+            —
+          </div>
+          <div
+            style="border-top:1px solid #032132;padding:5px 8px;display:flex;align-items:center;gap:5px;font-size:8.5px;font-weight:700;"
+          >
+            TEL: <span id="rh-telefono" style="font-weight:400;">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -91,7 +673,7 @@
 
   #consulta-equipos p {
     color: var(--clr-dark2);
-    margin-bottom: 22px;
+    margin-bottom: 10px;
   }
 
   .form-container {
@@ -140,9 +722,6 @@
     background: var(--modal-backdrop);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 9999;
     padding: 16px;
     opacity: 0;
@@ -184,7 +763,7 @@
 
   /* Modal amplio para resultados con datos de cliente */
   .fs-modal-card.fs-modal-data {
-    width: min(730px, 95vw);
+    width: min(650px, 95vw);
   }
 
   /* ── BOTÓN CERRAR ── */
@@ -201,9 +780,6 @@
     min-width: unset;
     max-width: unset;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: var(--transition);
     box-shadow: none;
     transform: none;
@@ -214,8 +790,6 @@
 
   /* ── ÍCONO MODAL ── */
   .fs-modal-icon-wrap {
-    display: flex;
-    justify-content: center;
     padding: 24px 0 6px;
     flex-shrink: 0;
   }
@@ -224,9 +798,6 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 22px;
   }
 
@@ -246,7 +817,6 @@
   /* ── HEADER MODAL ── */
   .fs-modal-header {
     flex-shrink: 0;
-    padding: 4px 48px 14px;
   }
 
   #fs-modal-title {
@@ -271,144 +841,9 @@
     text-align: center; /* mensajes simples centrados */
   }
 
-  /* Las secciones de datos sí van a la izquierda */
-  .fs-modal-body .seccion {
-    text-align: left;
-  }
-
-  .info-label,
-  .info-value {
-    text-align: left;
-  }
-
-  /* ── SECCIONES ── */
-  .seccion {
-    margin-bottom: 14px;
-  }
-
-  .seccion-titulo {
-    display: inline-block;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--clr-blue-mid);
-    background-color: var(--clr-blue-light);
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 8px;
-  }
-
-  .seccion-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 6px;
-  }
-
-  /* ── INFO CARD ── */
-  .info-card {
-    background-color: var(--clr-white);
-    padding: 8px 12px;
-    border-radius: 10px;
-    border: 1px solid var(--clr-gray);
-  }
-
-  .info-card.full-width {
-    grid-column: 1 / -1;
-  }
-
-  .info-label {
-    display: block;
-    font-size: 9px;
-    font-weight: 800;
-    color: var(--clr-blue-mid);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 2px;
-  }
-
-  .info-value {
-    display: block;
-    font-size: 13px;
-    color: var(--clr-dark);
-    font-weight: 600;
-    line-height: 1.4;
-  }
-
-  /* ── ACORDEÓN ── */
-  .registro {
-    border: 1px solid var(--clr-gray);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 8px;
-  }
-
-  .registro-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    background-color: var(--clr-blue);
-    color: var(--clr-white);
-    padding: 10px 14px;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: var(--transition);
-    margin-bottom: 0;
-  }
-
-  .registro-chevron {
-    font-size: 9px;
-    flex-shrink: 0;
-    opacity: 0.8;
-  }
-
-  .registro-body {
-    display: none;
-    padding: 12px;
-    background-color: var(--clr-white);
-  }
-
-  .registro-body.abierto {
-    display: block;
-  }
-
-  /* ── FOTO ── */
-  .foto-registro {
-    display: block;
-    width: 100%;
-    max-height: 350px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid var(--clr-gray);
-    margin-top: 4px;
-  }
-
-  .foto-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    height: 72px;
-    background-color: var(--clr-blue-light);
-    border: 1px dashed var(--clr-gray);
-    border-radius: 10px;
-    margin-top: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--clr-dark2);
-    letter-spacing: 1px;
-  }
-
   /* ── FOOTER MODAL ── */
   .fs-modal-footer {
     flex-shrink: 0;
-    display: flex;
-    justify-content: center;
     padding: 12px 24px 20px;
   }
 
@@ -440,8 +875,6 @@
     border-radius: 999px;
     font-size: 13px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
     gap: 8px;
     z-index: 10000;
     box-shadow: var(--shadow-md);
@@ -476,10 +909,6 @@
       box-shadow: var(--shadow-md);
     }
 
-    .registro-header:hover {
-      background-color: var(--clr-blue-mid);
-    }
-
     .fs-modal-card .fs-modal-close:hover {
       background: rgba(0, 0, 0, 0.14);
     }
@@ -493,16 +922,69 @@
   /* RESPONSIVE */
   @media (min-width: 750px) {
     .fs-modal-body {
-      padding: 16px 24px 8px;
+      padding: 5px 24px 8px;
     }
+  }
 
-    .registro-body {
-      padding: 14px 16px;
-    }
+  /* ── TARJETAS DE REPORTE ── */
+  .reporte-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-    .seccion-grid {
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    }
+  .reporte-intro {
+    color: var(--clr-dark2);
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  .reporte-card {
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--clr-gray);
+    border-radius: 12px;
+    background: var(--clr-white);
+  }
+
+  .reporte-card-info {
+    display: flex;
+    gap: 5px;
+  }
+
+  .reporte-label {
+    font-weight: 600;
+    color: var(--clr-blue);
+    font-size: 14px;
+  }
+
+  .reporte-sub {
+    font-size: 14px;
+    color: var(--clr-dark2);
+  }
+
+  .reporte-btn {
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--clr-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .reporte-btn:hover:not(:disabled) {
+    background: var(--clr-blue-mid);
+  }
+
+  .reporte-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 </style>
 
@@ -511,6 +993,9 @@
 
   const SHEET_URL =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQW9HE0pnzSsXfqoD9qXe28EMfT2D6AFhoM3T_83Z8ajhdKDgL86tE8cSRfTTTtuVVm8j1KZLrHefc_/pub?gid=0&single=true&output=csv";
+
+  /* ── REGISTROS ACTUALES ── */
+  let _registrosActuales = [];
 
   /* ── TOAST ── */
   let toastTimer;
@@ -539,7 +1024,9 @@
     document.getElementById("fs-modal-title").textContent = title;
     document.getElementById("fs-modal-body").innerHTML = body;
     // Ancho amplio solo cuando hay datos de cliente (variante exito)
-    document.querySelector(".fs-modal-card").classList.toggle("fs-modal-data", variante === "exito");
+    document
+      .querySelector(".fs-modal-card")
+      .classList.toggle("fs-modal-data", variante === "exito");
     document.getElementById("fs-modal").classList.add("fs-modal-visible");
   }
 
@@ -578,150 +1065,6 @@
   /* ── BUSCAR COLUMNA POR PALABRAS CLAVE ── */
   function findCol(headers, ...keywords) {
     return headers.findIndex((h) => keywords.some((kw) => h.includes(kw)));
-  }
-
-  /* ── HELPER: genera una tarjeta de dato ── */
-  function campo(label, value, fullWidth = false) {
-    if (!value) return "";
-    return `
-      <div class="info-card${fullWidth ? " full-width" : ""}">
-        <span class="info-label">${label}</span>
-        <span class="info-value">${value}</span>
-      </div>`;
-  }
-
-  /* ── CONSTRUYE EL HTML DE UN REGISTRO ── */
-  function buildRegistroHTML(d, index, total) {
-    const esMultiple = total > 1;
-    const bodyId = `registro-body-${index}`;
-
-    const medElec = d.l1 || d.l2 || d.l3 || d.voltaje;
-    const presTemp = d.succion || d.desc_p || d.tSum || d.tRet || d.tAmb;
-    const funcionario = d.funcionario || d.telefono;
-
-    const secciones = `
-      <div class="seccion">
-        <div class="seccion-titulo">Cliente</div>
-        <div class="seccion-grid">
-          ${campo("Cédula / NIT", d.cedula)}
-          ${campo("Cliente", d.cliente)}
-          ${campo("Ciudad", d.ciudad)}
-          ${campo("Zona de Servicio", d.zona)}
-        </div>
-      </div>
-
-      <div class="seccion">
-        <div class="seccion-titulo">Equipo</div>
-        <div class="seccion-grid">
-          ${campo("Tipo de Equipo", d.tipoEquipo)}
-          ${campo("Marca", d.marca)}
-          ${campo("N° Inventario", d.inventario)}
-          ${campo("Tipo Servicio", d.tipoServicio)}
-          ${campo("Capacidad", d.capacidad)}
-        </div>
-      </div>
-
-      ${
-        medElec
-          ? `
-      <div class="seccion">
-        <div class="seccion-titulo">Mediciones eléctricas</div>
-        <div class="seccion-grid">
-          ${campo("L1 (amp)", d.l1)}
-          ${campo("L2 (amp)", d.l2)}
-          ${campo("L3 (amp)", d.l3)}
-          ${campo("Voltaje", d.voltaje)}
-        </div>
-      </div>`
-          : ""
-      }
-
-      ${
-        presTemp
-          ? `
-      <div class="seccion">
-        <div class="seccion-titulo">Presiones y temperaturas</div>
-        <div class="seccion-grid">
-          ${campo("P. Succión", d.succion)}
-          ${campo("P. Desc", d.desc_p)}
-          ${campo("T. Sum", d.tSum)}
-          ${campo("T. Ret", d.tRet)}
-          ${campo("T. Amb", d.tAmb)}
-        </div>
-      </div>`
-          : ""
-      }
-
-      <div class="seccion">
-        <div class="seccion-titulo">Servicio</div>
-        <div class="seccion-grid">
-          ${campo("Descripción", d.descripcion, true)}
-          ${campo("Material Utilizado", d.material)}
-          ${campo("Técnico", d.tecnico)}
-          ${campo("Calificación", d.calificacion)}
-          ${campo("Observación", d.observacion, true)}
-        </div>
-      </div>
-
-      ${
-        funcionario
-          ? `
-      <div class="seccion">
-        <div class="seccion-titulo">Funcionario</div>
-        <div class="seccion-grid">
-          ${campo("Nombre", d.funcionario)}
-          ${campo("Teléfono", d.telefono)}
-        </div>
-      </div>`
-          : ""
-      }
-
-      ${
-        d.foto
-          ? `
-      <div class="seccion">
-        <div class="seccion-titulo">Registro fotográfico</div>
-        <img src="${d.foto}" class="foto-registro" alt="Registro fotográfico" loading="lazy"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="foto-placeholder" style="display:none">📷 Sin imagen disponible</div>
-      </div>`
-          : `
-      <div class="seccion">
-        <div class="seccion-titulo">Registro fotográfico</div>
-        <div class="foto-placeholder">📷 Sin registro fotográfico</div>
-      </div>`
-      }
-    `;
-
-    if (!esMultiple) return secciones;
-
-    const etiqueta =
-      [d.marca, d.tipoServicio].filter(Boolean).join(" | ") ||
-      `Servicio ${index + 1}`;
-    return `
-      <div class="registro">
-        <div class="registro-header" data-target="${bodyId}">
-          <span>Servicio ${index + 1} — ${etiqueta}</span>
-          <span class="registro-chevron">${index === 0 ? "▲" : "▼"}</span>
-        </div>
-        <div class="registro-body${index === 0 ? " abierto" : ""}" id="${bodyId}">
-          ${secciones}
-        </div>
-      </div>`;
-  }
-
-  /* ── INICIALIZAR ACORDEÓN ── */
-  function initAcordeon() {
-    document.querySelectorAll(".registro-header").forEach((header) => {
-      header.addEventListener("click", () => {
-        const bodyId = header.getAttribute("data-target");
-        const body = document.getElementById(bodyId);
-        const chevron = header.querySelector(".registro-chevron");
-        const isOpen = body.classList.contains("abierto");
-        body.classList.toggle("abierto", !isOpen);
-        if (chevron) chevron.textContent = !isOpen ? "▲" : "▼";
-      });
-    });
   }
 
   /* ── LÓGICA DE BÚSQUEDA ── */
@@ -823,6 +1166,197 @@
     return filas.length ? filas : null;
   }
 
+  /* ── LISTA DE REPORTES EN MODAL ── */
+
+  function buildReportesListHTML(registros) {
+    const cards = registros
+      .map((r, i) => {
+        const etiqueta =
+          [r.tipoEquipo, r.tipoServicio].filter(Boolean).join(" · ") ||
+          `Servicio ${i + 1}`;
+        return `
+        <div class="reporte-card flex-row">
+          <div class="reporte-card-info">
+            <span class="reporte-label">Servicio ${i + 1} — ${etiqueta}</span>
+            ${r.marca ? `<span class="reporte-sub">${r.marca}</span>` : ""}
+          </div>
+          <button class="reporte-btn flex-row" id="reporte-btn-${i}" onclick="descargarReporteHTML(${i})">
+            <i class="bi bi-download"></i> Descargar
+          </button>
+        </div>`;
+      })
+      .join("");
+    const n = registros.length;
+    return `
+      <div class="reporte-lista">
+        <p class="reporte-intro">Tienes <strong>${n} reporte${n > 1 ? "s" : ""}</strong> disponible${n > 1 ? "s" : ""}:</p>
+        ${cards}
+      </div>`;
+  }
+
+  /* ── REPORTE: HTML → html2canvas → JPEG ── */
+
+  function loadHtml2Canvas() {
+    return new Promise((resolve, reject) => {
+      if (window.html2canvas) {
+        resolve(window.html2canvas);
+        return;
+      }
+      const s = document.createElement("script");
+      s.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+      s.onload = () => resolve(window.html2canvas);
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  function marcarCheckboxHTML(id, valor, etiquetas) {
+    // Limpia todos primero
+    etiquetas.forEach(({ elId }) => {
+      const el = document.getElementById(elId);
+      if (el) el.style.background = "white";
+    });
+    if (!valor) return;
+    const norm = valor.trim().toUpperCase();
+    for (const { elId, label } of etiquetas) {
+      if (
+        norm.includes(label.toUpperCase()) ||
+        label.toUpperCase().includes(norm)
+      ) {
+        const el = document.getElementById(elId);
+        if (el) el.style.background = "#032132";
+        break;
+      }
+    }
+  }
+
+  function setText(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val || "—";
+  }
+
+  function descargarReporteHTML(index) {
+    const d = _registrosActuales[index];
+    if (!d) return;
+
+    const btn = document.getElementById(`reporte-btn-${index}`);
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Generando...';
+    }
+
+    const fecha = new Date();
+    const dd = String(fecha.getDate()).padStart(2, "0");
+    const mm = String(fecha.getMonth() + 1).padStart(2, "0");
+    const yyyy = fecha.getFullYear();
+    const fechaStr = `${dd}/${mm}/${yyyy}`;
+
+    // Rellenar campos de texto
+    setText("rh-fecha-top", fechaStr);
+    setText("rh-fecha", fechaStr);
+    setText("rh-cliente", (d.cliente || "").toUpperCase());
+    setText("rh-cedula", d.cedula || "");
+    setText("rh-zona", (d.zona || "").toUpperCase());
+    setText("rh-ciudad", (d.ciudad || "").toUpperCase());
+    setText("rh-marca", (d.marca || "").toUpperCase());
+    setText("rh-inventario", (d.inventario || "").toUpperCase());
+    setText("rh-capacidad", (d.capacidad || "").toUpperCase());
+    setText("rh-l1", d.l1 || "");
+    setText("rh-l2", d.l2 || "");
+    setText("rh-l3", d.l3 || "");
+    setText("rh-succion", d.succion || "");
+    setText("rh-descp", d.desc_p || "");
+    setText("rh-voltaje", d.voltaje || "");
+    setText("rh-tsum", d.tSum || "");
+    setText("rh-tret", d.tRet || "");
+    setText("rh-tamb", d.tAmb || "");
+    setText("rh-descripcion", d.descripcion || "");
+    setText("rh-material", d.material || "");
+    setText("rh-tecnico", (d.tecnico || "").toUpperCase());
+    setText("rh-observacion", d.observacion || "");
+    setText("rh-telefono", d.telefono || "");
+
+    // Marcar checkboxes
+    marcarCheckboxHTML("rh-tipo-servicio", d.tipoServicio, [
+      { elId: "rh-chk-preventivo", label: "Preventivo" },
+      { elId: "rh-chk-correctivo", label: "Correctivo" },
+      { elId: "rh-chk-instalacion", label: "Instalacion" },
+      { elId: "rh-chk-revision", label: "Revision" },
+    ]);
+    marcarCheckboxHTML("rh-tipo-equipo", d.tipoEquipo, [
+      { elId: "rh-chk-minisplit", label: "MINI SPLIT" },
+      { elId: "rh-chk-cassette", label: "CASSETTE" },
+      { elId: "rh-chk-central", label: "CENTRAL" },
+      { elId: "rh-chk-pisofijo", label: "PISO FIJO" },
+      { elId: "rh-chk-pisofijo", label: "PISO TECHO" },
+      { elId: "rh-chk-chiller", label: "CHILLER" },
+      { elId: "rh-chk-nevera", label: "NEVERA" },
+    ]);
+    marcarCheckboxHTML("rh-calificacion", d.calificacion, [
+      { elId: "rh-chk-excelente", label: "EXCELENTE" },
+      { elId: "rh-chk-bueno", label: "BUENO" },
+      { elId: "rh-chk-regular", label: "REGULAR" },
+      { elId: "rh-chk-malo", label: "MALO" },
+    ]);
+
+    // Foto
+    const fotoEl = document.getElementById("rh-foto");
+    if (d.foto) {
+      fotoEl.style.backgroundImage = `url('${d.foto}')`;
+      fotoEl.style.backgroundSize = "cover";
+      fotoEl.style.backgroundPosition = "center";
+    } else {
+      fotoEl.style.backgroundImage = "none";
+    }
+
+    const doCapture = () => {
+      const doc = document.getElementById("reporte-html-doc");
+      loadHtml2Canvas()
+        .then((h2c) =>
+          h2c(doc, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: "#ffffff",
+            logging: false,
+          }),
+        )
+        .then((canvas) => {
+          const nombre = `ReporteV2_${(d.cliente || "cliente").replace(/\s+/g, "_")}_${dd}-${mm}-${yyyy}.jpg`;
+          const link = document.createElement("a");
+          link.download = nombre;
+          link.href = canvas.toDataURL("image/jpeg", 0.85);
+          link.click();
+          if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Descargado';
+          }
+          fsToast("¡Reporte v2 descargado!", "✅");
+        })
+        .catch(() => {
+          if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-download"></i> v2';
+          }
+          fsToast("Error al generar reporte v2", "❌");
+        });
+    };
+
+    // Con background-image no hay evento onload — esperamos un tick para que el browser aplique el estilo
+    if (d.foto) {
+      const tempImg = new Image();
+      tempImg.crossOrigin = "anonymous";
+      tempImg.onload = doCapture;
+      tempImg.onerror = doCapture;
+      tempImg.src = d.foto;
+    } else {
+      doCapture();
+    }
+  }
+
+  window.descargarReporteHTML = descargarReporteHTML;
+
   async function buscarConReintentos(identificacion, url, intentos = 3) {
     for (let i = 0; i < intentos; i++) {
       try {
@@ -867,21 +1401,19 @@
     }
 
     const nombre = registros[0].cliente || identificacion;
-    const body = registros
-      .map((r, i) => buildRegistroHTML(r, i, registros.length))
-      .join("");
+    _registrosActuales = registros;
+    const body = buildReportesListHTML(registros);
 
     fsToast("¡Registro encontrado!", "✅");
     setTimeout(() => {
       fsModalShow({
         title:
           registros.length > 1
-            ? `${nombre} — ${registros.length} servicios`
-            : `Información de ${nombre}`,
+            ? `${nombre} — ${registros.length} reportes disponibles`
+            : `Reporte disponible — ${nombre}`,
         body,
         variante: "exito",
       });
-      if (registros.length > 1) initAcordeon();
     }, 600);
   }
 
