@@ -1,12 +1,14 @@
 <section id="reporte-mantenimiento" class="flex-column">
-
   <!-- ── PANTALLA DE ACCESO ── -->
   <div id="acceso-card" class="acceso-card flex-column">
     <div class="acceso-icon">
       <i class="bi bi-shield-lock"></i>
     </div>
     <h2>Acceso Restringido</h2>
-    <p>Esta sección es exclusiva para técnicos de AC FrioSystem.<br/>Ingresa la contraseña para continuar.</p>
+    <p>
+      Esta sección es exclusiva para técnicos de AC FrioSystem.<br />Ingresa la
+      contraseña para continuar.
+    </p>
     <div class="acceso-input-wrap">
       <input
         type="password"
@@ -21,105 +23,285 @@
     </div>
   </div>
 
-  <div id="formulario-reporte" style="display:none;width:100%;">
-  <div class="form-card flex-column">
-    <div class="form-header">
-      <div class="form-header-icon flex-row">
-        <i class="bi bi-file-earmark-text"></i>
+  <!-- ── FORMULARIO ── -->
+  <div id="formulario-reporte" style="display:none;width:100%;justify-content:center;">
+    <div class="form-card flex-column">
+
+      <!-- Header -->
+      <div class="form-header">
+        <div class="form-header-icon flex-row">
+          <i class="bi bi-file-earmark-medical"></i>
+        </div>
+        <div>
+          <h2>Reporte de Mantenimiento</h2>
+          <p class="form-subtitle">Complete todos los campos y guarde el reporte</p>
+        </div>
       </div>
-      <div>
-        <h2>Reporte de Mantenimiento</h2>
-        <p class="form-subtitle">
-          Complete los campos y genere el reporte en imagen
-        </p>
+
+      <div class="divider"></div>
+
+      <!-- ── SECCIÓN 1: DATOS DEL CLIENTE ── -->
+      <div class="form-section-title">
+        <i class="bi bi-person-lines-fill"></i> Datos del Cliente
       </div>
-    </div>
 
-    <div class="divider"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cedula">
+            <i class="bi bi-card-text"></i> Cédula / NIT <span class="req">*</span>
+          </label>
+          <input type="text" id="cedula" placeholder="Ej: 1234567890" />
+        </div>
+        <div class="form-group">
+          <label for="cliente">
+            <i class="bi bi-person"></i> Cliente <span class="req">*</span>
+          </label>
+          <input type="text" id="cliente" placeholder="Nombre completo" />
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="cliente">
-        <i class="bi bi-person"></i>
-        Cliente
-      </label>
-      <input
-        type="text"
-        id="cliente"
-        placeholder="Nombre completo del cliente"
-      />
-    </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="funcionario">
+            <i class="bi bi-person-badge"></i> Nombre Funcionario
+          </label>
+          <input type="text" id="funcionario" placeholder="Nombre del contacto" />
+        </div>
+        <div class="form-group">
+          <label for="telefono">
+            <i class="bi bi-telephone"></i> Teléfono
+          </label>
+          <input type="tel" id="telefono" placeholder="Ej: 3001234567" />
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="marca">
-        <i class="bi bi-wind"></i>
-        Marca Equipo #1
-      </label>
-      <input type="text" id="marca" placeholder="Ej: LG, Samsung, Carrier..." />
-    </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="zona">
+            <i class="bi bi-map"></i> Zona
+          </label>
+          <input type="text" id="zona" placeholder="Ej: Norte, Sur..." />
+        </div>
+        <div class="form-group">
+          <label for="ciudad">
+            <i class="bi bi-geo-alt"></i> Ciudad
+          </label>
+          <input type="text" id="ciudad" placeholder="Ej: Bogotá" />
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="tecnico">
-        <i class="bi bi-person-badge"></i>
-        Técnico
-      </label>
-      <input
-        type="text"
-        id="tecnico"
-        placeholder="Nombre del técnico responsable"
-      />
-    </div>
+      <!-- ── SECCIÓN 2: DATOS DEL EQUIPO ── -->
+      <div class="section-divider"></div>
+      <div class="form-section-title">
+        <i class="bi bi-wind"></i> Datos del Equipo
+      </div>
 
-    <button onclick="generarReporte()" class="btn-generar flex-row" id="btn-generar">
-      <i class="bi bi-download" id="btn-icon"></i>
-      <span id="btn-texto">Generar Reporte</span>
-    </button>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tipo-equipo">
+            <i class="bi bi-box"></i> Tipo de Equipo
+          </label>
+          <input type="text" id="tipo-equipo" placeholder="Ej: Split, Cassette..." />
+        </div>
+        <div class="form-group">
+          <label for="marca">
+            <i class="bi bi-tag"></i> Marca
+          </label>
+          <input type="text" id="marca" placeholder="Ej: LG, Carrier..." />
+        </div>
+      </div>
 
-    <p class="form-note flex-row">
-      <i class="bi bi-info-circle"></i>
-      Si los campos están vacíos se usarán valores de prueba
-    </p>
-  </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="inventario">
+            <i class="bi bi-hash"></i> Inventario
+          </label>
+          <input type="text" id="inventario" placeholder="Número de inventario" />
+        </div>
+        <div class="form-group">
+          <label for="tipo-servicio">
+            <i class="bi bi-tools"></i> Tipo de Servicio
+          </label>
+          <select id="tipo-servicio">
+            <option value="">Seleccionar...</option>
+            <option value="Preventivo">Preventivo</option>
+            <option value="Correctivo">Correctivo</option>
+            <option value="Instalación">Instalación</option>
+            <option value="Revisión">Revisión</option>
+          </select>
+        </div>
+      </div>
 
-  <canvas id="reporteCanvas" width="1754" height="2481" style="display:none;"
-  ></canvas>
+      <div class="form-row form-row-narrow">
+        <div class="form-group">
+          <label for="capacidad">
+            <i class="bi bi-speedometer2"></i> Capacidad (BTU)
+          </label>
+          <input type="number" id="capacidad" placeholder="Ej: 12000" />
+        </div>
+      </div>
 
-  <!-- ── MODAL ── -->
-  <div id="fsr-modal" class="fsr-modal-backdrop flex-row">
-    <div class="fsr-modal-card">
-      <button id="fsr-modal-close" class="fsr-modal-close flex-row" aria-label="Cerrar">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-        >
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
+      <!-- ── SECCIÓN 3: PARÁMETROS TÉCNICOS ── -->
+      <div class="section-divider"></div>
+      <div class="form-section-title">
+        <i class="bi bi-thermometer-half"></i> Parámetros Técnicos
+      </div>
+
+      <div class="params-label">Amperaje (A)</div>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label for="l1"><i class="bi bi-lightning"></i> L1</label>
+          <input type="number" step="0.1" id="l1" placeholder="0.0" />
+        </div>
+        <div class="form-group">
+          <label for="l2"><i class="bi bi-lightning"></i> L2</label>
+          <input type="number" step="0.1" id="l2" placeholder="0.0" />
+        </div>
+        <div class="form-group">
+          <label for="l3"><i class="bi bi-lightning"></i> L3</label>
+          <input type="number" step="0.1" id="l3" placeholder="0.0" />
+        </div>
+      </div>
+
+      <div class="params-label">Presión (PSI)</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="succion"><i class="bi bi-arrow-down-circle"></i> Succión</label>
+          <input type="number" step="0.1" id="succion" placeholder="0.0" />
+        </div>
+        <div class="form-group">
+          <label for="desc-p"><i class="bi bi-arrow-up-circle"></i> P. Descarga</label>
+          <input type="number" step="0.1" id="desc-p" placeholder="0.0" />
+        </div>
+      </div>
+
+      <div class="form-row form-row-narrow">
+        <div class="form-group">
+          <label for="voltaje"><i class="bi bi-plug"></i> Voltaje (V)</label>
+          <input type="number" step="0.1" id="voltaje" placeholder="220" />
+        </div>
+      </div>
+
+      <div class="params-label">Temperatura (°C)</div>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label for="t-sum"><i class="bi bi-thermometer-low"></i> T. Sum.</label>
+          <input type="number" step="0.1" id="t-sum" placeholder="0.0" />
+        </div>
+        <div class="form-group">
+          <label for="t-ret"><i class="bi bi-thermometer"></i> T. Ret.</label>
+          <input type="number" step="0.1" id="t-ret" placeholder="0.0" />
+        </div>
+        <div class="form-group">
+          <label for="t-amb"><i class="bi bi-thermometer-high"></i> T. Amb.</label>
+          <input type="number" step="0.1" id="t-amb" placeholder="0.0" />
+        </div>
+      </div>
+
+      <!-- ── SECCIÓN 4: SERVICIO REALIZADO ── -->
+      <div class="section-divider"></div>
+      <div class="form-section-title">
+        <i class="bi bi-clipboard-check"></i> Servicio Realizado
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion">
+          <i class="bi bi-file-text"></i> Descripción del Servicio
+        </label>
+        <textarea id="descripcion" rows="3" placeholder="Describa el trabajo realizado..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="material">
+          <i class="bi bi-boxes"></i> Material Utilizado
+        </label>
+        <textarea id="material" rows="2" placeholder="Liste los materiales usados..."></textarea>
+      </div>
+
+      <div class="form-row form-row-narrow">
+        <div class="form-group">
+          <label for="calificacion">
+            <i class="bi bi-star"></i> Calificación (1–5)
+          </label>
+          <input type="number" id="calificacion" min="1" max="5" placeholder="5" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><i class="bi bi-camera-fill"></i> Foto del Servicio</label>
+        <input type="file" id="foto-input" accept="image/*" capture="environment" style="display:none" />
+        <div class="foto-upload-area flex-column" id="foto-upload-area">
+          <div id="foto-placeholder" class="foto-placeholder flex-column">
+            <i class="bi bi-camera-fill"></i>
+            <span>Tomar foto o seleccionar imagen</span>
+            <small>Se comprime automáticamente antes de enviar</small>
+          </div>
+          <img id="foto-preview" style="display:none;" alt="Vista previa" />
+        </div>
+        <p id="foto-info" class="foto-info" style="display:none;"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="observacion">
+          <i class="bi bi-chat-left-text"></i> Observaciones
+        </label>
+        <textarea id="observacion" rows="2" placeholder="Observaciones adicionales..."></textarea>
+      </div>
+
+      <!-- ── TÉCNICO ── -->
+      <div class="section-divider"></div>
+      <div class="form-section-title">
+        <i class="bi bi-person-check"></i> Técnico Responsable
+      </div>
+
+      <div class="form-group">
+        <label for="tecnico">
+          <i class="bi bi-person-badge"></i> Técnico <span class="req">*</span>
+        </label>
+        <input type="text" id="tecnico" placeholder="Nombre del técnico responsable" />
+      </div>
+
+      <!-- Botón -->
+      <button onclick="enviarReporte()" class="btn-generar flex-row" id="btn-generar">
+        <i class="bi bi-cloud-upload" id="btn-icon"></i>
+        <span id="btn-texto">Guardar Reporte</span>
       </button>
 
-      <div class="fsr-modal-icon-wrap flex-row">
-        <div id="fsr-modal-icon" class="fsr-modal-icon flex-row"></div>
-      </div>
+      <p class="form-note flex-row">
+        <i class="bi bi-info-circle"></i>
+        Los campos marcados con <span class="req" style="margin:0 2px;">*</span> son obligatorios
+      </p>
+    </div>
 
-      <div class="fsr-modal-header flex-row">
-        <span id="fsr-modal-title">Aviso</span>
-      </div>
+    <!-- ── MODAL ── -->
+    <div id="fsr-modal" class="fsr-modal-backdrop flex-row">
+      <div class="fsr-modal-card">
+        <button id="fsr-modal-close" class="fsr-modal-close flex-row" aria-label="Cerrar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
 
-      <div id="fsr-modal-body" class="fsr-modal-body"></div>
+        <div class="fsr-modal-icon-wrap flex-row">
+          <div id="fsr-modal-icon" class="fsr-modal-icon flex-row"></div>
+        </div>
 
-      <div class="fsr-modal-footer flex-row">
-        <button id="fsr-modal-ok" class="fsr-modal-btn">Entendido</button>
+        <div class="fsr-modal-header flex-row">
+          <span id="fsr-modal-title">Aviso</span>
+        </div>
+
+        <div id="fsr-modal-body" class="fsr-modal-body"></div>
+
+        <div class="fsr-modal-footer flex-row">
+          <button id="fsr-modal-ok" class="fsr-modal-btn">Entendido</button>
+        </div>
       </div>
     </div>
   </div>
+  <!-- /formulario-reporte -->
 
-  </div> <!-- /formulario-reporte -->
-
-  <!-- ── TOAST (fuera del formulario para que sea visible siempre) ── -->
+  <!-- ── TOAST ── -->
   <div id="fsr-toast" class="fsr-toast flex-row">
     <span id="fsr-toast-icon" class="fsr-toast-icon"></span>
     <span id="fsr-toast-msg"></span>
@@ -135,7 +317,7 @@
     box-shadow: var(--shadow-md);
     padding: 48px 32px;
     width: 100%;
-    max-width: 420px;
+    max-width: 500px;
     text-align: center;
     gap: 16px;
   }
@@ -199,7 +381,7 @@
     opacity: 0.88;
   }
 
-  /* BASE */
+  /* ── BASE ── */
   #reporte-mantenimiento {
     padding: 40px 20px;
   }
@@ -211,7 +393,7 @@
     border-radius: 18px;
     border: solid 1px var(--clr-gray);
     width: 100%;
-    max-width: 560px;
+    max-width: 720px;
     gap: 0;
     box-shadow: var(--shadow-md);
     align-items: stretch;
@@ -248,15 +430,69 @@
     margin: 0;
   }
 
+  /* ── DIVISORES ── */
   .divider {
     height: 1px;
     background-color: var(--clr-gray);
     margin-bottom: 24px;
   }
 
-  /* ── CAMPOS ── */
+  .section-divider {
+    height: 1px;
+    background-color: var(--clr-gray);
+    margin: 20px 0 20px;
+    opacity: 0.6;
+  }
+
+  /* ── TÍTULO DE SECCIÓN ── */
+  .form-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--clr-blue);
+    margin-bottom: 16px;
+  }
+
+  .form-section-title .bi {
+    font-size: 14px;
+  }
+
+  /* ── ETIQUETA DE GRUPO DE PARÁMETROS ── */
+  .params-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--clr-dark2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    margin-top: 4px;
+  }
+
+  /* ── FILAS DE CAMPOS ── */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .form-row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  .form-row-narrow {
+    grid-template-columns: 1fr;
+    max-width: 50%;
+  }
+
+  /* ── CAMPO INDIVIDUAL ── */
   .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   .form-group label {
@@ -266,20 +502,29 @@
     margin-bottom: 6px;
     font-weight: 700;
     color: var(--clr-dark);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
 
   .form-group label .bi {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--clr-blue);
   }
 
-  .form-group input {
+  .req {
+    color: var(--clr-red);
+    font-weight: 700;
+  }
+
+  /* ── INPUTS ── */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
     width: 100%;
-    padding: 12px 14px;
-    font-size: 15px;
+    padding: 11px 13px;
+    font-size: 14px;
+    font-family: inherit;
     border-radius: 10px;
     border: solid 1.5px var(--clr-gray);
     background-color: var(--clr-white);
@@ -288,21 +533,95 @@
     color: var(--clr-dark);
   }
 
-  .form-group input:focus {
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
     outline: none;
     border-color: var(--clr-blue);
-    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.08); /* ring de foco */
+    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.08);
   }
 
-  .form-group input::placeholder {
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
     color: #bbb;
-    font-size: 14px;
+    font-size: 13px;
   }
 
-  /* ── BOTÓN GENERAR ── */
+  .form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+
+  /* ── FOTO UPLOAD ── */
+  .foto-upload-area {
+    border: 2px dashed var(--clr-gray);
+    border-radius: 10px;
+    min-height: 120px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  .foto-upload-area:hover {
+    border-color: var(--clr-blue);
+    background: var(--clr-blue-light);
+  }
+
+  .foto-upload-area.tiene-foto {
+    border-style: solid;
+    border-color: var(--clr-green);
+    min-height: unset;
+  }
+
+  .foto-placeholder {
+    gap: 8px;
+    color: var(--clr-dark2);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .foto-placeholder .bi {
+    font-size: 32px;
+    color: var(--clr-blue);
+  }
+
+  .foto-placeholder span {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .foto-placeholder small {
+    font-size: 11px;
+    color: #bbb;
+  }
+
+  #foto-preview {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .foto-info {
+    font-size: 11px;
+    color: var(--clr-dark2);
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+
+  /* ── BOTÓN GUARDAR ── */
   .btn-generar {
     width: 100%;
-    background-color: var(--clr-blue);
+    background-color: var(--clr-green);
     color: var(--clr-white);
     border: none;
     border-radius: 12px;
@@ -347,7 +666,7 @@
     transition:
       opacity 0.25s ease,
       visibility 0.25s ease;
-    max-width: none; /* override: section > * { max-width: 900px } */
+    max-width: none;
     width: 100%;
   }
 
@@ -384,7 +703,7 @@
     top: 14px;
     right: 14px;
     background: transparent;
-    color: #9ca3af; /* sin variable equivalente */
+    color: #9ca3af;
     border: none;
     border-radius: 6px;
     padding: 4px;
@@ -415,15 +734,9 @@
     line-height: 1;
   }
 
-  .fsr-icon-aviso {
-    background: var(--clr-modal-aviso);
-  }
-  .fsr-icon-error {
-    background: var(--clr-modal-error);
-  }
-  .fsr-icon-exito {
-    background: var(--clr-modal-exito);
-  }
+  .fsr-icon-aviso { background: var(--clr-modal-aviso); }
+  .fsr-icon-error { background: var(--clr-modal-error); }
+  .fsr-icon-exito { background: var(--clr-modal-exito); }
 
   /* ── HEADER MODAL ── */
   .fsr-modal-header {
@@ -433,7 +746,7 @@
   #fsr-modal-title {
     font-size: 17px;
     font-weight: 700;
-    color: #111827; /* sin variable equivalente */
+    color: #111827;
     text-align: center;
     letter-spacing: 1px;
   }
@@ -441,7 +754,7 @@
   /* ── BODY MODAL ── */
   .fsr-modal-body {
     padding: 14px 24px 8px;
-    color: #4b5563; /* sin variable equivalente */
+    color: #4b5563;
     line-height: 1.6;
     text-align: center;
     font-size: 14px;
@@ -473,8 +786,8 @@
     left: 50%;
     bottom: 28px;
     transform: translateX(-50%) translateY(16px);
-    background: #1e293b; /* sin variable equivalente */
-    color: #f8fafc; /* sin variable equivalente */
+    background: #1e293b;
+    color: #f8fafc;
     padding: 12px 22px;
     border-radius: 999px;
     font-size: 14px;
@@ -490,7 +803,7 @@
       visibility 0.25s ease;
     white-space: nowrap;
     pointer-events: none;
-    max-width: none; /* override: section > * { max-width: 900px } */
+    max-width: none;
     width: auto;
   }
 
@@ -505,7 +818,7 @@
     line-height: 1;
   }
 
-  /* HOVER */
+  /* ── HOVER ── */
   @media (hover: hover) {
     .btn-generar:hover {
       opacity: 0.88;
@@ -514,7 +827,7 @@
     }
 
     .fsr-modal-card .fsr-modal-close:hover {
-      color: #374151; /* sin variable equivalente */
+      color: #374151;
     }
 
     .fsr-modal-card .fsr-modal-btn:hover {
@@ -523,10 +836,21 @@
     }
   }
 
-  /* RESPONSIVE */
+  /* ── RESPONSIVE ── */
   @media (min-width: 500px) {
     .form-card {
       padding: 32px 28px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .form-row,
+    .form-row-3 {
+      grid-template-columns: 1fr;
+    }
+
+    .form-row-narrow {
+      max-width: 100%;
     }
   }
 </style>
@@ -534,24 +858,24 @@
 <script>
   // @ts-nocheck
 
+  /* ── URL DEL GOOGLE APPS SCRIPT ──────────────────────────────────────
+     Pega aquí la URL de tu web app después de publicarla en Apps Script.
+     Ejemplo: "https://script.google.com/macros/s/AKfy.../exec"
+  ─────────────────────────────────────────────────────────────────── */
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYtG6hCM7YSz77wZ7YQHgtv3dBL7W1g_qBU_3-w-iQBC9JqqCIfXWIXsJT9mS3mnweUg/exec";
+
   /* ── CONTROL DE ACCESO ── */
   function verificarAcceso() {
     const input = document.getElementById("acceso-password");
     if (input.value === "FrioSystem123") {
       document.getElementById("acceso-card").style.display = "none";
-      document.getElementById("formulario-reporte").style.display = "block";
+      document.getElementById("formulario-reporte").style.display = "flex";
     } else {
       fsrToast("Contraseña incorrecta", "🔒");
       input.value = "";
       input.focus();
     }
   }
-
-  const VALORES_PRUEBA = {
-    cliente: "JUAN PEREZ GOMEZ",
-    marca: "LG",
-    tecnico: "CARLOS RODRIGUEZ",
-  };
 
   /* ── TOAST ── */
   let fsrToastTimer;
@@ -601,17 +925,9 @@
     const texto = document.getElementById("btn-texto");
 
     const estados = {
-      normal: { icon: "bi-download", txt: "Generar Reporte", disabled: false },
-      cargando: {
-        icon: "bi-hourglass-split",
-        txt: "Generando...",
-        disabled: true,
-      },
-      exito: {
-        icon: "bi-check-circle",
-        txt: "¡Reporte listo!",
-        disabled: true,
-      },
+      normal:   { icon: "bi-cloud-upload",    txt: "Guardar Reporte",  disabled: false },
+      cargando: { icon: "bi-hourglass-split", txt: "Guardando...",     disabled: true  },
+      exito:    { icon: "bi-check-circle",    txt: "¡Guardado!",       disabled: true  },
     };
 
     const e = estados[estado] || estados.normal;
@@ -620,71 +936,178 @@
     btn.disabled = e.disabled;
   }
 
-  /* ── GENERAR REPORTE ── */
-  function generarReporte() {
-    const cliente =
-      document.getElementById("cliente").value || VALORES_PRUEBA.cliente;
-    const marca =
-      document.getElementById("marca").value || VALORES_PRUEBA.marca;
-    const tecnico =
-      document.getElementById("tecnico").value || VALORES_PRUEBA.tecnico;
+  /* ── FOTO: comprimir y previsualizar ── */
+  let fotoBase64 = null;
 
-    const canvas = document.getElementById("reporteCanvas");
-    const ctx = canvas.getContext("2d");
+  async function comprimirImagen(file, maxWidth = 1280, calidad = 0.78) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          let w = img.width;
+          let h = img.height;
+          if (w > maxWidth) {
+            h = Math.round((h * maxWidth) / w);
+            w = maxWidth;
+          }
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL("image/jpeg", calidad));
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function previsualizarFoto(input) {
+    const file = input.files[0];
+    if (!file) return;
+    fsrToast("Procesando imagen...", "🖼️");
+    try {
+      fotoBase64 = await comprimirImagen(file);
+      const preview = document.getElementById("foto-preview");
+      const placeholder = document.getElementById("foto-placeholder");
+      const area = document.getElementById("foto-upload-area");
+      const info = document.getElementById("foto-info");
+      preview.src = fotoBase64;
+      preview.style.display = "block";
+      placeholder.style.display = "none";
+      area.classList.add("tiene-foto");
+      const sizeKB = Math.round((fotoBase64.length * 0.75) / 1024);
+      info.textContent = `${file.name}  ·  ${sizeKB} KB`;
+      info.style.display = "block";
+      fsrToast("Foto lista", "✅");
+    } catch {
+      fsrToast("Error al procesar la imagen", "❌");
+    }
+  }
+
+  /* ── LIMPIAR FORMULARIO ── */
+  function limpiarFormulario() {
+    document
+      .querySelectorAll(
+        "#formulario-reporte input:not(#foto-input), #formulario-reporte textarea, #formulario-reporte select",
+      )
+      .forEach((el) => {
+        if (el.tagName === "SELECT") {
+          el.selectedIndex = 0;
+        } else {
+          el.value = "";
+        }
+      });
+    // Resetear foto
+    fotoBase64 = null;
+    document.getElementById("foto-input").value = "";
+    document.getElementById("foto-preview").style.display = "none";
+    document.getElementById("foto-placeholder").style.display = "flex";
+    document.getElementById("foto-upload-area").classList.remove("tiene-foto");
+    document.getElementById("foto-info").style.display = "none";
+  }
+
+  /* ── ENVIAR REPORTE ── */
+  async function enviarReporte() {
+    const v = (id) => document.getElementById(id)?.value.trim() ?? "";
+
+    const datos = {
+      cedula:       v("cedula"),
+      cliente:      v("cliente"),
+      zona:         v("zona"),
+      ciudad:       v("ciudad"),
+      tipoEquipo:   v("tipo-equipo"),
+      marca:        v("marca"),
+      inventario:   v("inventario"),
+      tipoServicio: v("tipo-servicio"),
+      capacidad:    v("capacidad"),
+      l1:           v("l1"),
+      l2:           v("l2"),
+      l3:           v("l3"),
+      succion:      v("succion"),
+      descP:        v("desc-p"),
+      voltaje:      v("voltaje"),
+      tSum:         v("t-sum"),
+      tRet:         v("t-ret"),
+      tAmb:         v("t-amb"),
+      descripcion:  v("descripcion"),
+      material:     v("material"),
+      funcionario:  v("funcionario"),
+      telefono:     v("telefono"),
+      foto:         fotoBase64 ?? "",
+      calificacion: v("calificacion"),
+      tecnico:      v("tecnico"),
+      observacion:  v("observacion"),
+    };
+
+    /* Validación de campos obligatorios */
+    if (!datos.cedula) {
+      fsrToast("Ingresa la cédula / NIT del cliente", "⚠️");
+      document.getElementById("cedula").focus();
+      return;
+    }
+    if (!datos.cliente) {
+      fsrToast("Ingresa el nombre del cliente", "⚠️");
+      document.getElementById("cliente").focus();
+      return;
+    }
+    if (!datos.tecnico) {
+      fsrToast("Ingresa el nombre del técnico", "⚠️");
+      document.getElementById("tecnico").focus();
+      return;
+    }
+    if (!APPS_SCRIPT_URL) {
+      fsrToast("URL de Apps Script no configurada", "⚙️");
+      return;
+    }
 
     setBtnEstado("cargando");
-    fsrToast("Generando reporte...", "⏳");
+    fsrToast("Guardando reporte...", "⏳");
 
-    const plantilla = new Image();
-    plantilla.crossOrigin = "anonymous";
-    plantilla.src = "/img/reporte/reporte.jpg";
-
-    plantilla.onload = function () {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(plantilla, 0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = "#000000";
-      ctx.font = "24px Montserrat, Arial";
-      ctx.textAlign = "left";
-
-      ctx.fillText(cliente.toUpperCase(), 232, 430);
-      ctx.fillText(marca.toUpperCase(), 310, 535);
-      ctx.fillText(tecnico.toUpperCase(), 1105, 2150);
-
-      const fecha = new Date();
-      const link = document.createElement("a");
-      const nombre = `Reporte_${cliente.replace(/\s+/g, "_")}_${fecha.getDate()}-${fecha.getMonth() + 1}-${fecha.getFullYear()}.jpg`;
-
-      link.download = nombre;
-      link.href = canvas.toDataURL("image/jpeg", 1.0);
-      link.click();
+    try {
+      /* Enviamos con mode:'no-cors' para evitar problemas de CORS con Apps Script.
+         La petición llega al servidor pero no podemos leer la respuesta — esto es normal. */
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(datos),
+      });
 
       setBtnEstado("exito");
-      fsrToast("¡Reporte descargado!", "✅");
+      fsrToast("¡Reporte guardado!", "✅");
 
       setTimeout(() => {
         fsrModalShow({
-          title: "Reporte generado",
-          body: `El reporte de <strong>${cliente}</strong> fue generado correctamente.<br><small style="color:#888">Archivo: ${nombre}</small>`,
+          title: "Reporte guardado",
+          body: `El reporte de <strong>${datos.cliente}</strong> fue registrado correctamente.<br><small style="color:#888">Cédula/NIT: ${datos.cedula} · Técnico: ${datos.tecnico}</small>`,
           variante: "exito",
         });
         setBtnEstado("normal");
+        limpiarFormulario();
       }, 800);
-    };
-
-    plantilla.onerror = function () {
+    } catch (err) {
       setBtnEstado("normal");
-      fsrToast("Error al cargar la plantilla", "❌");
+      fsrToast("Error al guardar el reporte", "❌");
       setTimeout(() => {
         fsrModalShow({
-          title: "Error de plantilla",
-          body: "No se pudo cargar la imagen base del reporte.<br><small>Verifica que el archivo exista en: <code>/img/reporte/plantilla_reporte.jpg</code></small>",
+          title: "Error de conexión",
+          body: "No se pudo guardar el reporte. Verifica tu conexión a internet e intenta nuevamente.",
           variante: "error",
         });
       }, 400);
-    };
+    }
   }
 
-  window.generarReporte = generarReporte;
+  /* ── CONECTAR ZONA DE FOTO ── */
+  const fotoArea = document.getElementById("foto-upload-area");
+  const fotoInput = document.getElementById("foto-input");
+  fotoArea.addEventListener("click", () => fotoInput.click());
+  fotoInput.addEventListener("change", () => previsualizarFoto(fotoInput));
+
   window.verificarAcceso = verificarAcceso;
+  window.enviarReporte = enviarReporte;
 </script>
