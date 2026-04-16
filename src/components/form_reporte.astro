@@ -19,9 +19,6 @@
         <i class="bi bi-unlock"></i> Ingresar
       </button>
     </div>
-    <p id="acceso-error" class="acceso-error flex-row" style="display:none;">
-      <i class="bi bi-x-circle"></i> Contraseña incorrecta
-    </p>
   </div>
 
   <div id="formulario-reporte" style="display:none;width:100%;">
@@ -120,12 +117,13 @@
     </div>
   </div>
 
-  <!-- ── TOAST ── -->
+  </div> <!-- /formulario-reporte -->
+
+  <!-- ── TOAST (fuera del formulario para que sea visible siempre) ── -->
   <div id="fsr-toast" class="fsr-toast flex-row">
     <span id="fsr-toast-icon" class="fsr-toast-icon"></span>
     <span id="fsr-toast-msg"></span>
   </div>
-  </div> <!-- /formulario-reporte -->
 </section>
 
 <style>
@@ -199,14 +197,6 @@
 
   .acceso-input-wrap button:hover {
     opacity: 0.88;
-  }
-
-  .acceso-error {
-    color: #c0392b;
-    font-size: 13px;
-    font-weight: 600;
-    margin: 0;
-    gap: 5px;
   }
 
   /* BASE */
@@ -408,14 +398,21 @@
 
   /* ── ÍCONO MODAL ── */
   .fsr-modal-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 28px 0 4px;
   }
 
   .fsr-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 56px;
     height: 56px;
     border-radius: 50%;
     font-size: 26px;
+    line-height: 1;
   }
 
   .fsr-icon-aviso {
@@ -540,15 +537,13 @@
   /* ── CONTROL DE ACCESO ── */
   function verificarAcceso() {
     const input = document.getElementById("acceso-password");
-    const error = document.getElementById("acceso-error");
     if (input.value === "FrioSystem123") {
       document.getElementById("acceso-card").style.display = "none";
       document.getElementById("formulario-reporte").style.display = "block";
     } else {
-      error.style.display = "flex";
+      fsrToast("Contraseña incorrecta", "🔒");
       input.value = "";
       input.focus();
-      setTimeout(() => (error.style.display = "none"), 3000);
     }
   }
 
@@ -583,7 +578,7 @@
     const v = FSR_VARIANTES[variante] || FSR_VARIANTES.aviso;
     const iconEl = document.getElementById("fsr-modal-icon");
     iconEl.textContent = v.emoji;
-    iconEl.className = "fsr-modal-icon " + v.clase;
+    iconEl.className = "fsr-modal-icon flex-row " + v.clase;
     document.getElementById("fsr-modal-title").textContent = title;
     document.getElementById("fsr-modal-body").innerHTML = body;
     document.getElementById("fsr-modal").classList.add("fsr-modal-visible");

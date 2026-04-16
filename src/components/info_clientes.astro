@@ -23,7 +23,11 @@
   <!-- ── MODAL ── -->
   <div id="fs-modal" class="fs-modal-backdrop flex-row">
     <div class="fs-modal-card">
-      <button id="fs-modal-close" class="fs-modal-close flex-row" aria-label="Cerrar">
+      <button
+        id="fs-modal-close"
+        class="fs-modal-close flex-row"
+        aria-label="Cerrar"
+      >
         <svg
           width="16"
           height="16"
@@ -76,17 +80,15 @@
         style="display:flex;border-bottom:1px solid #032132;min-height:60px;"
       >
         <div
-          style="width:45%;border-right:1px solid #032132;padding:8px 10px;display:flex;flex-direction:column;justify-content:center;"
+          style="width:45%;border-right:1px solid #032132;padding:8px 12px;display:flex;align-items:center;gap:10px;"
         >
-          <div
-            style="font-size:17px;font-weight:900;color:#032132;letter-spacing:1px;"
-          >
-            AC FRIOSYSTEM
-          </div>
-          <div
-            style="font-size:10px;font-weight:700;color:#032132;letter-spacing:2px;"
-          >
-            S.A.S
+          <img
+            src="/img/logo.jpg"
+            style="height:44px;width:auto;display:block;flex-shrink:0;"
+          />
+          <div>
+            <div style="font-size:17px;font-weight:900;color:#032132;letter-spacing:1px;">AC FRIOSYSTEM</div>
+            <div style="font-size:10px;font-weight:700;color:#032132;letter-spacing:2px;">S.A.S</div>
           </div>
         </div>
         <div style="flex:1;display:flex;flex-direction:column;">
@@ -159,16 +161,17 @@
             <div
               style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
             >
-              DIRECCIÓN:
+              FUNCIONARIO:
             </div>
-            <div style="flex:1;padding:3px 6px;border-right:1px solid #032132;">
+            <div id="rh-funcionario" style="flex:1;padding:3px 6px;border-right:1px solid #032132;font-size:9px;">
+              —
             </div>
             <div
               style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
             >
-              ZONA DE SERVICIO:
+              TEL:
             </div>
-            <div id="rh-zona" style="flex:0.7;padding:3px 6px;font-size:9px;">
+            <div id="rh-telefono" style="flex:0.7;padding:3px 6px;font-size:9px;">
               —
             </div>
           </div>
@@ -187,9 +190,9 @@
             <div
               style="padding:3px 6px;border-right:1px solid #032132;white-space:nowrap;font-weight:700;color:#032132;font-size:8px;"
             >
-              MARCA:
+              ZONA DE SERVICIO:
             </div>
-            <div id="rh-marca" style="flex:0.7;padding:3px 6px;font-size:9px;">
+            <div id="rh-zona" style="flex:0.7;padding:3px 6px;font-size:9px;">
               —
             </div>
           </div>
@@ -555,23 +558,16 @@
           <div
             style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 8px;text-align:center;border-bottom:1px solid #032132;"
           >
-            FIRMA TÉCNICO
+            TÉCNICO
           </div>
           <div
-            style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:8px;"
+            style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;"
           >
             <div
-              style="width:55%;border-bottom:1px solid #000;margin-bottom:5px;"
-            >
-            </div>
-            <div
               id="rh-tecnico"
-              style="font-size:9px;font-weight:700;text-align:center;"
+              style="font-size:13px;font-weight:700;text-align:center;"
             >
               —
-            </div>
-            <div style="font-size:7.5px;color:#666;margin-top:10px;">
-              Firma del Cliente
             </div>
           </div>
         </div>
@@ -633,11 +629,6 @@
             style="height:60px;overflow:hidden;padding:8px;font-size:9px;line-height:1.5;"
           >
             —
-          </div>
-          <div
-            style="border-top:1px solid #032132;padding:5px 8px;display:flex;align-items:center;gap:5px;font-size:8.5px;font-weight:700;"
-          >
-            TEL: <span id="rh-telefono" style="font-weight:400;">—</span>
           </div>
         </div>
       </div>
@@ -790,6 +781,9 @@
 
   /* ── ÍCONO MODAL ── */
   .fs-modal-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 24px 0 6px;
     flex-shrink: 0;
   }
@@ -799,6 +793,7 @@
     height: 48px;
     border-radius: 50%;
     font-size: 22px;
+    line-height: 1;
   }
 
   .fs-icon-aviso {
@@ -950,18 +945,22 @@
 
   .reporte-card-info {
     display: flex;
-    gap: 5px;
+    flex-direction: column;
+    gap: 3px;
   }
 
   .reporte-label {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--clr-blue);
     font-size: 14px;
   }
 
   .reporte-sub {
-    font-size: 14px;
+    font-size: 12px;
     color: var(--clr-dark2);
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   .reporte-btn {
@@ -1020,7 +1019,7 @@
     const v = VARIANTES[variante] || VARIANTES.aviso;
     const iconEl = document.getElementById("fs-modal-icon");
     iconEl.textContent = v.emoji;
-    iconEl.className = "fs-modal-icon " + v.clase;
+    iconEl.className = "fs-modal-icon flex-row " + v.clase;
     document.getElementById("fs-modal-title").textContent = title;
     document.getElementById("fs-modal-body").innerHTML = body;
     // Ancho amplio solo cuando hay datos de cliente (variante exito)
@@ -1177,8 +1176,8 @@
         return `
         <div class="reporte-card flex-row">
           <div class="reporte-card-info">
-            <span class="reporte-label">Servicio ${i + 1} — ${etiqueta}</span>
-            ${r.marca ? `<span class="reporte-sub">${r.marca}</span>` : ""}
+            <span class="reporte-label">${etiqueta}</span>
+            ${(r.zona || r.marca) ? `<span class="reporte-sub"><i class="bi bi-geo-alt"></i> ${[r.zona, r.marca].filter(Boolean).join(" · ")}</span>` : ""}
           </div>
           <button class="reporte-btn flex-row" id="reporte-btn-${i}" onclick="descargarReporteHTML(${i})">
             <i class="bi bi-download"></i> Descargar
@@ -1257,6 +1256,7 @@
     setText("rh-fecha", fechaStr);
     setText("rh-cliente", (d.cliente || "").toUpperCase());
     setText("rh-cedula", d.cedula || "");
+    setText("rh-funcionario", (d.funcionario || "").toUpperCase());
     setText("rh-zona", (d.zona || "").toUpperCase());
     setText("rh-ciudad", (d.ciudad || "").toUpperCase());
     setText("rh-marca", (d.marca || "").toUpperCase());
