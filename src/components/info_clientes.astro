@@ -991,7 +991,7 @@
   //@ts-nocheck
 
   const SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQW9HE0pnzSsXfqoD9qXe28EMfT2D6AFhoM3T_83Z8ajhdKDgL86tE8cSRfTTTtuVVm8j1KZLrHefc_/pub?gid=0&single=true&output=csv";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vTLng3XkAb9JG896pidqqMlH_q46Za3anbgs8cH72NeFGJ4hJZtZraaoW2addA4witXsiFvihNVDN1J/pub?output=csv";
 
   /* ── REGISTROS ACTUALES ── */
   let _registrosActuales = [];
@@ -1063,7 +1063,7 @@
 
   /* ── BUSCAR COLUMNA POR PALABRAS CLAVE ── */
   function findCol(headers, ...keywords) {
-    return headers.findIndex((h) => keywords.some((kw) => h.includes(kw)));
+    return headers.findIndex((h) => keywords.some((kw) => h.toLowerCase().includes(kw.toLowerCase())));
   }
 
   /* ── LÓGICA DE BÚSQUEDA ── */
