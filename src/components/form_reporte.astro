@@ -24,9 +24,11 @@
   </div>
 
   <!-- ── FORMULARIO ── -->
-  <div id="formulario-reporte" style="display:none;width:100%;justify-content:center;">
+  <div
+    id="formulario-reporte"
+    style="display:none;width:100%;justify-content:center;"
+  >
     <div class="form-card flex-column">
-
       <!-- Header -->
       <div class="form-header">
         <div class="form-header-icon flex-row">
@@ -34,7 +36,9 @@
         </div>
         <div>
           <h2>Reporte de Mantenimiento</h2>
-          <p class="form-subtitle">Complete todos los campos y guarde el reporte</p>
+          <p class="form-subtitle">
+            Complete todos los campos y guarde el reporte
+          </p>
         </div>
       </div>
 
@@ -48,7 +52,9 @@
       <div class="form-row">
         <div class="form-group">
           <label for="cedula">
-            <i class="bi bi-card-text"></i> Cédula / NIT <span class="req">*</span>
+            <i class="bi bi-card-text"></i> Cédula / NIT <span class="req"
+              >*</span
+            >
           </label>
           <input type="text" id="cedula" placeholder="Ej: 1234567890" />
         </div>
@@ -65,7 +71,11 @@
           <label for="funcionario">
             <i class="bi bi-person-badge"></i> Nombre Funcionario
           </label>
-          <input type="text" id="funcionario" placeholder="Nombre del contacto" />
+          <input
+            type="text"
+            id="funcionario"
+            placeholder="Nombre del contacto"
+          />
         </div>
         <div class="form-group">
           <label for="telefono">
@@ -101,7 +111,11 @@
           <label for="tipo-equipo">
             <i class="bi bi-box"></i> Tipo de Equipo
           </label>
-          <input type="text" id="tipo-equipo" placeholder="Ej: Split, Cassette..." />
+          <input
+            type="text"
+            id="tipo-equipo"
+            placeholder="Ej: Split, Cassette..."
+          />
         </div>
         <div class="form-group">
           <label for="marca">
@@ -116,7 +130,11 @@
           <label for="inventario">
             <i class="bi bi-hash"></i> Inventario
           </label>
-          <input type="text" id="inventario" placeholder="Número de inventario" />
+          <input
+            type="text"
+            id="inventario"
+            placeholder="Número de inventario"
+          />
         </div>
         <div class="form-group">
           <label for="tipo-servicio">
@@ -166,11 +184,15 @@
       <div class="params-label">Presión (PSI)</div>
       <div class="form-row">
         <div class="form-group">
-          <label for="succion"><i class="bi bi-arrow-down-circle"></i> Succión</label>
+          <label for="succion"
+            ><i class="bi bi-arrow-down-circle"></i> Succión</label
+          >
           <input type="number" step="0.1" id="succion" placeholder="0.0" />
         </div>
         <div class="form-group">
-          <label for="desc-p"><i class="bi bi-arrow-up-circle"></i> P. Descarga</label>
+          <label for="desc-p"
+            ><i class="bi bi-arrow-up-circle"></i> P. Descarga</label
+          >
           <input type="number" step="0.1" id="desc-p" placeholder="0.0" />
         </div>
       </div>
@@ -185,7 +207,9 @@
       <div class="params-label">Temperatura (°C)</div>
       <div class="form-row-3">
         <div class="form-group">
-          <label for="t-sum"><i class="bi bi-thermometer-low"></i> T. Sum.</label>
+          <label for="t-sum"
+            ><i class="bi bi-thermometer-low"></i> T. Sum.</label
+          >
           <input type="number" step="0.1" id="t-sum" placeholder="0.0" />
         </div>
         <div class="form-group">
@@ -193,7 +217,9 @@
           <input type="number" step="0.1" id="t-ret" placeholder="0.0" />
         </div>
         <div class="form-group">
-          <label for="t-amb"><i class="bi bi-thermometer-high"></i> T. Amb.</label>
+          <label for="t-amb"
+            ><i class="bi bi-thermometer-high"></i> T. Amb.</label
+          >
           <input type="number" step="0.1" id="t-amb" placeholder="0.0" />
         </div>
       </div>
@@ -208,14 +234,20 @@
         <label for="descripcion">
           <i class="bi bi-file-text"></i> Descripción del Servicio
         </label>
-        <textarea id="descripcion" rows="3" placeholder="Describa el trabajo realizado..."></textarea>
+        <textarea
+          id="descripcion"
+          rows="3"
+          placeholder="Describa el trabajo realizado..."></textarea>
       </div>
 
       <div class="form-group">
         <label for="material">
           <i class="bi bi-boxes"></i> Material Utilizado
         </label>
-        <textarea id="material" rows="2" placeholder="Liste los materiales usados..."></textarea>
+        <textarea
+          id="material"
+          rows="2"
+          placeholder="Liste los materiales usados..."></textarea>
       </div>
 
       <div class="form-row form-row-narrow">
@@ -223,13 +255,25 @@
           <label for="calificacion">
             <i class="bi bi-star"></i> Calificación (1–5)
           </label>
-          <input type="number" id="calificacion" min="1" max="5" placeholder="5" />
+          <input
+            type="number"
+            id="calificacion"
+            min="1"
+            max="5"
+            placeholder="5"
+          />
         </div>
       </div>
 
       <div class="form-group">
         <label><i class="bi bi-camera-fill"></i> Foto del Servicio</label>
-        <input type="file" id="foto-input" accept="image/*" capture="environment" style="display:none" />
+        <input
+          type="file"
+          id="foto-input"
+          accept="image/*"
+          capture="environment"
+          style="display:none"
+        />
         <div class="foto-upload-area flex-column" id="foto-upload-area">
           <div id="foto-placeholder" class="foto-placeholder flex-column">
             <i class="bi bi-camera-fill"></i>
@@ -245,7 +289,10 @@
         <label for="observacion">
           <i class="bi bi-chat-left-text"></i> Observaciones
         </label>
-        <textarea id="observacion" rows="2" placeholder="Observaciones adicionales..."></textarea>
+        <textarea
+          id="observacion"
+          rows="2"
+          placeholder="Observaciones adicionales..."></textarea>
       </div>
 
       <!-- ── TÉCNICO ── -->
@@ -258,26 +305,47 @@
         <label for="tecnico">
           <i class="bi bi-person-badge"></i> Técnico <span class="req">*</span>
         </label>
-        <input type="text" id="tecnico" placeholder="Nombre del técnico responsable" />
+        <input
+          type="text"
+          id="tecnico"
+          placeholder="Nombre del técnico responsable"
+        />
       </div>
 
       <!-- Botón -->
-      <button onclick="enviarReporte()" class="btn-generar flex-row" id="btn-generar">
+      <button
+        onclick="enviarReporte()"
+        class="btn-generar flex-row"
+        id="btn-generar"
+      >
         <i class="bi bi-cloud-upload" id="btn-icon"></i>
         <span id="btn-texto">Guardar Reporte</span>
       </button>
 
       <p class="form-note flex-row">
         <i class="bi bi-info-circle"></i>
-        Los campos marcados con <span class="req" style="margin:0 2px;">*</span> son obligatorios
+        Los campos marcados con <span class="req" style="margin:0 2px;">*</span> son
+        obligatorios
       </p>
     </div>
 
     <!-- ── MODAL ── -->
     <div id="fsr-modal" class="fsr-modal-backdrop flex-row">
       <div class="fsr-modal-card">
-        <button id="fsr-modal-close" class="fsr-modal-close flex-row" aria-label="Cerrar">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <button
+          id="fsr-modal-close"
+          class="fsr-modal-close flex-row"
+          aria-label="Cerrar"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          >
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
@@ -567,7 +635,9 @@
     border-radius: 10px;
     min-height: 120px;
     cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
     overflow: hidden;
     gap: 0;
   }
@@ -734,9 +804,15 @@
     line-height: 1;
   }
 
-  .fsr-icon-aviso { background: var(--clr-modal-aviso); }
-  .fsr-icon-error { background: var(--clr-modal-error); }
-  .fsr-icon-exito { background: var(--clr-modal-exito); }
+  .fsr-icon-aviso {
+    background: var(--clr-modal-aviso);
+  }
+  .fsr-icon-error {
+    background: var(--clr-modal-error);
+  }
+  .fsr-icon-exito {
+    background: var(--clr-modal-exito);
+  }
 
   /* ── HEADER MODAL ── */
   .fsr-modal-header {
@@ -862,12 +938,13 @@
      Pega aquí la URL de tu web app después de publicarla en Apps Script.
      Ejemplo: "https://script.google.com/macros/s/AKfy.../exec"
   ─────────────────────────────────────────────────────────────────── */
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYtG6hCM7YSz77wZ7YQHgtv3dBL7W1g_qBU_3-w-iQBC9JqqCIfXWIXsJT9mS3mnweUg/exec";
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbwdH1YNMJG18HZTujwU0cEvFdBXsyVneXoRpXqspGaxDI0FArRCWJJneXCYmVHeiaOoMA/exec";
 
   /* ── CONTROL DE ACCESO ── */
   function verificarAcceso() {
     const input = document.getElementById("acceso-password");
-    if (input.value === "FrioSystem123") {
+    if (input.value === "friosystem123") {
       document.getElementById("acceso-card").style.display = "none";
       document.getElementById("formulario-reporte").style.display = "flex";
     } else {
@@ -925,9 +1002,17 @@
     const texto = document.getElementById("btn-texto");
 
     const estados = {
-      normal:   { icon: "bi-cloud-upload",    txt: "Guardar Reporte",  disabled: false },
-      cargando: { icon: "bi-hourglass-split", txt: "Guardando...",     disabled: true  },
-      exito:    { icon: "bi-check-circle",    txt: "¡Guardado!",       disabled: true  },
+      normal: {
+        icon: "bi-cloud-upload",
+        txt: "Guardar Reporte",
+        disabled: false,
+      },
+      cargando: {
+        icon: "bi-hourglass-split",
+        txt: "Guardando...",
+        disabled: true,
+      },
+      exito: { icon: "bi-check-circle", txt: "¡Guardado!", disabled: true },
     };
 
     const e = estados[estado] || estados.normal;
@@ -1015,32 +1100,32 @@
     const v = (id) => document.getElementById(id)?.value.trim() ?? "";
 
     const datos = {
-      cedula:       v("cedula"),
-      cliente:      v("cliente"),
-      zona:         v("zona"),
-      ciudad:       v("ciudad"),
-      tipoEquipo:   v("tipo-equipo"),
-      marca:        v("marca"),
-      inventario:   v("inventario"),
+      cedula: v("cedula"),
+      cliente: v("cliente"),
+      zona: v("zona"),
+      ciudad: v("ciudad"),
+      tipoEquipo: v("tipo-equipo"),
+      marca: v("marca"),
+      inventario: v("inventario"),
       tipoServicio: v("tipo-servicio"),
-      capacidad:    v("capacidad"),
-      l1:           v("l1"),
-      l2:           v("l2"),
-      l3:           v("l3"),
-      succion:      v("succion"),
-      descP:        v("desc-p"),
-      voltaje:      v("voltaje"),
-      tSum:         v("t-sum"),
-      tRet:         v("t-ret"),
-      tAmb:         v("t-amb"),
-      descripcion:  v("descripcion"),
-      material:     v("material"),
-      funcionario:  v("funcionario"),
-      telefono:     v("telefono"),
-      foto:         fotoBase64 ?? "",
+      capacidad: v("capacidad"),
+      l1: v("l1"),
+      l2: v("l2"),
+      l3: v("l3"),
+      succion: v("succion"),
+      descP: v("desc-p"),
+      voltaje: v("voltaje"),
+      tSum: v("t-sum"),
+      tRet: v("t-ret"),
+      tAmb: v("t-amb"),
+      descripcion: v("descripcion"),
+      material: v("material"),
+      funcionario: v("funcionario"),
+      telefono: v("telefono"),
+      foto: fotoBase64 ?? "",
       calificacion: v("calificacion"),
-      tecnico:      v("tecnico"),
-      observacion:  v("observacion"),
+      tecnico: v("tecnico"),
+      observacion: v("observacion"),
     };
 
     /* Validación de campos obligatorios */
