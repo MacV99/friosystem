@@ -1,92 +1,211 @@
-<section class="mv-section flex-row">
-  <div class="mv-card">
-    <div class="mv-icon">
-      <i class="bi bi-graph-up-arrow"></i>
-    </div>
-    <h2>Misión</h2>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur sint
-      veritatis, itaque rem molestias vel assumenda totam odit non temporibus
-      neque eum? Saepe alias est quidem labore quas consequuntur officiis.
+<section id="mision-vision">
+  <div class="mv-header">
+    <span class="mv-eyebrow">Nuestra razón de ser</span>
+    <h2>MISIÓN & VISIÓN</h2>
+    <p class="mv-subtitle">
+      El propósito y la dirección que guían cada proyecto que emprendemos
     </p>
   </div>
 
-  <div class="mv-card">
-    <div class="mv-icon">
-      <i class="bi bi-lightbulb"></i>
+  <div class="mv-cards">
+    <div class="mv-card">
+      <span class="mv-num">01</span>
+      <div class="mv-icon"><i class="bi bi-graph-up-arrow"></i></div>
+      <h3>Misión</h3>
+      <p>
+        Brindar soluciones integrales en climatización, ventilación mecánica y
+        refrigeración, con altos estándares técnicos y un equipo humano
+        altamente calificado, entregando a cada cliente experiencia,
+        responsabilidad, confiabilidad y servicio en todos sus proyectos y
+        montajes.
+      </p>
+      <div class="mv-divider"></div>
+      <ul class="mv-values">
+        <li><i class="bi bi-check2"></i> Experiencia</li>
+        <li><i class="bi bi-check2"></i> Responsabilidad</li>
+        <li><i class="bi bi-check2"></i> Confiabilidad</li>
+      </ul>
     </div>
-    <h2>Visión</h2>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur sint
-      veritatis, itaque rem molestias vel assumenda totam odit non temporibus
-      neque eum? Saepe alias est quidem labore quas consequuntur officiis.
-    </p>
+
+    <div class="mv-card">
+      <span class="mv-num">02</span>
+      <div class="mv-icon"><i class="bi bi-lightbulb"></i></div>
+      <h3>Visión</h3>
+      <p>
+        Consolidarnos como la empresa líder en soluciones de climatización en el
+        Huila y la región, reconocidos por la calidad de nuestros proyectos, el
+        uso de tecnología de alto nivel y nuestro compromiso permanente con el
+        ahorro energético, la innovación y la excelencia en el servicio.
+      </p>
+      <div class="mv-divider"></div>
+      <ul class="mv-values">
+        <li><i class="bi bi-check2"></i> Liderazgo regional</li>
+        <li><i class="bi bi-check2"></i> Innovación</li>
+        <li><i class="bi bi-check2"></i> Ahorro energético</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <style>
-  .mv-section {
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 40px 20px;
+  #mision-vision {
+    background-color: var(--clr-blue-mid);
+    padding: 80px 24px;
+    gap: 52px;
+    align-items: center;
   }
 
-  .mv-card {
-    border: 1px solid var(--clr-gray);
-    padding: 32px 24px;
-    border-radius: 18px;
-    max-width: 380px;
-    width: 100%;
-    background-color: var(--clr-white);
-    transition: var(--transition);
-    box-shadow: var(--shadow-sm);
+  /* ─── HEADER ─── */
+  .mv-header {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-  }
-
-  .mv-icon {
-    width: 48px;
-    height: 48px;
-    background-color: var(--clr-blue-light);
-    border-radius: 12px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    color: var(--clr-blue);
-    font-size: 22px;
-    margin-bottom: 4px;
-    transition: var(--transition);
+    gap: 14px;
+    text-align: center;
+    max-width: 600px;
   }
 
-  /* HOVER */
-  @media (hover: hover) {
-    .mv-card:hover {
-      border-color: var(--clr-blue);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-3px);
-    }
-
-    .mv-card:hover .mv-icon {
-      background-color: var(--clr-blue);
-      color: var(--clr-white);
-    }
+  .mv-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--clr-red);
+    display: block;
   }
 
   h2 {
-    color: var(--clr-dark);
-    font-size: 1rem;
+    font-size: 1.6rem;
+    color: #fff;
+    letter-spacing: 5px;
+    line-height: 1.2;
+  }
+
+  .mv-subtitle {
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── CARDS ─── */
+  .mv-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 860px;
+  }
+
+  .mv-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 20px;
+    padding: 36px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all 0.25s ease;
+    overflow: hidden;
+  }
+
+  /* número decorativo de fondo */
+  .mv-num {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 5.5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 1;
+    letter-spacing: -2px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .mv-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(234, 75, 94, 0.14);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-red);
+    font-size: 22px;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .mv-icon i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 0.9rem;
     letter-spacing: 3px;
   }
 
   p {
-    color: var(--clr-dark2);
-    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.85rem;
   }
 
-  i {
+  .mv-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 4px 0;
+  }
+
+  .mv-values {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .mv-values li {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .mv-values li i {
+    font-size: 14px;
+    color: var(--clr-red);
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  /* ─── HOVER ─── */
+  @media (hover: hover) {
+    .mv-card:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(234, 75, 94, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .mv-card:hover .mv-icon {
+      background: var(--clr-red);
+      color: #fff;
+    }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (min-width: 750px) {
+    .mv-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
   }
 </style>

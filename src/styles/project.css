@@ -37,8 +37,4 @@
 
 /* ── ESTILOS GLOBALES DEL PROYECTO ── */
 
-#nosotros {
-  text-align: center;
-  background-color: var(--clr-white);
-  gap: 0;
-}
+/* #nosotros ahora es manejado por Nosotros.astro */

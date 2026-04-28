@@ -15,17 +15,36 @@
   </div>
 
   <div class="hero-content flex-column">
+    <span class="hero-eyebrow">Neiva, Huila · Colombia</span>
     <h1>AC FRIOSYSTEM S.A.S</h1>
-    <p class="hero-sub">Soluciones en climatización y aires acondicionados</p>
-    <a
-      class="boton hero-btn"
-      href="https://wa.me/523172366425?text=Hola%20quiero%20información"
-      target="_blank"
-    >
-      <i class="bi bi-whatsapp"></i>
-      CONTÁCTANOS
-    </a>
+    <p class="hero-sub">Soluciones en climatización y aire acondicionado</p>
+
+    <div class="hero-pills">
+      <span><i class="bi bi-tools"></i> Mantenimiento</span>
+      <span><i class="bi bi-rulers"></i> Diseño y Montaje</span>
+      <span><i class="bi bi-box-seam"></i> Suministro</span>
+    </div>
+
+    <div class="hero-btns">
+      <a
+        class="boton hero-btn"
+        href="https://wa.me/573107751017?text=Hola%2C%20quiero%20más%20información%20sobre%20sus%20servicios"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="bi bi-whatsapp"></i>
+        CONTÁCTANOS
+      </a>
+      <a class="hero-btn-outline" href="#servicios">
+        Ver servicios
+        <i class="bi bi-arrow-down"></i>
+      </a>
+    </div>
   </div>
+
+  <a href="#nosotros" class="hero-scroll" aria-label="Ir al contenido">
+    <i class="bi bi-chevron-down"></i>
+  </a>
 </section>
 
 <style>
@@ -39,33 +58,89 @@
     background-blend-mode: color;
     background-color: var(--hero-overlay);
     background-size: cover;
-    height: 340px;
+    height: 520px;
     overflow: hidden;
     gap: 0;
+    justify-content: center;
   }
 
   .hero-content {
-    gap: 12px;
+    gap: 14px;
     z-index: 2;
     animation: fadeInUp 0.8s ease both;
+    padding: 0 20px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--clr-red);
+    animation: fadeInUp 0.8s 0s ease both;
+    display: block;
   }
 
   h1 {
-    font-size: 22px;
+    font-size: 24px;
     line-height: 1.2;
     color: var(--clr-white);
     letter-spacing: 6px;
     padding-left: 6px;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4); /* text-shadow, sin variable equivalente */
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
   }
 
   .hero-sub {
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 0.8rem;
-    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.78rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 500;
     animation: fadeInUp 0.8s 0.15s ease both;
+    max-width: 420px;
+    line-height: 1.7;
+  }
+
+  /* ─── PILLS ─── */
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    animation: fadeInUp 0.8s 0.25s ease both;
+  }
+
+  .hero-pills span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 6px 14px;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .hero-pills span i {
+    font-size: 12px;
+    display: inline-flex;
+    color: var(--clr-red);
+  }
+
+  /* ─── BUTTONS ─── */
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeInUp 0.8s 0.35s ease both;
+    margin-top: 6px;
   }
 
   .hero-btn {
@@ -76,13 +151,55 @@
     padding: 12px 24px;
     border-radius: 50px;
     font-size: 13px;
-    margin-top: 8px;
     box-shadow: var(--shadow-md);
-    animation: fadeInUp 0.8s 0.3s ease both;
     transition: all 0.25s ease;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
+  }
+
+  .hero-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 11px 22px;
+    transition: all 0.25s ease;
+  }
+
+  .hero-btn-outline i {
+    font-size: 14px;
+    display: inline-flex;
+  }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .hero-scroll {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    display: flex;
+    animation: scrollBounce 2s ease infinite;
+    transition: color 0.2s;
+  }
+
+  @keyframes scrollBounce {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(6px);
+    }
   }
 
   /* ── PARTÍCULAS ── */
@@ -192,7 +309,7 @@
     }
   }
 
-  /* HOVER */
+  /* ─── HOVER ─── */
   @media (hover: hover) {
     .hero-btn:hover {
       background-color: var(--clr-blue);
@@ -200,19 +317,28 @@
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
     }
+
+    .hero-btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.7);
+      color: #fff;
+    }
+
+    .hero-scroll:hover {
+      color: rgba(255, 255, 255, 0.9);
+    }
   }
 
-  /* RESPONSIVE */
+  /* ─── RESPONSIVE ─── */
   @media (min-width: 750px) {
-    .hero {
-      height: 380px;
-    }
     h1 {
-      font-size: 30px;
-      letter-spacing: 8px;
+      font-size: 36px;
+      letter-spacing: 10px;
     }
+
     .hero-sub {
       font-size: 0.85rem;
+      max-width: 520px;
     }
   }
 </style>

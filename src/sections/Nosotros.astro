@@ -1,0 +1,202 @@
+<section id="nosotros">
+  <div class="nos-grid">
+    <div class="nos-text">
+      <span class="nos-badge">
+        <i class="bi bi-geo-alt-fill"></i>
+        Empresa Huilense · Desde 2011
+      </span>
+
+      <h2>QUIÉNES<br />SOMOS</h2>
+
+      <div class="nos-body">
+        <p>
+          Somos especialistas en diseño, consultoría, suministro, instalación y
+          mantenimiento de sistemas de aire acondicionado, ventilación mecánica
+          y refrigeración, desarrollando proyectos integrales con altos
+          estándares técnicos, respaldo profesional y enfoque en ahorro
+          energético.
+        </p>
+        <p>
+          No solo instalamos equipos: diseñamos soluciones inteligentes que
+          optimizan el rendimiento, prolongan la vida útil de sus sistemas y
+          garantizan ambientes más seguros, confortables y eficientes.
+        </p>
+        <p>
+          Contamos con personal altamente calificado — Ingenieros de Proyectos,
+          Coordinadores de Alturas, Técnicos HVAC y Electricistas con Matrícula
+          CONTÉ — para dar apoyo a las necesidades de nuestros clientes en sus
+          proyectos y montajes.
+        </p>
+        <p>
+          Trabajamos con tecnología de alto nivel, marcas reconocidas y un
+          equipo técnico comprometido con resultados que superan expectativas y
+          generan verdadera tranquilidad operativa.
+        </p>
+      </div>
+
+      <p class="nos-slogan">
+        <strong>AC FRIOSYSTEM SAS</strong><br />
+        Ingeniería que enfría, eficiencia que perdura.
+      </p>
+    </div>
+
+    <div class="nos-visual">
+      <!--
+        IMAGEN DE REFERENCIA — reemplazar /img/hero.jpg con una foto
+        del equipo técnico o de una instalación real.
+      -->
+      <img
+        src="/img/hero.jpg"
+        alt="Equipo técnico AC Friosystem en instalación"
+      />
+      <div class="nos-overlay-badge">
+        <i class="bi bi-people-fill"></i>
+        <span>Equipo altamente calificado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #nosotros {
+    background: #fff;
+    padding: 80px 24px;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 52px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  /* ─── TEXT COLUMN ─── */
+  .nos-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .nos-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(3, 33, 50, 0.06);
+    border: 1px solid rgba(3, 33, 50, 0.14);
+    color: var(--clr-blue);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
+  .nos-badge i {
+    font-size: 11px;
+    color: var(--clr-red);
+    display: inline-flex;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+    color: var(--clr-blue);
+    line-height: 1;
+    letter-spacing: 5px;
+  }
+
+  .nos-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-left: 3px solid var(--clr-gray);
+    padding-left: 20px;
+  }
+
+  .nos-body p {
+    font-size: 0.87rem;
+    color: var(--clr-dark2);
+    text-align: left;
+  }
+
+  .nos-slogan {
+    font-size: 0.85rem;
+    color: var(--clr-blue);
+    border-left: 3px solid var(--clr-red);
+    padding-left: 16px;
+    font-style: italic;
+    text-align: left;
+  }
+
+  .nos-slogan strong {
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 1px;
+    display: block;
+  }
+
+  /* ─── IMAGE COLUMN ─── */
+  .nos-visual {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--clr-gray);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nos-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  @media (hover: hover) {
+    .nos-visual:hover img {
+      transform: scale(1.03);
+    }
+  }
+
+  .nos-overlay-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(3, 33, 50, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: white;
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .nos-overlay-badge i {
+    font-size: 16px;
+    color: var(--clr-red);
+    display: inline-flex;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (min-width: 750px) {
+    .nos-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 3.4rem;
+    }
+  }
+</style>

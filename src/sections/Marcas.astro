@@ -1,0 +1,209 @@
+<section id="marcas">
+  <div class="marcas-header">
+    <span class="marcas-eyebrow">Con quiénes trabajamos</span>
+    <h2>MARCAS QUE MANEJAMOS</h2>
+    <p>Tecnología de alto nivel de los mejores fabricantes del mundo</p>
+  </div>
+
+  <div class="brands-row">
+    <div class="brand-pill">
+      <i class="bi bi-check-circle-fill"></i>
+      Mirage
+    </div>
+    <div class="brand-pill">
+      <i class="bi bi-check-circle-fill"></i>
+      Midea
+    </div>
+    <div class="brand-pill">
+      <i class="bi bi-check-circle-fill"></i>
+      Trane
+    </div>
+    <div class="brand-pill">
+      <i class="bi bi-check-circle-fill"></i>
+      LG
+    </div>
+    <div class="brand-pill">
+      <i class="bi bi-check-circle-fill"></i>
+      York
+    </div>
+    <div class="brand-pill">
+      <i class="bi bi-check-circle-fill"></i>
+      Samsung
+    </div>
+  </div>
+
+  <div class="clients-block">
+    <h3>
+      <i class="bi bi-buildings"></i>
+      NUESTROS CLIENTES
+    </h3>
+    <div class="clients-grid">
+      <span>Círculo de Suboficiales FFMM</span>
+      <span>Universidad Cooperativa</span>
+      <span>Guacamayas Oil Services S.A.S</span>
+      <span>Laboratorios Baxter</span>
+      <span>Moreno Vargas S.A.</span>
+      <span>Clínica Emcosalud</span>
+      <span>Spinning Center S.A.S</span>
+      <span>SENA Huila</span>
+      <span>Inmobiliaria Yatrana</span>
+      <span>Clínica Coven</span>
+      <span>Ministerio del Trabajo</span>
+      <span>R.Y.M Ingeniería S.A.S</span>
+      <span>C.C. San Juan Plaza</span>
+      <span>Harinera del Valle</span>
+      <span>Universidad Corhuila</span>
+      <span>KFC</span>
+      <span>Beertown</span>
+      <span>Seingecol S.A.S</span>
+      <span>Rayos X del Huila SAS</span>
+      <span>Constructora Bonilla Riveros</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  #marcas {
+    background: #f4f6f8;
+    padding: 80px 24px;
+    gap: 52px;
+    align-items: center;
+  }
+
+  /* ─── HEADER ─── */
+  .marcas-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  .marcas-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--clr-red);
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    color: var(--clr-blue);
+    letter-spacing: 4px;
+  }
+
+  .marcas-header p {
+    font-size: 0.85rem;
+    color: var(--clr-dark2);
+  }
+
+  /* ─── BRANDS ─── */
+  .brands-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 760px;
+  }
+
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1.5px solid #e0e4e8;
+    border-radius: 50px;
+    padding: 11px 26px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: var(--clr-blue);
+    text-transform: uppercase;
+    transition: all 0.22s ease;
+    box-shadow: var(--shadow-sm);
+    cursor: default;
+  }
+
+  .brand-pill i {
+    font-size: 13px;
+    color: var(--clr-green);
+    display: inline-flex;
+  }
+
+  @media (hover: hover) {
+    .brand-pill:hover {
+      border-color: var(--clr-blue);
+      background: var(--clr-blue);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .brand-pill:hover i {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  /* ─── CLIENTS ─── */
+  .clients-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+    border-top: 1px solid #dce0e5;
+    padding-top: 48px;
+  }
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--clr-dark);
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+
+  h3 i {
+    font-size: 16px;
+    color: var(--clr-blue);
+    display: inline-flex;
+  }
+
+  .clients-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    justify-content: center;
+  }
+
+  .clients-grid span {
+    background: #fff;
+    border: 1px solid #dce0e5;
+    border-radius: 8px;
+    padding: 7px 15px;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--clr-dark2);
+    letter-spacing: 0.3px;
+    transition: all 0.18s ease;
+  }
+
+  @media (hover: hover) {
+    .clients-grid span:hover {
+      background: var(--clr-blue);
+      color: #fff;
+      border-color: var(--clr-blue);
+    }
+  }
+
+  @media (min-width: 750px) {
+    h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
