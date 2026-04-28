@@ -111,10 +111,9 @@
               VERSIÓN : D
             </div>
             <div
-              id="rh-fecha-top"
               style="flex:1.5;padding:3px 6px;border-right:1px solid #032132;text-align:center;"
             >
-              —
+              OCT. 2025
             </div>
             <div style="flex:1;padding:3px 6px;text-align:center;">PAG 1/1</div>
           </div>
@@ -1114,6 +1113,7 @@
     const iCalif = findCol(headers, "calificacion", "calificación");
     const iTecnico = findCol(headers, "tecnico", "técnico");
     const iObservacion = findCol(headers, "observacion", "observación");
+    const iFecha = findCol(headers, "fecha");
 
     if (iCedula === -1) {
       fsModalShow({
@@ -1158,6 +1158,7 @@
           calificacion: cells[iCalif] || "",
           tecnico: cells[iTecnico] || "",
           observacion: cells[iObservacion] || "",
+          fecha: cells[iFecha] || "",
         });
       }
     }
@@ -1193,7 +1194,7 @@
       </div>`;
   }
 
-  /* ── REPORTE: HTML → html2canvas → JPEG ── */
+  /* ── REPORTE: HTML → html2canvas → jsPDF ── */
 
   function loadHtml2Canvas() {
     return new Promise((resolve, reject) => {
@@ -1205,6 +1206,17 @@
       s.src =
         "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
       s.onload = () => resolve(window.html2canvas);
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  function loadJsPDF() {
+    return new Promise((resolve, reject) => {
+      if (window.jspdf) { resolve(window.jspdf); return; }
+      const s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+      s.onload = () => resolve(window.jspdf);
       s.onerror = reject;
       document.head.appendChild(s);
     });
@@ -1245,14 +1257,13 @@
       btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Generando...';
     }
 
-    const fecha = new Date();
-    const dd = String(fecha.getDate()).padStart(2, "0");
-    const mm = String(fecha.getMonth() + 1).padStart(2, "0");
-    const yyyy = fecha.getFullYear();
-    const fechaStr = `${dd}/${mm}/${yyyy}`;
+    const fechaStr = d.fecha || (() => {
+      const f = new Date();
+      return `${String(f.getDate()).padStart(2, "0")}/${String(f.getMonth() + 1).padStart(2, "0")}/${f.getFullYear()}`;
+    })();
+    const [dd, mm, yyyy] = fechaStr.split("/");
 
     // Rellenar campos de texto
-    setText("rh-fecha-top", fechaStr);
     setText("rh-fecha", fechaStr);
     setText("rh-cliente", (d.cliente || "").toUpperCase());
     setText("rh-cedula", d.cedula || "");
@@ -1322,12 +1333,15 @@
             logging: false,
           }),
         )
-        .then((canvas) => {
-          const nombre = `ReporteV2_${(d.cliente || "cliente").replace(/\s+/g, "_")}_${dd}-${mm}-${yyyy}.jpg`;
-          const link = document.createElement("a");
-          link.download = nombre;
-          link.href = canvas.toDataURL("image/jpeg", 0.85);
-          link.click();
+        .then(async (canvas) => {
+          const { jsPDF } = await loadJsPDF();
+          const imgData = canvas.toDataURL("image/jpeg", 0.92);
+          const pdfW = 215.9;
+          const pdfH = (canvas.height * pdfW) / canvas.width;
+          const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [pdfW, pdfH] });
+          pdf.addImage(imgData, "JPEG", 0, 0, pdfW, pdfH);
+          const nombre = `ReporteV2_${(d.cliente || "cliente").replace(/\s+/g, "_")}_${dd}-${mm}-${yyyy}.pdf`;
+          pdf.save(nombre);
           if (btn) {
             btn.disabled = false;
             btn.innerHTML = '<i class="bi bi-check-circle"></i> Descargado';

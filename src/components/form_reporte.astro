@@ -312,6 +312,8 @@
         />
       </div>
 
+      <input type="hidden" id="fecha-servicio" />
+
       <!-- Botón -->
       <button
         onclick="enviarReporte()"
@@ -928,6 +930,15 @@
     .form-row-narrow {
       max-width: 100%;
     }
+
+    .acceso-input-wrap {
+      flex-direction: column;
+    }
+
+    .acceso-input-wrap button {
+      width: 100%;
+      justify-content: center;
+    }
   }
 </style>
 
@@ -947,6 +958,8 @@
     if (input.value === "friosystem123") {
       document.getElementById("acceso-card").style.display = "none";
       document.getElementById("formulario-reporte").style.display = "flex";
+      const _hoy = new Date();
+      document.getElementById("fecha-servicio").value = `${String(_hoy.getDate()).padStart(2,"0")}/${String(_hoy.getMonth()+1).padStart(2,"0")}/${_hoy.getFullYear()}`;
     } else {
       fsrToast("Contraseña incorrecta", "🔒");
       input.value = "";
@@ -1126,6 +1139,7 @@
       calificacion: v("calificacion"),
       tecnico: v("tecnico"),
       observacion: v("observacion"),
+      fecha: v("fecha-servicio"),
     };
 
     /* Validación de campos obligatorios */
