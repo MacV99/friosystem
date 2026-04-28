@@ -6,8 +6,8 @@
     </div>
     <h2>Acceso Restringido</h2>
     <p>
-      Esta sección es exclusiva para técnicos de AC FrioSystem.<br />Ingresa la
-      contraseña para continuar.
+      Esta sección es exclusiva Para técnicos de AC FRIOSYSTEM SAS.<br />Ingresa
+      la contraseña para continuar.
     </p>
     <div class="acceso-input-wrap">
       <input
@@ -959,7 +959,8 @@
       document.getElementById("acceso-card").style.display = "none";
       document.getElementById("formulario-reporte").style.display = "flex";
       const _hoy = new Date();
-      document.getElementById("fecha-servicio").value = `${String(_hoy.getDate()).padStart(2,"0")}/${String(_hoy.getMonth()+1).padStart(2,"0")}/${_hoy.getFullYear()}`;
+      document.getElementById("fecha-servicio").value =
+        `${String(_hoy.getDate()).padStart(2, "0")}/${String(_hoy.getMonth() + 1).padStart(2, "0")}/${_hoy.getFullYear()}`;
     } else {
       fsrToast("Contraseña incorrecta", "🔒");
       input.value = "";
