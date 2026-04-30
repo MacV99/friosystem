@@ -22,6 +22,31 @@ import Navbar from "../components/navbar.astro";
   </div>
 </header>
 
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const iconCart = document.querySelector(".icon-cart");
+    const iconCartSpan = document.querySelector(".icon-cart span");
+
+    // Sincronizar badge con localStorage en cualquier página
+    try {
+      const stored = localStorage.getItem("cart");
+      if (stored && iconCartSpan) {
+        const cartData = JSON.parse(stored);
+        const total = cartData.reduce((sum, item) => sum + item.quantity, 0);
+        iconCartSpan.innerText = total;
+      }
+    } catch (_) {}
+
+    iconCart?.addEventListener("click", () => {
+      if (window.location.pathname === "/tienda") {
+        document.body.classList.toggle("showCart");
+      } else {
+        window.location.href = "/tienda?cart=open";
+      }
+    });
+  });
+</script>
+
 <style>
   /* BASE */
   header {

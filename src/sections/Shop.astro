@@ -153,8 +153,7 @@ import CategorySearch from "../components/category_search.astro";
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
 
-  // abrir carrito
-  iconCart?.addEventListener("click", () => body.classList.toggle("showCart"));
+  // el click del carrito lo maneja Header.astro (global)
 
   // Render: botones de categoría
   const renderCategoryButtons = () => {
@@ -378,6 +377,10 @@ import CategorySearch from "../components/category_search.astro";
         if (storedCart) {
           cart = JSON.parse(storedCart);
           addCartToHTML();
+        }
+
+        if (new URLSearchParams(window.location.search).get("cart") === "open") {
+          body.classList.add("showCart");
         }
       })
       .catch((error) => console.error("Error cargando productos:", error));
