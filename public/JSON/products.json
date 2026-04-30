@@ -5,63 +5,81 @@
             "price": 4499900,
             "originalPrice": 5549898,
             "details": "Voltaje: 220V\nCapacidad: 36000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI36HDBWCC32C1\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-36Btus-Blanco-MMI36HDBWCC32C1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NzE4N3xpbWFnZS9qcGVnfGFERTNMMmcwTkM4eE1qWXdORGMzTnpNMk5UVXpOQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpNMlFuUjFjMTlDYkdGdVkyOWZUVTFKTXpaSVJFSlhRME16TWtNeFgwWnliMjUwWVd3dWFuQm58NGYxZDA0NDdjNDU0NTQ5NTUwMjU4YjhkODBiYjIxYmNlYWVhOTRiYzJkYzMzMTRlMTI4NDM2NzIzYzQ0M2QxZA"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-36Btus-Blanco-MMI36HDBWCC32C1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NzE4N3xpbWFnZS9qcGVnfGFERTNMMmcwTkM4eE1qWXdORGMzTnpNMk5UVXpOQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpNMlFuUjFjMTlDYkdGdVkyOWZUVTFKTXpaSVJFSlhRME16TWtNeFgwWnliMjUwWVd3dWFuQm58NGYxZDA0NDdjNDU0NTQ5NTUwMjU4YjhkODBiYjIxYmNlYWVhOTRiYzJkYzMzMTRlMTI4NDM2NzIzYzQ0M2QxZA"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter 220V 12000 BTU Blanco Mabe",
             "price": 1629900,
             "originalPrice": 2483900,
             "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI12CDBWCCC8\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-12000BTUS-Blanco-MMI12CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4OTIwN3xpbWFnZS9qcGVnfGFESmlMMmhqTmk4eE1UVTRPVE0yTnpRek1URTVPQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNVEl3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVWt4TWtORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8MzFmNDE4MjVhMGZhNjAyZGFkZTk1OGI2OTYwYjAzYTRiZjA3NzE3MDEzNjZjNDNkMmIxOWQ5YjI1OTRhM2I3MA"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-12000BTUS-Blanco-MMI12CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4OTIwN3xpbWFnZS9qcGVnfGFESmlMMmhqTmk4eE1UVTRPVE0yTnpRek1URTVPQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNVEl3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVWt4TWtORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8MzFmNDE4MjVhMGZhNjAyZGFkZTk1OGI2OTYwYjAzYTRiZjA3NzE3MDEzNjZjNDNkMmIxOWQ5YjI1OTRhM2I3MA"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter 110v 9000 BTU Blanco Mabe",
             "price": 1399900,
             "originalPrice": 1659900,
             "details": "Voltaje: 110V\nCapacidad: 9000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI09CABWCCC1\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-9btus-Blanco-MMI09CABWCCC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NTA3OXxpbWFnZS9qcGVnfGFHVmxMMmhrT1M4eE1UZzRORGsyTXpNMk5EZzVOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRsaWRIVnpMVUpzWVc1amJ5MU5UVWt3T1VOQlFsZERRME14TFVaeWIyNTBZV3d1YW5CbnxjYTNkZTdmODFjYzU3MmE2NTQ2NDU4MGQ5MzkzMWUxNTY5YjA5YjZkNDZkZDBjN2IzMTJiOWE0OTAzOTg1NWQz"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-9btus-Blanco-MMI09CABWCCC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NTA3OXxpbWFnZS9qcGVnfGFHVmxMMmhrT1M4eE1UZzRORGsyTXpNMk5EZzVOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRsaWRIVnpMVUpzWVc1amJ5MU5UVWt3T1VOQlFsZERRME14TFVaeWIyNTBZV3d1YW5CbnxjYTNkZTdmODFjYzU3MmE2NTQ2NDU4MGQ5MzkzMWUxNTY5YjA5YjZkNDZkZDBjN2IzMTJiOWE0OTAzOTg1NWQz"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter 220v 9000 BTU Blanco Mabe",
             "price": 1399900,
             "originalPrice": 1659900,
             "details": "Voltaje: 220V\nCapacidad: 9000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI09CDBWCCC1\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-9btus-Blanco-MMI09CDBWCCC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NjU2NXxpbWFnZS9qcGVnfGFEazRMMmc0TUM4eE1qUTRNalUwTlRFMU5qRXlOaTh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRsaWRIVnpMVUpzWVc1amJ5MU5UVWt3T1VORVFsZERRME14TFVaeWIyNTBZV3d1YW5CbnwwMDQyOTk3MTIyMGQ4Zjc0Njg5ZGU1OGVlMTAxMTgxYzIxMjBhYTlmNjBlMmE2ZmM4NDMzMGE3MTgyYjM5MTk2"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-9btus-Blanco-MMI09CDBWCCC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NjU2NXxpbWFnZS9qcGVnfGFEazRMMmc0TUM4eE1qUTRNalUwTlRFMU5qRXlOaTh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRsaWRIVnpMVUpzWVc1amJ5MU5UVWt3T1VORVFsZERRME14TFVaeWIyNTBZV3d1YW5CbnwwMDQyOTk3MTIyMGQ4Zjc0Njg5ZGU1OGVlMTAxMTgxYzIxMjBhYTlmNjBlMmE2ZmM4NDMzMGE3MTgyYjM5MTk2"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter 220v 12000 BTU Blanco Mabe",
             "price": 1449900,
             "originalPrice": 1799900,
             "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI12CDBWCCBC1\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMI12CDBWCCBC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w4MDY5MXxpbWFnZS9qcGVnfGFEVm1MMmc0TlM4eE1qa3hNakV4TnpZeE1qVTNOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRFeVluUjFjeTFDYkdGdVkyOHRUVTFKTVRKRFJFSlhRME5DUXpFdFJuSnZiblJoYkM1cWNHY3w1NDhkMDAzYjk4YmU3YTQwMTlhZTM1YzFkMTMxZWEyZmFjNjIzMDY1NjBiMjhmNDQzZGMyZTAxZDMxYzIzZGRk"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMI12CDBWCCBC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w4MDY5MXxpbWFnZS9qcGVnfGFEVm1MMmc0TlM4eE1qa3hNakV4TnpZeE1qVTNOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRFeVluUjFjeTFDYkdGdVkyOHRUVTFKTVRKRFJFSlhRME5DUXpFdFJuSnZiblJoYkM1cWNHY3w1NDhkMDAzYjk4YmU3YTQwMTlhZTM1YzFkMTMxZWEyZmFjNjIzMDY1NjBiMjhmNDQzZGMyZTAxZDMxYzIzZGRk"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter 220V 18000 BTU Blanco Mabe",
             "price": 2299900,
             "originalPrice": 3633070,
             "details": "Voltaje: 220V\nCapacidad: 18000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI18CDBWCCC9\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-18btus-Blanco-MMI18CDBWCCC9-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w5MTA5OHxpbWFnZS9qcGVnfGFESXdMMmhpWlM4eE1qTXlPVE16TlRVMU5EQTNPQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpFNFluUjFjMTlDYkdGdVkyOWZUVTFKTVRoRFJFSlhRME5ET1Y5R2NtOXVkR0ZzTG1wd1p3fDE5NjIxODhlYzE1OWFlNmEzZGZlMTQwNzM0MmJlZDdmZDM4ZWE1YmQ5NTI4MTVhNTU3MTFhNWU3YzEzMDRhOTA"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-18btus-Blanco-MMI18CDBWCCC9-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w5MTA5OHxpbWFnZS9qcGVnfGFESXdMMmhpWlM4eE1qTXlPVE16TlRVMU5EQTNPQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpFNFluUjFjMTlDYkdGdVkyOWZUVTFKTVRoRFJFSlhRME5ET1Y5R2NtOXVkR0ZzTG1wd1p3fDE5NjIxODhlYzE1OWFlNmEzZGZlMTQwNzM0MmJlZDdmZDM4ZWE1YmQ5NTI4MTVhNTU3MTFhNWU3YzEzMDRhOTA"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter 110V 12000 BTU Blanco Mabe",
             "price": 1629900,
             "originalPrice": 2485910,
             "details": "Voltaje: 110V\nCapacidad: 12000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI12CABWCCC9\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMI12CDBWCCC9-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w4ODM0MnxpbWFnZS9qcGVnfGFEaGhMMmd5T1M4eE1qTXlPVE15TURNME9UY3lOaTh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpFeVluUjFjMTlDYkdGdVkyOWZUVTFKTVRKRFJFSlhRME5ET1Y5R2NtOXVkR0ZzTG1wd1p3fDYyOGMwZDhiMmJjNTVlMjdiMDNlOTA5NzljN2FlZjViNzcxNGRlYjY3N2Q4Mjg5MTI2NTVlMTA1NDNkNDEyZWY"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMI12CDBWCCC9-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w4ODM0MnxpbWFnZS9qcGVnfGFEaGhMMmd5T1M4eE1qTXlPVE15TURNME9UY3lOaTh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpFeVluUjFjMTlDYkdGdVkyOWZUVTFKTVRKRFJFSlhRME5ET1Y5R2NtOXVkR0ZzTG1wd1p3fDYyOGMwZDhiMmJjNTVlMjdiMDNlOTA5NzljN2FlZjViNzcxNGRlYjY3N2Q4Mjg5MTI2NTVlMTA1NDNkNDEyZWY"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter 220V 12000 BTU Blanco Mabe",
             "price": 1629900,
             "originalPrice": 2485910,
             "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI12CDBWCCC9\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMI12CDBWCCC9-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w4ODM0MnxpbWFnZS9qcGVnfGFEaGhMMmd5T1M4eE1qTXlPVE15TURNME9UY3lOaTh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpFeVluUjFjMTlDYkdGdVkyOWZUVTFKTVRKRFJFSlhRME5ET1Y5R2NtOXVkR0ZzTG1wd1p3fDYyOGMwZDhiMmJjNTVlMjdiMDNlOTA5NzljN2FlZjViNzcxNGRlYjY3N2Q4Mjg5MTI2NTVlMTA1NDNkNDEyZWY"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMI12CDBWCCC9-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w4ODM0MnxpbWFnZS9qcGVnfGFEaGhMMmd5T1M4eE1qTXlPVE15TURNME9UY3lOaTh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpFeVluUjFjMTlDYkdGdVkyOWZUVTFKTVRKRFJFSlhRME5ET1Y5R2NtOXVkR0ZzTG1wd1p3fDYyOGMwZDhiMmJjNTVlMjdiMDNlOTA5NzljN2FlZjViNzcxNGRlYjY3N2Q4Mjg5MTI2NTVlMTA1NDNkNDEyZWY"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter 230V 24000 BTU Blanco Mabe",
             "price": 2599000,
             "originalPrice": 4944450,
             "details": "Voltaje: 230V\nCapacidad: 24000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI24CDBWCCC9\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-18btus-Blanco-MMI18CDBWCCC9-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w5MTA5OHxpbWFnZS9qcGVnfGFESXdMMmhpWlM4eE1qTXlPVE16TlRVMU5EQTNPQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpFNFluUjFjMTlDYkdGdVkyOWZUVTFKTVRoRFJFSlhRME5ET1Y5R2NtOXVkR0ZzTG1wd1p3fDE5NjIxODhlYzE1OWFlNmEzZGZlMTQwNzM0MmJlZDdmZDM4ZWE1YmQ5NTI4MTVhNTU3MTFhNWU3YzEzMDRhOTA"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-18btus-Blanco-MMI18CDBWCCC9-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w5MTA5OHxpbWFnZS9qcGVnfGFESXdMMmhpWlM4eE1qTXlPVE16TlRVMU5EQTNPQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVZmUVdseVpWOUJZMjl1WkdsamFXOXVZV1J2WHpFNFluUjFjMTlDYkdGdVkyOWZUVTFKTVRoRFJFSlhRME5ET1Y5R2NtOXVkR0ZzTG1wd1p3fDE5NjIxODhlYzE1OWFlNmEzZGZlMTQwNzM0MmJlZDdmZDM4ZWE1YmQ5NTI4MTVhNTU3MTFhNWU3YzEzMDRhOTA"
+            ]
         }
     ],
     "#TRADICIONAL": [
@@ -70,49 +88,63 @@
             "price": 1979900,
             "originalPrice": 2771900,
             "details": "Voltaje: 220V\nCapacidad: 18000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT18CDBWCCC8\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-18000BTUS-Blanco-MMT18CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4NzI1M3xpbWFnZS9qcGVnfGFEUXhMMmhrTWk4eE1UVTVNVGsxTWpNd01qRXhNQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNVGd3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVlF4T0VORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8ZmVkZDliYTRhYjgyYjlmZmQxYTBkZGFjNGNkOGNjY2YxZTYyNWNlMGNkYjc5MzY1OWVjMWViZTc3YzU4MjJjNQ"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-18000BTUS-Blanco-MMT18CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4NzI1M3xpbWFnZS9qcGVnfGFEUXhMMmhrTWk4eE1UVTVNVGsxTWpNd01qRXhNQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNVGd3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVlF4T0VORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8ZmVkZDliYTRhYjgyYjlmZmQxYTBkZGFjNGNkOGNjY2YxZTYyNWNlMGNkYjc5MzY1OWVjMWViZTc3YzU4MjJjNQ"
+            ]
         },
         {
             "name": "Aire acondicionado Tradicional 220V 12000 BTU Blanco Mabe",
             "price": 1329900,
             "originalPrice": 1839900,
             "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT12CDBWCCC8\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-12000BTUS-Blanco-MMT12CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4MTY5M3xpbWFnZS9qcGVnfGFHRTVMMmczTnk4eE1UVTVNVGt4TVRRd056WTBOaTh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNVEl3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVlF4TWtORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8MmRmOWQwZDgwNzcyOTlmNzU4ZWNlYWY3N2Q2ZThlZjJhMWY1YjBiZjhjOTRlODU3NDYxZmZmZmRjYjQwOWNkMQ"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-12000BTUS-Blanco-MMT12CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4MTY5M3xpbWFnZS9qcGVnfGFHRTVMMmczTnk4eE1UVTVNVGt4TVRRd056WTBOaTh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNVEl3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVlF4TWtORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8MmRmOWQwZDgwNzcyOTlmNzU4ZWNlYWY3N2Q2ZThlZjJhMWY1YjBiZjhjOTRlODU3NDYxZmZmZmRjYjQwOWNkMQ"
+            ]
         },
         {
             "name": "Aire Acondicionado Tradicional 220V 24000 BTU Blanco Mabe",
             "price": 2499900,
             "originalPrice": 3967900,
             "details": "Voltaje: 220V\nCapacidad: 24000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT24CDBWCCC8\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-24000BTUS-Blanco-MMT24CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4NzI1M3xpbWFnZS9qcGVnfGFEa3dMMmhrWVM4eE1UVTVNVGs1TXpRMU9EY3hPQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNalF3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVlF5TkVORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8MGQ4MGQwMGIwMzkxM2RkZTgwYzNjZTU3MDAyNjI2OTgyY2Q3YTYyNjgzOTI4NWE4OTYwMmUxZGQ3OWIzYjFhZg"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-24000BTUS-Blanco-MMT24CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4NzI1M3xpbWFnZS9qcGVnfGFEa3dMMmhrWVM4eE1UVTVNVGs1TXpRMU9EY3hPQzh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNalF3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVlF5TkVORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8MGQ4MGQwMGIwMzkxM2RkZTgwYzNjZTU3MDAyNjI2OTgyY2Q3YTYyNjgzOTI4NWE4OTYwMmUxZGQ3OWIzYjFhZg"
+            ]
         },
         {
             "name": "Aire Acondicionado Tradicional 220v 9000 BTU Blanco Mabe",
             "price": 1229900,
             "originalPrice": 1359900,
             "details": "Voltaje: 220V\nCapacidad: 9000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT09CDBWCCC1\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-9btus-Blanco-MMT09CDBWCCC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NjUyNXxpbWFnZS9qcGVnfGFERTJMMmc0WVM4eE1UZzROVEkzTURVMk5EZzVOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRsaWRIVnpMVUpzWVc1amJ5MU5UVlF3T1VORVFsZERRME14TFVaeWIyNTBZV3d1YW5Cbnw5YjM2OWJjMGFhYjVlNWM3OWQ5ODUzMjJiYTA0N2M3NjVkNWJmYTgyMTk5ZDg1OTFhNzBjYWU5NGQ3Y2NjZDMx"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-9btus-Blanco-MMT09CDBWCCC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NjUyNXxpbWFnZS9qcGVnfGFERTJMMmc0WVM4eE1UZzROVEkzTURVMk5EZzVOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRsaWRIVnpMVUpzWVc1amJ5MU5UVlF3T1VORVFsZERRME14TFVaeWIyNTBZV3d1YW5Cbnw5YjM2OWJjMGFhYjVlNWM3OWQ5ODUzMjJiYTA0N2M3NjVkNWJmYTgyMTk5ZDg1OTFhNzBjYWU5NGQ3Y2NjZDMx"
+            ]
         },
         {
             "name": "Aire Acondicionado Tradicional 220v 12000 BTU Blanco Mabe",
             "price": 1329900,
             "originalPrice": 1579000,
             "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT12CDBWCCBC1\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-12000BTUS-Blanco-MMT12CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4MTY5M3xpbWFnZS9qcGVnfGFHRTVMMmczTnk4eE1UVTVNVGt4TVRRd056WTBOaTh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNVEl3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVlF4TWtORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8MmRmOWQwZDgwNzcyOTlmNzU4ZWNlYWY3N2Q2ZThlZjJhMWY1YjBiZjhjOTRlODU3NDYxZmZmZmRjYjQwOWNkMQ"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-12000BTUS-Blanco-MMT12CDBWCCC8-Frente-abierta.jpg?context=bWFzdGVyfGltYWdlc3w4MTY5M3xpbWFnZS9qcGVnfGFHRTVMMmczTnk4eE1UVTVNVGt4TVRRd056WTBOaTh4TWpBd1YzZ3hNakF3U0Y5QlgwMWhZbVV0UVdseVpYTXRNVEl3TURCQ1ZGVlRMVUpzWVc1amJ5MU5UVlF4TWtORVFsZERRME00TFVaeVpXNTBaUzFoWW1sbGNuUmhMbXB3Wnd8MmRmOWQwZDgwNzcyOTlmNzU4ZWNlYWY3N2Q2ZThlZjJhMWY1YjBiZjhjOTRlODU3NDYxZmZmZmRjYjQwOWNkMQ"
+            ]
         },
         {
             "name": "Aire Acondicionado Tradicional 110v 12000 BTU Blanco Mabe",
             "price": 1259900,
             "originalPrice": 1579000,
             "details": "Voltaje: 110V\nCapacidad: 12000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT12CABWCCBC1\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMT12CABWCCBC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NjUwNnxpbWFnZS9qcGVnfGFHWTJMMmc1Tmk4eE1qa3hNakV6TXpNME1USXhOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRFeVluUjFjeTFDYkdGdVkyOHRUVTFVTVRKRFFVSlhRME5DUXpFdFJuSnZiblJoYkM1cWNHY3xjYzlmODBlZGM2YzhhODU2NzAwNGE3NmM0OWU2OWRhYjYxYzRjNTQ0MWVjZDIyZmUyZDRkZTUzMjhhMGNkNTEz"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMT12CABWCCBC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NjUwNnxpbWFnZS9qcGVnfGFHWTJMMmc1Tmk4eE1qa3hNakV6TXpNME1USXhOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRFeVluUjFjeTFDYkdGdVkyOHRUVTFVTVRKRFFVSlhRME5DUXpFdFJuSnZiblJoYkM1cWNHY3xjYzlmODBlZGM2YzhhODU2NzAwNGE3NmM0OWU2OWRhYjYxYzRjNTQ0MWVjZDIyZmUyZDRkZTUzMjhhMGNkNTEz"
+            ]
         },
         {
             "name": "Aire Acondicionado Tradicional 110v 9000 BTU Blanco Mabe",
             "price": 1229900,
             "originalPrice": 1359900,
             "details": "Voltaje: 110V\nCapacidad: 9000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT09CABWCCC1\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMT12CABWCCBC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NjUwNnxpbWFnZS9qcGVnfGFHWTJMMmc1Tmk4eE1qa3hNakV6TXpNME1USXhOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRFeVluUjFjeTFDYkdGdVkyOHRUVTFVTVRKRFFVSlhRME5DUXpFdFJuSnZiblJoYkM1cWNHY3xjYzlmODBlZGM2YzhhODU2NzAwNGE3NmM0OWU2OWRhYjYxYzRjNTQ0MWVjZDIyZmUyZDRkZTUzMjhhMGNkNTEz"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Blanco-MMT12CABWCCBC1-Frontal.jpg?context=bWFzdGVyfGltYWdlc3w3NjUwNnxpbWFnZS9qcGVnfGFHWTJMMmc1Tmk4eE1qa3hNakV6TXpNME1USXhOQzh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpTMUJZMjl1WkdsamFXOXVZV1J2TFRFeVluUjFjeTFDYkdGdVkyOHRUVTFVTVRKRFFVSlhRME5DUXpFdFJuSnZiblJoYkM1cWNHY3xjYzlmODBlZGM2YzhhODU2NzAwNGE3NmM0OWU2OWRhYjYxYzRjNTQ0MWVjZDIyZmUyZDRkZTUzMjhhMGNkNTEz"
+            ]
         }
     ],
     "#PORTÁTIL": [
@@ -121,7 +153,9 @@
             "price": 1499900,
             "originalPrice": 2483900,
             "details": "Voltaje: 110V\nCapacidad: 12000 BTU\nTipo: Portátil\nColor: Blanco\nModelo: PTM12CABWJM2\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-12000BTUS-Blanco-PTM12CABWJM2-Frente.jpg?context=bWFzdGVyfGltYWdlc3w2NDc5MHxpbWFnZS9qcGVnfGFHTmtMMmhrWWk4eE1qVTVOekk1TURjeU9UVXdNaTh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpYTXRNVEl3TURCQ1ZGVlRMVUpzWVc1amJ5MVFWRTB4TWtOQlFsZEtUVEl0Um5KbGJuUmxMbXB3Wnd8OGY1OTA4MWJhYmYyZWQxOWE3ZTBhNDRiNjEwYTljNDIzYjQ5ZjdhOGQ2MWRjNGNhN2VlMmJiYTBhMzMxZWRmMg"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aires-12000BTUS-Blanco-PTM12CABWJM2-Frente.jpg?context=bWFzdGVyfGltYWdlc3w2NDc5MHxpbWFnZS9qcGVnfGFHTmtMMmhrWWk4eE1qVTVOekk1TURjeU9UVXdNaTh4TWpBd1YzZ3hNakF3U0Y5QkxVMWhZbVV0UVdseVpYTXRNVEl3TURCQ1ZGVlRMVUpzWVc1amJ5MVFWRTB4TWtOQlFsZEtUVEl0Um5KbGJuUmxMbXB3Wnd8OGY1OTA4MWJhYmYyZWQxOWE3ZTBhNDRiNjEwYTljNDIzYjQ5ZjdhOGQ2MWRjNGNhN2VlMmJiYTBhMzMxZWRmMg"
+            ]
         }
     ],
     "#INVERTER PREMIUM": [
@@ -130,21 +164,27 @@
             "price": 1999900,
             "originalPrice": 3867900,
             "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter Premium\nColor: Negro Espejo\nModelo: MMI12CDMCCC10\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Espejo-MMI12CDMCCC10-Frontal.jpg?context=bWFzdGVyfGltYWdlc3wxNDYzODV8aW1hZ2UvanBlZ3xhR1E1TDJobU1pOHhNVGc0TlRBeU1qa3pOekV4T0M4eE1qQXdWM2d4TWpBd1NGOUJMVTFoWW1VdFFXbHlaUzFCWTI5dVpHbGphVzl1WVdSdkxURXlZblIxY3kxRmMzQmxhbTh0VFUxSk1USkRSRTFEUTBNeE1DMUdjbTl1ZEdGc0xtcHdad3xjNzFiZTVjMDRjNmM4NzJlZjkwMzIxZjhhZjYyOGFhMzI0ZjQxNmI5ZmY4ODZiMTUxMzVjOTg5NGY0YzhlODA0"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-12btus-Espejo-MMI12CDMCCC10-Frontal.jpg?context=bWFzdGVyfGltYWdlc3wxNDYzODV8aW1hZ2UvanBlZ3xhR1E1TDJobU1pOHhNVGc0TlRBeU1qa3pOekV4T0M4eE1qQXdWM2d4TWpBd1NGOUJMVTFoWW1VdFFXbHlaUzFCWTI5dVpHbGphVzl1WVdSdkxURXlZblIxY3kxRmMzQmxhbTh0VFUxSk1USkRSRTFEUTBNeE1DMUdjbTl1ZEdGc0xtcHdad3xjNzFiZTVjMDRjNmM4NzJlZjkwMzIxZjhhZjYyOGFhMzI0ZjQxNmI5ZmY4ODZiMTUxMzVjOTg5NGY0YzhlODA0"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter Premium 220v 18000 BTU Negro Espejo Mabe",
             "price": 2999900,
             "originalPrice": 4938900,
             "details": "Voltaje: 220V\nCapacidad: 18000 BTU\nTipo: Inverter Premium\nColor: Negro Espejo\nModelo: MMI18CDMCCC10\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-18btus-Espejo-MMI18CDMCCC10-Frontal.jpg?context=bWFzdGVyfGltYWdlc3wxNTAwNTN8aW1hZ2UvanBlZ3xhRGsxTDJnd05DOHhNekEwTnpjeU16a3hOek0wTWk4eE1qQXdWM2d4TWpBd1NGOUJMVTFoWW1VdFFXbHlaUzFCWTI5dVpHbGphVzl1WVdSdkxURTRZblIxY3kxRmMzQmxhbTh0VFUxSk1UaERSRTFEUTBNeE1DMUdjbTl1ZEdGc0xtcHdad3wzOTNmNTFlYTkxMjMxZjI3OTdmNmVmODU4MzViZDQzOWMzMTI1MTQ4ZTdkY2MyZTIxODYwYWE4ZjJlNzUxMmMx"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-18btus-Espejo-MMI18CDMCCC10-Frontal.jpg?context=bWFzdGVyfGltYWdlc3wxNTAwNTN8aW1hZ2UvanBlZ3xhRGsxTDJnd05DOHhNekEwTnpjeU16a3hOek0wTWk4eE1qQXdWM2d4TWpBd1NGOUJMVTFoWW1VdFFXbHlaUzFCWTI5dVpHbGphVzl1WVdSdkxURTRZblIxY3kxRmMzQmxhbTh0VFUxSk1UaERSRTFEUTBNeE1DMUdjbTl1ZEdGc0xtcHdad3wzOTNmNTFlYTkxMjMxZjI3OTdmNmVmODU4MzViZDQzOWMzMTI1MTQ4ZTdkY2MyZTIxODYwYWE4ZjJlNzUxMmMx"
+            ]
         },
         {
             "name": "Aire Acondicionado Inverter Premium 220v 24000 BTU Negro Espejo Mabe",
             "price": 3499900,
             "originalPrice": 5711900,
             "details": "Voltaje: 220V\nCapacidad: 24000 BTU\nTipo: Inverter Premium\nColor: Negro Espejo\nModelo: MMI24CDMCCC10\nMarca: Mabe",
-            "images": ["https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-24btus-Espejo-MMI24CDMCCC10-Frontal.jpg?context=bWFzdGVyfGltYWdlc3wxNTYwODJ8aW1hZ2UvanBlZ3xhRFptTDJneE1TOHhNalUxTVRrMk5EWXlNamczT0M4eE1qQXdWM2d4TWpBd1NGOUJYMDFoWW1VdFFXbHlaUzFCWTI5dVpHbGphVzl1WVdSdkxUSTBZblIxY3kxRmMzQmxhbTh0VFUxSk1qUkRSRTFEUTBNeE1DMUdjbTl1ZEdGc0xtcHdad3w1YTQ1ZWY5MzlkZmFlNWM0M2IyNTViZTU3Yzc3ZjA4NDlkNDBiMTExMDAyM2IxNjA3NWU1NmYzNGIzZGVmYjlh"]
+            "images": [
+                "https://www.mabeglobal.com/medias/1200Wx1200H-A-Mabe-Aire-Acondicionado-24btus-Espejo-MMI24CDMCCC10-Frontal.jpg?context=bWFzdGVyfGltYWdlc3wxNTYwODJ8aW1hZ2UvanBlZ3xhRFptTDJneE1TOHhNalUxTVRrMk5EWXlNamczT0M4eE1qQXdWM2d4TWpBd1NGOUJYMDFoWW1VdFFXbHlaUzFCWTI5dVpHbGphVzl1WVdSdkxUSTBZblIxY3kxRmMzQmxhbTh0VFUxSk1qUkRSRTFEUTBNeE1DMUdjbTl1ZEdGc0xtcHdad3w1YTQ1ZWY5MzlkZmFlNWM0M2IyNTViZTU3Yzc3ZjA4NDlkNDBiMTExMDAyM2IxNjA3NWU1NmYzNGIzZGVmYjlh"
+            ]
         }
     ],
     "#LG ARTCOOL": [
@@ -153,28 +193,36 @@
             "price": 4199990,
             "originalPrice": 5875072,
             "details": "Voltaje: 220V\nCapacidad: 18000 BTU\nTipo: Inverter ArtCool\nColor: Blanco\nModelo: VR182C7\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/images/aire-acondicionado-residencial/vr182c7_nk0_escb_co_c/gallery/DZ_01.jpg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/images/aire-acondicionado-residencial/vr182c7_nk0_escb_co_c/gallery/DZ_01.jpg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado ArtCool 12000 BTU 220V LG",
             "price": 3219990,
             "originalPrice": 4610432,
             "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter ArtCool\nColor: Blanco\nModelo: VR122C7\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/images/aire-acondicionado-residencial/vr122c7_nj0_escb_co_c/gallery/Z1.jpg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/images/aire-acondicionado-residencial/vr122c7_nj0_escb_co_c/gallery/Z1.jpg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado ArtCool 24000 BTU 220V LG",
             "price": 0,
             "originalPrice": null,
             "details": "Voltaje: 220V\nCapacidad: 24000 BTU\nTipo: Inverter ArtCool\nColor: Blanco\nModelo: VR242C7\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/images/aire-acondicionado-residencial/vr242c7_nk0_escb_co_c/gallery/DZ_01.jpg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/images/aire-acondicionado-residencial/vr242c7_nk0_escb_co_c/gallery/DZ_01.jpg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado ArtCool Gallery 12000 BTU LG",
             "price": 0,
             "originalPrice": null,
             "details": "Capacidad: 12000 BTU\nTipo: Inverter ArtCool Gallery\nColor: Blanco\nModelo: VG122H5\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/artcool-gallery/vg122h5/gallery/DZ-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/artcool-gallery/vg122h5/gallery/DZ-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         }
     ],
     "#LG DUALCOOL AI": [
@@ -183,28 +231,36 @@
             "price": 3999990,
             "originalPrice": 6409990,
             "details": "Capacidad: 22000 BTU\nTipo: Inverter DUALCOOL AI\nEficiencia: B\nColor: Blanco\nModelo: VA242C1\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/dualcool-ai/va092c1/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq181l1da-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/dualcool-ai/va092c1/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq181l1da-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado DUALCOOL AI 12000 BTU LG",
             "price": 0,
             "originalPrice": null,
             "details": "Capacidad: 12000 BTU\nTipo: Inverter DUALCOOL AI\nEficiencia: B\nColor: Blanco\nModelo: VA122C1\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/dualcool-ai/va092c1/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq181l1da-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/dualcool-ai/va092c1/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq181l1da-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado DUALCOOL AI 9000 BTU LG",
             "price": 0,
             "originalPrice": null,
             "details": "Capacidad: 9000 BTU\nTipo: Inverter DUALCOOL AI\nEficiencia: A\nColor: Blanco\nModelo: VA092C1\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/dualcool-ai/va092c1/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq181l1da-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/dualcool-ai/va092c1/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq181l1da-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado DUALCOOL AI 18000 BTU LG",
             "price": 0,
             "originalPrice": null,
             "details": "Capacidad: 18000 BTU\nTipo: Inverter DUALCOOL AI\nEficiencia: B\nColor: Blanco\nModelo: VA182C1\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/dualcool-ai/va092c1/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq181l1da-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/dualcool-ai/va092c1/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq181l1da-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         }
     ],
     "#LG DUAL INVERTER": [
@@ -213,42 +269,54 @@
             "price": 1919990,
             "originalPrice": 2640900,
             "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Dual Inverter\nConectividad: WiFi / ThinQ\nModelo: VV122C5\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/winner-plus/vv092c5/gallery/gallery/lg-single-split-inverter-air-conditioner-sa-2025-s3nq09aa33z-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/winner-plus/vv092c5/gallery/gallery/lg-single-split-inverter-air-conditioner-sa-2025-s3nq09aa33z-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado Dual Inverter Winner Plus 9000 BTU WiFi 220V LG",
             "price": 1769991,
             "originalPrice": 2393900,
             "details": "Voltaje: 220V\nCapacidad: 9000 BTU\nTipo: Dual Inverter\nConectividad: WiFi / ThinQ\nModelo: VV092C5\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/winner-plus/vv092c51/gallery/gallery/lg-single-split-inverter-air-conditioner-sa-2025-s3nq09aa33z-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/winner-plus/vv092c51/gallery/gallery/lg-single-split-inverter-air-conditioner-sa-2025-s3nq09aa33z-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado Dual Inverter Winner Plus 18000 BTU WiFi 220V LG",
             "price": 0,
             "originalPrice": null,
             "details": "Voltaje: 220V\nCapacidad: 18000 BTU\nTipo: Dual Inverter\nConectividad: WiFi / ThinQ\nModelo: VV182C5\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/winner-plus/vv092c52/gallery/gallery/lg-single-split-inverter-air-conditioner-sa-2025-s3nq09aa33z-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/winner-plus/vv092c52/gallery/gallery/lg-single-split-inverter-air-conditioner-sa-2025-s3nq09aa33z-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado Dual Inverter Winner Plus 22000 BTU WiFi 220V LG",
             "price": 0,
             "originalPrice": null,
             "details": "Voltaje: 220V\nCapacidad: 22000 BTU\nTipo: Dual Inverter\nConectividad: WiFi / ThinQ\nModelo: VV242C5\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/winner-plus/vv092c521/gallery/gallery/lg-single-split-inverter-air-conditioner-sa-2025-s3nq09aa33z-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/winner-plus/vv092c521/gallery/gallery/lg-single-split-inverter-air-conditioner-sa-2025-s3nq09aa33z-gallery-gallery-2010-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado Winner Dual Inverter WiFi 11000 BTU 115V LG",
             "price": 0,
             "originalPrice": null,
             "details": "Voltaje: 115V\nCapacidad: 11000 BTU\nTipo: Dual Inverter\nConectividad: WiFi / ThinQ\nModelo: V121WIN\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2024/Modelwinner/V121WIN-SJ0/ha-mx-rac-winner-white-2023-gallery/01.RAC_WINNER_Front_Gloss_2010x1334.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2024/Modelwinner/V121WIN-SJ0/ha-mx-rac-winner-white-2023-gallery/01.RAC_WINNER_Front_Gloss_2010x1334.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado Winner Dual Inverter 9000 BTU 220V LG",
             "price": 0,
             "originalPrice": null,
             "details": "Voltaje: 220V\nCapacidad: 9000 BTU\nTipo: Dual Inverter\nModelo: V09WIN\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2024/Modelwinner/v09win-sj0/ha-mx-rac-winner-white-2023-gallery/01.RAC_WINNER_Front_Gloss_2010x1334.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2024/Modelwinner/v09win-sj0/ha-mx-rac-winner-white-2023-gallery/01.RAC_WINNER_Front_Gloss_2010x1334.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         }
     ],
     "#LG ON/OFF": [
@@ -257,30 +325,38 @@
             "price": 1549990,
             "originalPrice": 2375923,
             "details": "Voltaje: 115V\nCapacidad: 11000 BTU\nTipo: On/Off (Tradicional)\nColor: Blanco\nModelo: O121H1\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2024/model-onoff/o122h1-sd1/gallery1/rac-latam-mw121c4-ac-w-gallery-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2024/model-onoff/o122h1-sd1/gallery1/rac-latam-mw121c4-ac-w-gallery-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado On/Off 11000 BTU 220V LG",
             "price": 1499989,
             "originalPrice": 2219900,
             "details": "Voltaje: 220V\nCapacidad: 11000 BTU\nTipo: On/Off (Tradicional)\nColor: Blanco\nModelo: O122H1\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/on-off/o122h1-sd1/gallery1/rac-latam-mw121c4-ac-w-gallery-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/on-off/o122h1-sd1/gallery1/rac-latam-mw121c4-ac-w-gallery-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         }
     ],
     "#LG TWINCOOL": [
         {
             "name": "Aire Acondicionado TWINCOOL 2N1 9000 + 12000 BTU Dual Inverter 220V LG",
-            "price": 0,
+            "price": 3200000,
             "originalPrice": null,
             "details": "Voltaje: 220V\nCapacidad: 9000 + 12000 BTU\nTipo: Dual Inverter TWINCOOL\nUnidades: 2 evaporadoras\nModelo: 2IN1S21C3\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/2-n-1/rac-multi-system-sca-2024/2in1s21c3/gallery/02-gallery/DZ-1.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/2-n-1/rac-multi-system-sca-2024/2in1s21c3/gallery/02-gallery/DZ-1.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         },
         {
             "name": "Aire Acondicionado TWINCOOL 2N1 9000 + 9000 BTU Dual Inverter 220V LG",
-            "price": 0,
+            "price": 2950000,
             "originalPrice": null,
             "details": "Voltaje: 220V\nCapacidad: 9000 + 9000 BTU\nTipo: Dual Inverter TWINCOOL\nUnidades: 2 evaporadoras\nModelo: 2IN1S18C3\nMarca: LG",
-            "images": ["https://www.lg.com/content/dam/channel/wcms/co/rac-2025/2-n-1/rac-multi-system-sca-2024/2in1s18c3/gallery/02-gallery/01-Multi-System-Front%20Diagram-2010x1334.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"]
+            "images": [
+                "https://www.lg.com/content/dam/channel/wcms/co/rac-2025/2-n-1/rac-multi-system-sca-2024/2in1s18c3/gallery/02-gallery/01-Multi-System-Front%20Diagram-2010x1334.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800"
+            ]
         }
     ]
 }
