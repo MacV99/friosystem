@@ -265,7 +265,7 @@ import CategorySearch from "../components/category_search.astro";
   // Click en "Agregar" desde la card
   listProductHTML.addEventListener("click", (event) => {
     if (event.target.classList.contains("addCart")) {
-      const product_id = event.target.closest(".item").dataset.id;
+      const product_id = event.target.closest(".product-card").dataset.id;
       addToCart(product_id);
       animateCartIcon();
     }
