@@ -1,98 +1,150 @@
 {
-    "#CATEGORIA1": [
+    "#INVERTER": [
         {
-            "name": "Producto 1 ACCESORIOS",
-            "price": 170.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nDuis aute irure dolor in reprehenderit.\nSed do eiusmod tempor incididunt.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire Acondicionado Inverter 220v 36000 BTU Blanco Mabe",
+            "price": 4499900,
+            "originalPrice": 5549898,
+            "details": "Voltaje: 220V\nCapacidad: 36000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI36HDBWCC32C1\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         },
         {
-            "name": "Producto 2 ACCESORIOS",
-            "price": 200.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nUt enim ad minim veniam.\nQuis nostrud exercitation ullamco.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire Acondicionado Inverter 220V 12000 BTU Blanco Mabe",
+            "price": 1629900,
+            "originalPrice": 2483900,
+            "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI12CDBWCCC8\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         },
         {
-            "name": "Producto 3 ACCESORIOS",
-            "price": 220.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nExcepteur sint occaecat cupidatat non proident.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire Acondicionado Inverter 110v 9000 BTU Blanco Mabe",
+            "price": 1399900,
+            "originalPrice": 1659900,
+            "details": "Voltaje: 110V\nCapacidad: 9000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI09CABWCCC1\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Inverter 220v 9000 BTU Blanco Mabe",
+            "price": 1399900,
+            "originalPrice": 1659900,
+            "details": "Voltaje: 220V\nCapacidad: 9000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI09CDBWCCC1\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Inverter 220v 12000 BTU Blanco Mabe",
+            "price": 1449900,
+            "originalPrice": 1799900,
+            "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI12CDBWCCBC1\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Inverter 220V 18000 BTU Blanco Mabe",
+            "price": 2299900,
+            "originalPrice": 3633070,
+            "details": "Voltaje: 220V\nCapacidad: 18000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI18CDBWCCC9\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Inverter 110V 12000 BTU Blanco Mabe",
+            "price": 1629900,
+            "originalPrice": 2485910,
+            "details": "Voltaje: 110V\nCapacidad: 12000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI12CABWCCC9\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Inverter 220V 12000 BTU Blanco Mabe",
+            "price": 1629900,
+            "originalPrice": 2485910,
+            "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI12CDBWCCC9\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Inverter 230V 24000 BTU Blanco Mabe",
+            "price": 2599000,
+            "originalPrice": 4944450,
+            "details": "Voltaje: 230V\nCapacidad: 24000 BTU\nTipo: Inverter\nColor: Blanco\nModelo: MMI24CDBWCCC9\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         }
     ],
-    "#CATEGORIA2": [
+    "#TRADICIONAL": [
         {
-            "name": "Producto 1 HOGAR",
-            "price": 120.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nAliquam at porttitor sem.\nAliquam erat volutpat.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire acondicionado Tradicional 220V 18000 BTU Blanco Mabe",
+            "price": 1979900,
+            "originalPrice": 2771900,
+            "details": "Voltaje: 220V\nCapacidad: 18000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT18CDBWCCC8\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         },
         {
-            "name": "Producto 2 HOGAR",
-            "price": 180.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nCras ultricies ligula sed magna dictum porta.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire acondicionado Tradicional 220V 12000 BTU Blanco Mabe",
+            "price": 1329900,
+            "originalPrice": 1839900,
+            "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT12CDBWCCC8\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         },
         {
-            "name": "Producto 3 HOGAR",
-            "price": 110.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nVivamus suscipit tortor eget felis porttitor volutpat.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire Acondicionado Tradicional 220V 24000 BTU Blanco Mabe",
+            "price": 2499900,
+            "originalPrice": 3967900,
+            "details": "Voltaje: 220V\nCapacidad: 24000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT24CDBWCCC8\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Tradicional 220v 9000 BTU Blanco Mabe",
+            "price": 1229900,
+            "originalPrice": 1359900,
+            "details": "Voltaje: 220V\nCapacidad: 9000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT09CDBWCCC1\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Tradicional 220v 12000 BTU Blanco Mabe",
+            "price": 1329900,
+            "originalPrice": 1579000,
+            "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT12CDBWCCBC1\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Tradicional 110v 12000 BTU Blanco Mabe",
+            "price": 1259900,
+            "originalPrice": 1579000,
+            "details": "Voltaje: 110V\nCapacidad: 12000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT12CABWCCBC1\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        },
+        {
+            "name": "Aire Acondicionado Tradicional 110v 9000 BTU Blanco Mabe",
+            "price": 1229900,
+            "originalPrice": 1359900,
+            "details": "Voltaje: 110V\nCapacidad: 9000 BTU\nTipo: Tradicional\nColor: Blanco\nModelo: MMT09CABWCCC1\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         }
     ],
-    "#CATEGORIA3": [
+    "#PORTÁTIL": [
         {
-            "name": "Producto 1 GADGETS",
-            "price": 200.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nPellentesque in ipsum id orci porta dapibus.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire Acondicionado Portátil 110v 12000 BTU Blanco Mabe",
+            "price": 1499900,
+            "originalPrice": 2483900,
+            "details": "Voltaje: 110V\nCapacidad: 12000 BTU\nTipo: Portátil\nColor: Blanco\nModelo: PTM12CABWJM2\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
+        }
+    ],
+    "#INVERTER PREMIUM": [
+        {
+            "name": "Aire Acondicionado Inverter Premium 220v 12000 BTU Negro Espejo Mabe",
+            "price": 1999900,
+            "originalPrice": 3867900,
+            "details": "Voltaje: 220V\nCapacidad: 12000 BTU\nTipo: Inverter Premium\nColor: Negro Espejo\nModelo: MMI12CDMCCC10\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         },
         {
-            "name": "Producto 2 GADGETS",
-            "price": 200.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nCurabitur non nulla sit amet nisl tempus convallis quis ac lectus.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire Acondicionado Inverter Premium 220v 18000 BTU Negro Espejo Mabe",
+            "price": 2999900,
+            "originalPrice": 4938900,
+            "details": "Voltaje: 220V\nCapacidad: 18000 BTU\nTipo: Inverter Premium\nColor: Negro Espejo\nModelo: MMI18CDMCCC10\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         },
         {
-            "name": "Producto 3 GADGETS",
-            "price": 80.000,
-            "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nDonec sollicitudin molestie malesuada.",
-            "images": [
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg",
-                "/img/products/pro1.jpg"
-            ]
+            "name": "Aire Acondicionado Inverter Premium 220v 24000 BTU Negro Espejo Mabe",
+            "price": 3499900,
+            "originalPrice": 5711900,
+            "details": "Voltaje: 220V\nCapacidad: 24000 BTU\nTipo: Inverter Premium\nColor: Negro Espejo\nModelo: MMI24CDMCCC10\nMarca: Mabe",
+            "images": ["/img/products/placeholder-mabe.svg"]
         }
     ]
 }

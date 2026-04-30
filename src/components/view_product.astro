@@ -1,17 +1,23 @@
 ---
-/**
- * Componente de vista de producto + modal de imagen.
- * Contiene su HTML, CSS y JS (solo lo propio del componente).
- */
+// Vista lateral de producto + modal de imagen ampliada
 ---
 
 <!-- VISTA PRODUCTO -->
-<section id="v-product" class="flex-column">
-  <i class="bi bi-x-lg close-v-product"></i>
+<section id="v-product">
+  <div class="vp-header flex-row">
+    <span class="vp-tag">Detalle del producto</span>
+    <button class="close-v-product" aria-label="Cerrar">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
   <div class="images flex-row"></div>
-  <h2 class="name">NAME PRODUCT</h2>
-  <p class="details">DETAILS PRODUCT</p>
-  <button class="addCart button1">Agregar</button>
+  <div class="vp-info">
+    <h2 class="name">NAME PRODUCT</h2>
+    <p class="details">DETAILS PRODUCT</p>
+  </div>
+  <button class="addCart button1">
+    <i class="bi bi-cart-plus"></i> Agregar al carrito
+  </button>
 </section>
 
 <!-- MODAL IMAGEN GRANDE -->
@@ -21,141 +27,214 @@
 </div>
 
 <style is:inline>
-  /* VISTA PRODUCTO */
+  /* ── PANEL LATERAL ── */
   #v-product {
     display: none;
     position: fixed;
-    width: 100%;
+    width: min(460px, 100vw);
     top: 0;
     bottom: 0;
-    background-color: var(--clr-white);
+    left: 0;
+    background: #fff;
     justify-content: flex-start;
-    align-items: baseline;
-    padding: 14px;
-    gap: 7px;
-    overflow-x: auto;
-    max-width: 520px;
-    box-shadow: var(--shadow-panel);
-    text-align: left;
-    z-index: 100;
+    align-items: stretch;
+    overflow-y: auto;
+    box-shadow: 4px 0 28px rgba(3, 33, 50, 0.18);
+    z-index: 110;
+    flex-direction: column;
   }
-  #v-product .close-v-product {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 28px;
-    font-size: 21px;
-    color: var(--clr-white);
+
+  /* ── HEADER ── */
+  .vp-header {
+    background: var(--clr-blue);
+    padding: 16px 20px;
+    justify-content: space-between;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .vp-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+  .close-v-product {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 10px;
+    color: #fff;
     cursor: pointer;
-    border-radius: 3px;
-    padding: 7px;
-    background-color: var(--clr-dark);
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: background 0.2s;
+    padding: 0;
   }
+  @media (hover: hover) {
+    .close-v-product:hover {
+      background: rgba(255,255,255,0.22);
+    }
+  }
+
+  /* ── GALERÍA ── */
   #v-product .images {
     display: flex;
     justify-content: flex-start;
     overflow-x: auto;
-    width: 100%;
-    height: auto;
-    gap: 10px;
-    scroll-snap-type: x mandatory;
-    padding: 0 70px;
     overflow-y: hidden;
+    width: 100%;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    padding: 20px;
+    background: var(--clr-blue-light);
+    flex-shrink: 0;
+  }
+  #v-product .images::-webkit-scrollbar {
+    height: 4px;
+  }
+  #v-product .images::-webkit-scrollbar-thumb {
+    background: var(--clr-gray);
+    border-radius: 4px;
   }
   #v-product .images img {
-    background-color: var(--clr-gray);
-    height: 350px;
+    height: 220px;
     width: auto;
+    min-width: 180px;
     cursor: pointer;
-    object-fit: cover;
+    object-fit: contain;
     scroll-snap-align: center;
     flex: 0 0 auto;
+    border-radius: 12px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid var(--clr-gray);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  @media (hover: hover) {
+    #v-product .images img:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-md);
+    }
   }
 
-  /* MODAL IMAGEN */
+  /* ── INFO ── */
+  .vp-info {
+    padding: 20px 20px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+  #v-product .name {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--clr-blue);
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+  #v-product .details {
+    font-size: 12px;
+    color: var(--clr-dark2);
+    line-height: 1.9;
+    letter-spacing: 0.3px;
+    border-left: 3px solid var(--clr-blue-light);
+    padding-left: 12px;
+    margin: 0;
+  }
+
+  /* ── BOTÓN AGREGAR ── */
+  #v-product .addCart {
+    margin: 8px 20px 24px;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 14px;
+    padding: 12px 20px;
+    gap: 8px;
+    letter-spacing: 2px;
+    width: calc(100% - 40px);
+  }
+
+  /* ── MODAL IMAGEN ── */
   #image-modal {
     position: fixed;
     z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--overlay-bg);
+    inset: 0;
+    background: rgba(3, 33, 50, 0.88);
     display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    backdrop-filter: blur(4px);
   }
   #image-modal img {
     max-width: 90%;
-    max-height: 80%;
-    border-radius: 5px;
+    max-height: 82%;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
   #image-modal .close-modal {
     position: absolute;
-    top: 25px;
-    right: 35px;
-    color: var(--clr-white);
-    font-size: 34px;
+    top: 20px;
+    right: 28px;
+    color: rgba(255,255,255,0.65);
+    font-size: 38px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 300;
+    line-height: 1;
+    transition: color 0.2s;
   }
-
-  #v-product button {
-    border: solid 1px var(--clr-gray);
-    background-color: var(--clr-white);
+  @media (hover: hover) {
+    #image-modal .close-modal:hover {
+      color: #fff;
+    }
   }
 
   @media (min-width: 750px) {
     #v-product {
-      max-height: 80%;
-      margin: auto;
-      border-radius: 12px;
+      left: auto;
+      right: 0;
     }
-
-    #v-product .images {
-      height: 250px;
-    }
-
     #v-product .images img {
-      height: 250px;
+      height: 240px;
     }
   }
 </style>
 
 <script is:inline>
-  // JS propio del componente (cierre y modal de imagen)
   document.addEventListener("DOMContentLoaded", () => {
     const viewProduct = document.getElementById("v-product");
     const closeView = viewProduct?.querySelector(".close-v-product");
     const imagesWrapper = viewProduct?.querySelector(".images");
-
     const imgModal = document.getElementById("image-modal");
     const modalImg = imgModal?.querySelector("img");
     const closeModal = imgModal?.querySelector(".close-modal");
 
-    // Cerrar visor de producto
     closeView?.addEventListener("click", () => {
       viewProduct.style.display = "none";
     });
 
-    // Abrir modal al hacer click en cualquier imagen dentro de .images
     imagesWrapper?.addEventListener("click", (e) => {
       const target = e.target;
-      if (target && target.tagName === "IMG") {
+      if (target?.tagName === "IMG") {
         if (modalImg) modalImg.src = target.src;
         if (imgModal) imgModal.style.display = "flex";
       }
     });
 
-    // Cerrar modal
-    closeModal?.addEventListener(
-      "click",
-      () => (imgModal.style.display = "none"),
-    );
+    closeModal?.addEventListener("click", () => (imgModal.style.display = "none"));
+
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") imgModal.style.display = "none";
+      if (e.key === "Escape") {
+        if (imgModal) imgModal.style.display = "none";
+        if (viewProduct) viewProduct.style.display = "none";
+      }
     });
+
     imgModal?.addEventListener("click", (e) => {
       if (e.target === imgModal) imgModal.style.display = "none";
     });

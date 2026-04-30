@@ -1,62 +1,137 @@
 ---
-/**
- * Plantilla reutilizable para tarjetas de producto.
- * Se clona vía JS: document.getElementById('product-card-tpl')
- */
+// Plantilla reutilizable para tarjetas de producto. Clonada por JS en Shop.astro
 ---
 
 <template id="product-card-tpl">
-  <div class="item flex-column" data-id="">
-    <img src="" alt="" />
-    <h5 class="product-name"></h5>
-    <h5 class="price"></h5>
-    <div class="flex-row">
-      <button class="addCart button1">Agregar</button>
+  <div class="item" data-id="">
+    <div class="item-img-wrap">
+      <img src="" alt="" loading="lazy" />
+      <span class="item-badge">OFERTA</span>
+    </div>
+    <div class="item-body">
+      <p class="product-name"></p>
+      <div class="item-prices">
+        <span class="original-price"></span>
+        <strong class="price"></strong>
+      </div>
+      <button class="addCart button1">
+        <i class="bi bi-cart-plus"></i> Agregar
+      </button>
     </div>
   </div>
 </template>
 
-<style>
-  /* Estilos SOLO de la tarjeta (scoped por Astro) */
+<style is:inline>
+  /* ── TARJETA ── */
   .item {
-    width: 100%;
-    max-width: 280px;
-    /* height: 400px; */
-    align-items: baseline;
-    flex: 0 0 auto;
-    justify-content: space-around;
-    text-align: left;
-    background-color: var(--clr-white);
-    border-radius: 14px;
-    border: solid 1px var(--clr-gray);
-    padding: 14px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid var(--clr-gray);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
-  }
-  .item .flex-row {
-    position: relative;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-sm);
     width: 100%;
-    margin-top: 10px;
-    justify-content: left;
+    animation: fadeInUp 0.45s ease both;
+  }
+
+  /* ── IMAGEN ── */
+  .item-img-wrap {
+    position: relative;
+    background: var(--clr-blue-light);
+    overflow: hidden;
   }
   .item img {
     width: 100%;
-    height: auto;
-    min-height: 100px;
-    background-color: var(--clr-gray);
-    object-fit: cover;
-    border-radius: 7px;
+    height: 190px;
+    object-fit: contain;
+    padding: 18px;
+    transition: transform 0.35s ease;
+    display: block;
   }
+
+  /* ── BADGE OFERTA ── */
+  .item-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--clr-green);
+    color: #fff;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  /* ── CUERPO ── */
+  .item-body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
   .item .product-name {
-    font-size: 11px;
-    color: var(--clr-dark);
-    margin: 7px 0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--clr-dark2);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── PRECIOS ── */
+  .item-prices {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: auto;
+  }
+  .item .original-price {
+    font-size: 10px;
+    color: #bbb;
+    text-decoration: line-through;
+    font-weight: 400;
+    letter-spacing: 0;
   }
   .item .price {
-    letter-spacing: 3px;
-    font-size: 11px;
-    margin-bottom: auto;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--clr-blue);
+    letter-spacing: 0.5px;
+    text-transform: none;
   }
-  .item button {
+
+  /* ── BOTÓN ── */
+  .item .addCart {
+    width: 100%;
+    justify-content: center;
     font-size: 11px;
+    border-radius: 12px;
+    padding: 9px 14px;
+    gap: 7px;
+    letter-spacing: 1.5px;
+  }
+
+  .button1 {
+    background-color: var(--clr-blue);
+  }
+
+  /* ── HOVER ── */
+  @media (hover: hover) {
+    .item:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .item:hover .item-img-wrap img {
+      transform: scale(1.04);
+    }
   }
 </style>

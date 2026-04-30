@@ -7,14 +7,21 @@ import CategorySearch from "../components/category_search.astro";
 
 <!-- PRODUCTS + CART -->
 <section id="products" class="flex-column">
-  <h2>NUESTROS PRODUCTOS</h2>
+  <!-- Encabezado de sección -->
+  <div class="shop-header">
+    <h2>Nuestro Catálogo</h2>
+    <p>
+      Selecciona el equipo ideal para tu espacio y realiza tu pedido por
+      WhatsApp
+    </p>
+  </div>
 
   <!-- Selector de categoría + buscador -->
   <CategorySearch />
 
   <!-- Grid de productos -->
-  <div class="main-listProduct flex-column">
-    <div class="listProduct flex-row"></div>
+  <div class="main-listProduct">
+    <div class="listProduct"></div>
   </div>
 
   <!-- Carrito lateral -->
@@ -28,27 +35,73 @@ import CategorySearch from "../components/category_search.astro";
 <Product_card />
 
 <style is:inline>
-  /* LISTA DE PRODUCTOS (los estilos del .item viven en product_card.astro) */
+  /* ── SECCIÓN ── */
   #products {
-    display: flex;
-    gap: 7px;
+    background: var(--clr-white);
+    padding: 60px 20px 80px;
+    gap: 28px;
   }
+
+  /* ── ENCABEZADO ── */
+  .shop-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 580px;
+    animation: fadeInUp 0.6s ease both;
+  }
+  .shop-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--clr-blue-mid);
+    display: block;
+  }
+  .shop-header h2 {
+    font-size: 1.7rem;
+    color: var(--clr-blue);
+    letter-spacing: 5px;
+    line-height: 1.2;
+  }
+  .shop-header p {
+    font-size: 0.83rem;
+    color: var(--clr-dark2);
+    max-width: 440px;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── GRID DE PRODUCTOS ── */
   #products .main-listProduct {
-    padding: 14px 4px;
-    overflow: hidden;
     width: 100%;
+    max-width: 1100px;
   }
   #products .listProduct {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
     width: 100%;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    row-gap: 14px;
     min-height: 200px;
   }
 
-  /* ANIMACIÓN ICONO CARRITO */
+  /* ── MENSAJE SIN RESULTADOS ── */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--clr-dark2);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 40px 0;
+    letter-spacing: 1px;
+  }
+
+  /* ── ANIMACIÓN ICONO CARRITO ── */
   @keyframes shake {
-    0% {
+    0%,
+    100% {
       transform: translate(0, 0);
     }
     25% {
@@ -60,20 +113,15 @@ import CategorySearch from "../components/category_search.astro";
     75% {
       transform: translate(-4px, 0);
     }
-    100% {
-      transform: translate(0, 0);
-    }
   }
   .icon-cart.animate-cart {
     animation: shake 0.3s ease-in-out;
   }
 
-  .no-results {
-    text-align: center;
-    color: var(--clr-dark);
-    font-weight: 500;
-    font-size: 1.5rem;
-    margin-top: 20px;
+  @media (min-width: 750px) {
+    .shop-header h2 {
+      font-size: 2.1rem;
+    }
   }
 </style>
 
@@ -106,7 +154,7 @@ import CategorySearch from "../components/category_search.astro";
       .replace(/[\u0300-\u036f]/g, "");
 
   // abrir carrito
-  iconCart.addEventListener("click", () => body.classList.toggle("showCart"));
+  iconCart?.addEventListener("click", () => body.classList.toggle("showCart"));
 
   // Render: botones de categoría
   const renderCategoryButtons = () => {
@@ -144,19 +192,31 @@ import CategorySearch from "../components/category_search.astro";
       const fragment = document.createDocumentFragment();
       const tpl = document.getElementById("product-card-tpl");
 
-      filteredList.forEach((product) => {
+      filteredList.forEach((product, i) => {
         const idx = products.indexOf(product);
         const node = tpl.content.firstElementChild.cloneNode(true);
 
         node.dataset.id = idx;
+        node.style.animationDelay = `${i * 0.06}s`;
 
         const img = node.querySelector("img");
-        img.src = `.${cleanImagePath(product.images[0])}`;
+        img.src = cleanImagePath(product.images[0]);
         img.alt = product.name;
 
         node.querySelector(".product-name").textContent = product.name;
+
+        const origEl = node.querySelector(".original-price");
+        if (product.originalPrice) {
+          origEl.textContent = `$${product.originalPrice.toLocaleString("es-CO")}`;
+        } else {
+          origEl.style.display = "none";
+        }
+
+        const badgeEl = node.querySelector(".item-badge");
+        if (!product.originalPrice && badgeEl) badgeEl.style.display = "none";
+
         node.querySelector(".price").textContent =
-          `$${product.price.toFixed(3)}`;
+          `$${product.price.toLocaleString("es-CO")}`;
 
         // Abrir vista de producto
         node.addEventListener("click", (e) => {
@@ -166,7 +226,7 @@ import CategorySearch from "../components/category_search.astro";
           imagesContainer.innerHTML = "";
           product.images.forEach((imgPath) => {
             const im = document.createElement("img");
-            im.src = `.${cleanImagePath(imgPath)}`;
+            im.src = cleanImagePath(imgPath);
             im.alt = product.name;
             imagesContainer.appendChild(im);
           });
@@ -251,10 +311,10 @@ import CategorySearch from "../components/category_search.astro";
       newItem.dataset.id = item.product_id;
       newItem.innerHTML = `
         <div class="image flex-row">
-          <img src=".${cleanImagePath(product.images[0])}" alt="${product.name}">
+          <img src="${cleanImagePath(product.images[0])}" alt="${product.name}">
         </div>
         <div class="name">${product.name}</div>
-        <div class="totalPrice">$${itemTotal.toFixed(3)}</div>
+        <div class="totalPrice">$${itemTotal.toLocaleString("es-CO")}</div>
         <div class="quantity flex-row">
           <span><i class="bi bi-dash minus"></i></span>
           <span>${item.quantity}</span>
@@ -267,9 +327,9 @@ import CategorySearch from "../components/category_search.astro";
 
     const totalSection = document.createElement("div");
     totalSection.classList.add("cart-total");
-    totalSection.innerHTML = `<strong>Total: $${totalPrice.toFixed(3)}</strong>`;
+    totalSection.innerHTML = `<strong>Total: $${totalPrice.toLocaleString("es-CO")}</strong>`;
     listCartHTML.appendChild(totalSection);
-    iconCartSpan.innerText = totalQuantity;
+    if (iconCartSpan) iconCartSpan.innerText = totalQuantity;
   };
 
   // Cambiar cantidad en carrito
@@ -295,13 +355,13 @@ import CategorySearch from "../components/category_search.astro";
 
   // Animación del icono carrito
   const animateCartIcon = () => {
-    iconCart.classList.add("animate-cart");
-    setTimeout(() => iconCart.classList.remove("animate-cart"), 300);
+    iconCart?.classList.add("animate-cart");
+    setTimeout(() => iconCart?.classList.remove("animate-cart"), 300);
   };
 
   // Init
   const initApp = () => {
-    fetch("./JSON/products.json")
+    fetch("/JSON/products.json")
       .then((response) => response.json())
       .then((data) => {
         allProductsByCategory = data;

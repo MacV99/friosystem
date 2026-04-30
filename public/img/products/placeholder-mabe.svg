@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e8f4fd"/>
+  <rect x="140" y="60" width="120" height="120" rx="12" fill="#c8dff0"/>
+  <circle cx="200" cy="120" r="40" fill="#90bcd9"/>
+  <path d="M160 160 Q200 130 240 160" stroke="#5a9bc2" stroke-width="3" fill="none"/>
+  <text x="200" y="220" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="13" fill="#08334e" font-weight="600">AC FRIOSYSTEM</text>
+  <text x="200" y="240" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" fill="#6a9ab5">Imagen próximamente</text>
+</svg>

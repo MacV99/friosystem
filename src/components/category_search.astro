@@ -1,72 +1,68 @@
 ---
-/**
- * Selector de Categoría + Buscador
- * - Renderiza los botones de categorías (se actualizan desde JS principal)
- * - Contiene el buscador con id="search-input"
- *
- * Este componente no tiene lógica interna de filtrado, solo su estructura y estilos.
- */
+// Selector de Categoría + Buscador — HTML/CSS únicamente (lógica en Shop.astro)
 ---
 
-<div class="category-search flex-column">
-  <div class="category-buttons flex-row" id="category-buttons"></div>
-
+<div class="category-search">
+  <div class="category-buttons" id="category-buttons"></div>
   <div class="search-bar">
-    <input type="text" id="search-input" placeholder="Buscar productos..." />
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="search-input" placeholder="Buscar productos..." autocomplete="off" />
   </div>
 </div>
 
 <style is:inline>
-  /* CONTENEDOR GENERAL */
   .category-search {
     width: 100%;
-    align-items: center;
-    margin: 14px 0;
-  }
-
-  /* BOTONES DE CATEGORÍA */
-  .category-buttons {
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 14px;
-  }
-  .category-buttons button {
-    padding: 7px 14px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: var(--transition);
-    text-transform: uppercase;
-    border-radius: 12px;
-    border: solid 1px var(--clr-gray);
-    background-color: var(--clr-white);
-  }
-  .category-buttons button.active {
-    background-color: var(--clr-gray);
-  }
-  @media (hover: hover) {
-    .category-buttons button:hover {
-      background-color: var(--clr-gray);
-    }
-  }
-
-  /* BUSCADOR */
-  .search-bar {
+    max-width: 900px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  /* ── BOTONES DE CATEGORÍA ── */
+  .category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     justify-content: center;
-    width: 70%;
-    max-width: 350px;
-    margin: 0 auto;
-    border: solid 1px var(--clr-gray);
-    border-radius: 12px;
+  }
+
+  /* ── BUSCADOR ── */
+  .search-bar {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--clr-dark2);
+    font-size: 14px;
+    pointer-events: none;
+    display: flex;
   }
   .search-bar input {
-    border-radius: 12px;
     width: 100%;
-    max-width: 420px;
-    padding: 10px 14px;
-    border: none;
-    font-size: 14px;
+    padding: 11px 14px 11px 40px;
+    border: 1.5px solid var(--clr-gray);
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    background: #fff;
+    color: var(--clr-dark);
     outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .search-bar input:focus {
+    border-color: var(--clr-blue);
+    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.07);
+  }
+  .search-bar input::placeholder {
+    color: #bbb;
+    font-weight: 400;
   }
 </style>

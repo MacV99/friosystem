@@ -1,166 +1,274 @@
 ---
-/**
- * Componente del carrito lateral.
- * HTML + CSS. (Los handlers de limpiar/comprar/close siguen en Shop para usar tu estado/funciones.)
- */
+// Carrito lateral — HTML + CSS (handlers en Shop.astro para acceder al estado)
 ---
 
 <div class="cartTab flex-column">
-  <h2>Tu Carrito</h2>
+  <div class="cart-header flex-row">
+    <i class="bi bi-cart3"></i>
+    <h2>Tu Carrito</h2>
+  </div>
   <div class="listCart flex-column"></div>
-  <div class="btn">
-    <button class="close">Cerrar</button>
-    <button class="clean">Limpiar</button>
-    <button class="buy">Confirmar <br /> Orden</button>
+  <div class="cart-actions">
+    <button class="close cart-btn-close">
+      <i class="bi bi-x-lg"></i> Cerrar
+    </button>
+    <button class="clean cart-btn-clean">
+      <i class="bi bi-trash3"></i> Limpiar
+    </button>
+    <button class="buy cart-btn-buy">
+      <i class="bi bi-whatsapp"></i> Realizar pedido
+    </button>
   </div>
 </div>
 
 <style is:inline>
+  /* ── PANEL ── */
   .cartTab {
-    width: 375px;
-    background-color: var(--clr-white);
-    color: var(--clr-dark);
+    width: 380px;
+    background-color: #fff;
     position: fixed;
     top: 0;
-    right: -410px;
+    right: -420px;
     bottom: 0;
-    transition: 0.3s ease-in-out;
-    border: solid 1px var(--clr-gray);
-    z-index: 111; /* encima del header (z-index: 100) */
+    transition: right 0.3s ease;
+    border-left: 1px solid var(--clr-gray);
+    box-shadow: -4px 0 24px rgba(3, 33, 50, 0.12);
+    z-index: 111;
+    justify-content: flex-start;
   }
   .showCart .cartTab {
     right: 0;
   }
-  .cartTab > h2 {
-    padding: 15px 14px;
-    font-size: 22px;
-    color: var(--clr-dark);
-    letter-spacing: 3px;
-    border-bottom: solid 1px var(--clr-gray);
-    text-transform: uppercase;
-    width: 100%;
-    text-align: center;
+  .showCart .whatsapp-float {
+    display: none;
   }
 
-  .cartTab .btn {
-    display: flex;
-    margin-top: auto;
+  /* ── HEADER ── */
+  .cart-header {
+    background: var(--clr-blue);
+    color: #fff;
+    padding: 18px 20px;
     width: 100%;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-shrink: 0;
   }
-  .cartTab button {
-    color: var(--clr-dark);
-    width: 100%;
-    height: 70px;
-    font-size: 12px;
-    font-weight: 700;
-    border: none;
-    border-top: solid 1px var(--clr-gray);
-    cursor: pointer;
+  .cart-header i {
+    font-size: 20px;
+    color: #fff;
   }
-  @media (hover: hover) {
-    .cartTab button:hover {
-      background-color: var(--clr-gray);
-    }
-  }
-  .cartTab .listCart {
-    overflow: auto;
-    width: 100%;
-  }
-  .cartTab .listCart .item {
-    text-align: center;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--cart-item-odd);
-    font-size: 11px;
-    width: 100%;
-    padding: 0 14px;
-  }
-  .cartTab .listCart .item div.image {
-    width: 16%;
-    height: 70px;
-  }
-  .cartTab .listCart .item img {
-    height: 50px;
-    padding: 1px;
-  }
-  .cartTab .listCart .item .name {
-    width: 29%;
-  }
-  .cartTab .listCart .item .totalPrice {
-    width: 24%;
-  }
-  .cartTab .listCart .quantity {
-    border-radius: 8px;
-    background-color: var(--clr-gray);
-    width: 24%;
-    justify-content: space-between;
-  }
-  .cartTab .listCart .quantity span {
-    border-radius: 7px;
-    width: 25px;
-    height: 25px;
-    color: var(--clr-dark);
-    cursor: pointer;
+  .cart-header h2 {
     font-size: 14px;
-    font-weight: 500;
-    background-color: var(--clr-dark);
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #fff;
+    text-transform: uppercase;
   }
-  .cartTab .listCart .quantity span .bi {
-    color: var(--clr-white);
-    font-size: 16px;
-    height: 100%;
+
+  /* ── LISTA ── */
+  .cartTab .listCart {
+    flex: 1;
+    overflow-y: auto;
     width: 100%;
-  }
-  .cartTab .listCart .quantity span:nth-child(2) {
-    background-color: transparent;
-    color: var(--clr-dark);
-    cursor: auto;
-    width: 23px;
-    border: none;
-  }
-  .cartTab .listCart .item:nth-child(even) {
-    background-color: var(--cart-item-even);
+    justify-content: flex-start;
+    gap: 0;
+    padding-bottom: 8px;
   }
   .cartTab .listCart::-webkit-scrollbar {
-    width: 0;
+    width: 4px;
   }
-  .cartTab .cart-total {
-    padding: 7px;
-    font-size: 18px;
-    margin-top: 7px;
+  .cartTab .listCart::-webkit-scrollbar-thumb {
+    background: var(--clr-gray);
+    border-radius: 4px;
+  }
+
+  /* ── ITEMS ── */
+  .cartTab .listCart .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--clr-gray);
+    font-size: 11px;
+    background: #fff;
+    transition: background 0.15s;
+  }
+  .cartTab .listCart .item:nth-child(even) {
+    background: var(--cart-item-odd);
+  }
+  .cartTab .listCart .item div.image {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--clr-blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  .cartTab .listCart .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+  }
+  .cartTab .listCart .item .name {
+    flex: 1;
+    font-size: 10px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 0.3px;
+    color: var(--clr-dark);
+    line-height: 1.4;
+    padding-right: 6px;
+  }
+  .cartTab .listCart .item .totalPrice {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--clr-blue);
+    min-width: 72px;
+    text-align: right;
+    margin-right: 8px;
+  }
+
+  /* ── CONTROLES DE CANTIDAD ── */
+  .cartTab .listCart .quantity {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-radius: 10px;
+    border: 1px solid var(--clr-gray);
+    overflow: hidden;
+    background: var(--clr-white);
+  }
+  .cartTab .listCart .quantity span {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--clr-dark);
+    transition: background 0.15s;
+  }
+  .cartTab .listCart .quantity span:nth-child(2) {
+    font-size: 11px;
+    font-weight: 700;
+    cursor: default;
+    width: 22px;
+    border-left: 1px solid var(--clr-gray);
+    border-right: 1px solid var(--clr-gray);
+    color: var(--clr-blue);
+  }
+  .cartTab .listCart .quantity span .bi {
+    font-size: 13px;
+    color: var(--clr-dark2);
+  }
+  @media (hover: hover) {
+    .cartTab .listCart .quantity span:first-child:hover,
+    .cartTab .listCart .quantity span:last-child:hover {
+      background: var(--clr-blue);
+    }
+    .cartTab .listCart .quantity span:first-child:hover .bi,
+    .cartTab .listCart .quantity span:last-child:hover .bi {
+      color: #fff;
+    }
+  }
+
+  /* ── TOTAL ── */
+  .cartTab .cart-total {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clr-blue);
+    text-align: right;
+    border-top: 2px solid var(--clr-blue-light);
+    background: #fff;
+  }
+
+  /* ── ACCIONES ── */
+  .cart-actions {
+    display: flex;
+    width: 100%;
+    flex-shrink: 0;
+    border-top: 1px solid var(--clr-gray);
+  }
+  .cart-actions button {
+    flex: 1;
+    padding: 14px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+  }
+  .cart-actions button i {
+    font-size: 18px;
+  }
+  .cart-btn-close {
+    background: var(--clr-white);
+    color: var(--clr-dark2);
+    border-right: 1px solid var(--clr-gray);
+  }
+  .cart-btn-clean {
+    background: var(--clr-white);
+    color: #e11d48;
+    border-right: 1px solid var(--clr-gray);
+  }
+  .cart-btn-buy {
+    background: var(--clr-green);
+    color: #fff;
+  }
+  @media (hover: hover) {
+    .cart-btn-close:hover {
+      background: var(--clr-gray);
+    }
+    .cart-btn-clean:hover {
+      background: #fee2e2;
+    }
+    .cart-btn-buy:hover {
+      background: var(--clr-green2);
+    }
   }
 </style>
 
 <script is:inline>
-  const closeCart = document.querySelector(".close");
-  const $cleanCart = document.querySelector(".clean");
-  const $btnBuy = document.querySelector(".buy");
+  const closeCart = document.querySelector(".cart-btn-close");
+  const $cleanCart = document.querySelector(".cart-btn-clean");
+  const $btnBuy = document.querySelector(".cart-btn-buy");
 
-  //cerrar carrito
-  closeCart.addEventListener("click", () => body.classList.toggle("showCart"));
+  closeCart?.addEventListener("click", () => body.classList.toggle("showCart"));
 
-  // Carrito: limpiar
-  $cleanCart.addEventListener("click", () => {
+  $cleanCart?.addEventListener("click", () => {
     cart = [];
     addCartToHTML();
     localStorage.removeItem("cart");
   });
 
-  // Carrito: comprar (WhatsApp)
-  $btnBuy.addEventListener("click", () => {
+  $btnBuy?.addEventListener("click", () => {
+    if (!cart.length) return;
     const totalEl = document.querySelector(".cart-total strong");
-    const total = totalEl ? totalEl.innerText : "Total: $0.000";
-    let mensaje = `Hola DISTRITO COMERCIAL!, quiero hacer un pedido:\n\n`;
-
+    const total = totalEl ? totalEl.innerText : "Total: $0";
+    let mensaje = `Hola AC FRIOSYSTEM!, quiero hacer un pedido:\n\n`;
     cart.forEach((item) => {
       const p = products[item.product_id];
-      mensaje += `- ${p.name} - $${p.price.toFixed(3)} x ${item.quantity} = ${(p.price * item.quantity).toFixed(3)}\n`;
+      mensaje += `- ${p.name} - $${p.price.toLocaleString('es-CO')} x ${item.quantity} = $${(p.price * item.quantity).toLocaleString('es-CO')}\n`;
     });
     mensaje += `\n*${total}*`;
-
-    const urlWhatsApp = `https://wa.me/573222887148?text=${encodeURIComponent(mensaje)}`;
-    window.open(urlWhatsApp, "_blank");
+    window.open(`https://wa.me/573222887148?text=${encodeURIComponent(mensaje)}`, "_blank");
   });
 </script>
