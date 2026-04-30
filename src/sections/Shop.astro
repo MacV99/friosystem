@@ -215,8 +215,13 @@ import CategorySearch from "../components/category_search.astro";
         const badgeEl = node.querySelector(".item-badge");
         if (!product.originalPrice && badgeEl) badgeEl.style.display = "none";
 
-        node.querySelector(".price").textContent =
-          `$${product.price.toLocaleString("es-CO")}`;
+        const priceEl = node.querySelector(".price");
+        if (product.price > 0) {
+          priceEl.textContent = `$${product.price.toLocaleString("es-CO")}`;
+        } else {
+          priceEl.textContent = "Consultar precio";
+          priceEl.classList.add("price-consultar");
+        }
 
         // Abrir vista de producto
         node.addEventListener("click", (e) => {

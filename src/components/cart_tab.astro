@@ -94,6 +94,7 @@
     font-size: 11px;
     background: #fff;
     transition: background 0.15s;
+    border-radius: 0;
   }
   .cartTab .listCart .item:nth-child(even) {
     background: var(--cart-item-odd);
@@ -266,9 +267,14 @@
     let mensaje = `Hola AC FRIOSYSTEM!, quiero hacer un pedido:\n\n`;
     cart.forEach((item) => {
       const p = products[item.product_id];
-      mensaje += `- ${p.name} - $${p.price.toLocaleString('es-CO')} x ${item.quantity} = $${(p.price * item.quantity).toLocaleString('es-CO')}\n`;
+      const pStr = p.price > 0 ? `$${p.price.toLocaleString("es-CO")}` : "Consultar precio";
+      const tStr = p.price > 0 ? `$${(p.price * item.quantity).toLocaleString("es-CO")}` : "Consultar precio";
+      mensaje += `- ${p.name} - ${pStr} x ${item.quantity} = ${tStr}\n`;
     });
     mensaje += `\n*${total}*`;
-    window.open(`https://wa.me/573222887148?text=${encodeURIComponent(mensaje)}`, "_blank");
+    window.open(
+      `https://wa.me/573222887148?text=${encodeURIComponent(mensaje)}`,
+      "_blank",
+    );
   });
 </script>
