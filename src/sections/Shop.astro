@@ -16,6 +16,27 @@ import CategorySearch from "../components/category_search.astro";
     </p>
   </div>
 
+  <!-- Marcas + CTA -->
+  <div class="brands-bar">
+    <div class="brands-logos">
+      <img src="/img/Logotipo_Mabe.avif" alt="Mabe" />
+      <div class="brands-divider"></div>
+      <img src="/img/LG_logo.png" alt="LG" />
+      <div class="brands-divider"></div>
+      <img src="/img/Hisense.avif" alt="Hisense" />
+    </div>
+    <a
+      href="https://wa.me/573107751017?text=Hola%2C%20quiero%20información%20sobre%20la%20oferta%20del%20día"
+      target="_blank"
+      rel="noopener"
+      class="brands-cta"
+    >
+      <span class="brands-live-dot"></span>
+      <span>Pregunta por la <strong>oferta del día</strong></span>
+      <i class="bi bi-arrow-right"></i>
+    </a>
+  </div>
+
   <!-- Selector de categoría + buscador -->
   <CategorySearch />
 
@@ -72,6 +93,101 @@ import CategorySearch from "../components/category_search.astro";
     max-width: 440px;
     line-height: 1.6;
     letter-spacing: 0.3px;
+  }
+
+  /* ── MARCAS + CTA ── */
+  .brands-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 20px;
+    overflow: hidden;
+    animation: fadeInUp 0.55s ease both;
+    box-shadow: var(--shadow-md);
+  }
+  .brands-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    padding: 20px 28px;
+    background: #fff;
+  }
+  .brands-logos img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity 0.25s;
+    flex: 1;
+    max-width: 110px;
+  }
+  .brands-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--clr-gray);
+    flex-shrink: 0;
+    margin: 0 8px;
+  }
+  @media (hover: hover) {
+    .brands-logos img:hover {
+      opacity: 1;
+    }
+  }
+  .brands-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 11px 24px;
+    background: var(--clr-blue);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .brands-cta strong {
+    color: #fff;
+    font-weight: 800;
+  }
+  .brands-cta .bi-arrow-right {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s;
+  }
+  @media (hover: hover) {
+    .brands-cta:hover .bi-arrow-right {
+      transform: translateX(3px);
+      color: #fff;
+    }
+  }
+  .brands-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2b9348;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(43, 147, 72, 0.5);
+    animation: pulse-dot 2s ease infinite;
+  }
+  @keyframes pulse-dot {
+    0% {
+      box-shadow: 0 0 0 0 rgba(43, 147, 72, 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(43, 147, 72, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(43, 147, 72, 0);
+    }
   }
 
   /* ── GRID DE PRODUCTOS ── */
@@ -379,7 +495,9 @@ import CategorySearch from "../components/category_search.astro";
           addCartToHTML();
         }
 
-        if (new URLSearchParams(window.location.search).get("cart") === "open") {
+        if (
+          new URLSearchParams(window.location.search).get("cart") === "open"
+        ) {
           body.classList.add("showCart");
         }
       })
