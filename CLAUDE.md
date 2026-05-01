@@ -20,10 +20,13 @@ No test or lint commands are configured.
 
 ### Pages & Routing
 Astro auto-routes files in `src/pages/`:
-- `index.astro` — Marketing home (hero, sections, product shop)
+- `index.astro` — Marketing home (Hero, Stats, Nosotros, Servicios, MisionVision, Marcas sections)
+- `tienda.astro` — Standalone shop page (Hero + Shop section)
 - `clientes.astro` — Customer equipment lookup and report viewer
 - `reporte.astro` — Password-protected maintenance report form
 - `404.astro` — Custom not-found page
+
+All pages use `src/layouts/Layout1.astro` as the base shell (navbar, WhatsApp CTA button, footer scaffolding).
 
 ### Data Flow
 - **Product catalog**: static JSON at `public/JSON/products.json`
@@ -38,7 +41,11 @@ Astro auto-routes files in `src/pages/`:
 
 **Password protection** — `verificarAcceso()` checks a hardcoded password before revealing the report form. Not a security mechanism — purely a friction layer.
 
-**Product shop** — `src/sections/Shop.astro` reads `products.json`, renders cards via `src/components/product_card.astro`, and manages cart state entirely in-browser (no checkout/payment integration exists).
+**Product shop** — `src/sections/Shop.astro` reads `products.json`, renders cards dynamically by cloning the `<template>` in `src/components/product_card.astro`. Cart state is in-browser only (no checkout/payment integration). `src/components/view_product.astro` handles the product detail modal; `src/components/cart_tab.astro` is the cart sidebar; `src/components/category_search.astro` filters by category.
+
+**Product data shape** — `public/JSON/products.json` is keyed by category (e.g., `#INVERTER`). Each entry has `name`, `price`, `originalPrice`, `details` (multiline spec string), and `images` (array of external URLs).
+
+**WhatsApp CTA** — Two integration points: layout-level contact button and a shop-level offer inquiry button (`wa.me/573107751017`).
 
 ### Styles
 - `src/styles/global.css` — base colors, Montserrat typography, spacing tokens

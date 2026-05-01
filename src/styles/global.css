@@ -7,6 +7,7 @@
 :root {
   /* COLORES */
   --clr-red: #e1e0e7;
+  --clr-danger: #e11d48;
   --clr-blue: #032132;
   /* Azul oscuro — primario */
   --clr-blue-mid: #08334e;
@@ -215,6 +216,23 @@ a.boton,
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes windDrift {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  12% {
+    opacity: 0.55;
+  }
+  85% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(40px, -55px) rotate(28deg);
   }
 }
 

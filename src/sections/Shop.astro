@@ -173,7 +173,7 @@ import CategorySearch from "../components/category_search.astro";
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #2b9348;
+    background: var(--clr-green);
     flex-shrink: 0;
     box-shadow: 0 0 0 0 rgba(43, 147, 72, 0.5);
     animation: pulse-dot 2s ease infinite;
@@ -271,24 +271,30 @@ import CategorySearch from "../components/category_search.astro";
 
   // el click del carrito lo maneja Header.astro (global)
 
-  // Render: botones de categoría
+  // Render: botones de categoría (solo se llama una vez al cargar datos)
   const renderCategoryButtons = () => {
     $categoryButtons.innerHTML = "";
     const categories = ["TODOS", ...Object.keys(allProductsByCategory)];
-
+    const fragment = document.createDocumentFragment();
     categories.forEach((category) => {
       const btn = document.createElement("button");
       btn.textContent = category;
       btn.classList.add("button2");
       if (category === selectedCategory) btn.classList.add("active");
-      btn.addEventListener("click", () => {
-        selectedCategory = category;
-        renderCategoryButtons();
-        addDataToHTML();
-      });
-      $categoryButtons.appendChild(btn);
+      fragment.appendChild(btn);
     });
+    $categoryButtons.appendChild(fragment);
   };
+
+  $categoryButtons.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    selectedCategory = btn.textContent;
+    $categoryButtons.querySelectorAll("button").forEach((b) =>
+      b.classList.toggle("active", b === btn),
+    );
+    addDataToHTML();
+  });
 
   // Render: tarjetas de productos clonando el template del componente
   const addDataToHTML = () => {
@@ -299,8 +305,9 @@ import CategorySearch from "../components/category_search.astro";
         ? Object.values(allProductsByCategory).flat()
         : allProductsByCategory[selectedCategory] || [];
 
+    const normalizedTerm = normalizeText(searchTerm);
     const filteredList = baseList.filter((product) =>
-      normalizeText(product.name).includes(normalizeText(searchTerm)),
+      normalizeText(product.name).includes(normalizedTerm),
     );
 
     if (filteredList.length > 0) {

@@ -303,6 +303,12 @@
           </div>
           <div style="display:flex;align-items:center;gap:4px;">
             <span
+              id="rh-chk-pisotecho"
+              style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
+            ></span><span style="font-size:7px;">PISO TECHO</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span
               id="rh-chk-chiller"
               style="display:inline-block;width:11px;height:11px;border:1.5px solid #032132;background:white;flex-shrink:0;"
             ></span><span style="font-size:7px;">CHILLER</span>
@@ -1196,27 +1202,12 @@
 
   /* ── REPORTE: HTML → html2canvas → jsPDF ── */
 
-  function loadHtml2Canvas() {
+  function loadScript(globalKey, url) {
     return new Promise((resolve, reject) => {
-      if (window.html2canvas) {
-        resolve(window.html2canvas);
-        return;
-      }
+      if (window[globalKey]) { resolve(window[globalKey]); return; }
       const s = document.createElement("script");
-      s.src =
-        "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
-      s.onload = () => resolve(window.html2canvas);
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
-  }
-
-  function loadJsPDF() {
-    return new Promise((resolve, reject) => {
-      if (window.jspdf) { resolve(window.jspdf); return; }
-      const s = document.createElement("script");
-      s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
-      s.onload = () => resolve(window.jspdf);
+      s.src = url;
+      s.onload = () => resolve(window[globalKey]);
       s.onerror = reject;
       document.head.appendChild(s);
     });
@@ -1300,7 +1291,7 @@
       { elId: "rh-chk-cassette", label: "CASSETTE" },
       { elId: "rh-chk-central", label: "CENTRAL" },
       { elId: "rh-chk-pisofijo", label: "PISO FIJO" },
-      { elId: "rh-chk-pisofijo", label: "PISO TECHO" },
+      { elId: "rh-chk-pisotecho", label: "PISO TECHO" },
       { elId: "rh-chk-chiller", label: "CHILLER" },
       { elId: "rh-chk-nevera", label: "NEVERA" },
     ]);
@@ -1321,40 +1312,40 @@
       fotoEl.style.backgroundImage = "none";
     }
 
-    const doCapture = () => {
+    const doCapture = async () => {
       const doc = document.getElementById("reporte-html-doc");
-      loadHtml2Canvas()
-        .then((h2c) =>
-          h2c(doc, {
-            scale: 2,
-            useCORS: true,
-            allowTaint: false,
-            backgroundColor: "#ffffff",
-            logging: false,
-          }),
-        )
-        .then(async (canvas) => {
-          const { jsPDF } = await loadJsPDF();
-          const imgData = canvas.toDataURL("image/jpeg", 0.92);
-          const pdfW = 215.9;
-          const pdfH = (canvas.height * pdfW) / canvas.width;
-          const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [pdfW, pdfH] });
-          pdf.addImage(imgData, "JPEG", 0, 0, pdfW, pdfH);
-          const nombre = `ReporteV2_${(d.cliente || "cliente").replace(/\s+/g, "_")}_${dd}-${mm}-${yyyy}.pdf`;
-          pdf.save(nombre);
-          if (btn) {
-            btn.disabled = false;
-            btn.innerHTML = '<i class="bi bi-check-circle"></i> Descargado';
-          }
-          fsToast("¡Reporte v2 descargado!", "✅");
-        })
-        .catch(() => {
-          if (btn) {
-            btn.disabled = false;
-            btn.innerHTML = '<i class="bi bi-download"></i> v2';
-          }
-          fsToast("Error al generar reporte v2", "❌");
+      try {
+        const [h2c] = await Promise.all([
+          loadScript("html2canvas", "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"),
+          loadScript("jspdf", "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"),
+        ]);
+        const canvas = await h2c(doc, {
+          scale: 2,
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: "#ffffff",
+          logging: false,
         });
+        const { jsPDF } = window.jspdf;
+        const imgData = canvas.toDataURL("image/jpeg", 0.92);
+        const pdfW = 215.9;
+        const pdfH = (canvas.height * pdfW) / canvas.width;
+        const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [pdfW, pdfH] });
+        pdf.addImage(imgData, "JPEG", 0, 0, pdfW, pdfH);
+        const nombre = `ReporteV2_${(d.cliente || "cliente").replace(/\s+/g, "_")}_${dd}-${mm}-${yyyy}.pdf`;
+        pdf.save(nombre);
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="bi bi-check-circle"></i> Descargado';
+        }
+        fsToast("¡Reporte v2 descargado!", "✅");
+      } catch {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="bi bi-download"></i> Descargar';
+        }
+        fsToast("Error al generar reporte", "❌");
+      }
     };
 
     // Con background-image no hay evento onload — esperamos un tick para que el browser aplique el estilo
@@ -1374,12 +1365,11 @@
   async function buscarConReintentos(identificacion, url, intentos = 3) {
     for (let i = 0; i < intentos; i++) {
       try {
-        const datos = await buscarDatos(identificacion, url);
-        if (datos) return datos;
+        return await buscarDatos(identificacion, url);
       } catch (e) {
         console.warn(`Intento ${i + 1} fallido:`, e);
+        if (i < intentos - 1) await new Promise((r) => setTimeout(r, 800));
       }
-      await new Promise((r) => setTimeout(r, 800));
     }
     return null;
   }
