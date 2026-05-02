@@ -6,7 +6,7 @@
 <section id="v-product">
   <div class="vp-header flex-row">
     <span class="vp-tag">Detalle del producto</span>
-    <button class="close-v-product" aria-label="Cerrar">
+    <button class="close-v-product flex-row" aria-label="Cerrar">
       <i class="bi bi-x-lg"></i>
     </button>
   </div>
@@ -21,7 +21,7 @@
 </section>
 
 <!-- MODAL IMAGEN GRANDE -->
-<div id="image-modal" class="flex-column" style="display:none;">
+<div id="image-modal" class="flex-column">
   <span class="close-modal">×</span>
   <img src="" alt="Imagen ampliada" />
 </div>
@@ -72,9 +72,6 @@
     cursor: pointer;
     width: 34px;
     height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 14px;
     transition: background 0.2s;
     padding: 0;
@@ -87,7 +84,6 @@
 
   /* ── GALERÍA ── */
   #v-product .images {
-    display: flex;
     justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
@@ -171,9 +167,6 @@
     inset: 0;
     background: rgba(3, 33, 50, 0.88);
     display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     backdrop-filter: blur(4px);
   }
   #image-modal img {

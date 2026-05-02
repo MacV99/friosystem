@@ -47,6 +47,21 @@ All pages use `src/layouts/Layout1.astro` as the base shell (navbar, WhatsApp CT
 
 **WhatsApp CTA** — Two integration points: layout-level contact button and a shop-level offer inquiry button (`wa.me/573107751017`).
 
+### Astro CSS Scoping
+- Elementos creados dinámicamente (`innerHTML`, `document.createElement`) **deben** usar `<style is:inline>` — los estilos scoped de Astro no los alcanzan
+- Estilos que necesiten escapar el scoping de Astro usan `<style is:global>`, no selectores `:global()` inline
+- Antes de añadir estilos, verificar si el elemento objetivo es estático o creado por JS
+
+### CSS Architecture
+- Reutilizar clases utilitarias globales (`flex-row`, `flex-column`, `button1`, `button2`, etc.) antes de escribir CSS nuevo en el componente
+- No cambiar valores de variables CSS (ej: `--clr-red`) sin aprobación explícita — pueden tener valores intencionales no literales
+- Preferir bloques `is:global` sobre selectores `:global()` inline
+
+### Workflow Preferences
+- Hacer cambios editando archivos directamente; **no** levantar servidores de preview ni abrir devtools para ajustes de UI a menos que se pida explícitamente
+- Cuando haya duda sobre la estructura de datos externos (Sheets, CSVs, APIs), obtener una muestra real antes de asumir nombres de columnas o formatos
+- Cuando varios archivos similares existan (ej: múltiples modales), confirmar el archivo objetivo antes de editar
+
 ### Styles
 - `src/styles/global.css` — base colors, Montserrat typography, spacing tokens
 - `src/styles/project.css` — component-level custom properties
