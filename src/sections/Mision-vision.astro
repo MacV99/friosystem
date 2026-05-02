@@ -1,15 +1,19 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
 <section id="mision-vision">
-  <div class="mv-header">
-    <span class="mv-eyebrow">Nuestra razón de ser</span>
-    <h2>MISIÓN & VISIÓN</h2>
-    <p class="mv-subtitle">
-      El propósito y la dirección que guían cada proyecto que emprendemos
-    </p>
-  </div>
+  <SectionHeader
+    eyebrow="Nuestra razón de ser"
+    title="MISIÓN & VISIÓN"
+    description="El propósito y la dirección que guían cada proyecto que emprendemos"
+  />
 
   <div class="mv-cards">
     <div class="mv-card">
-      <div class="mv-icon flex-row"><i class="bi bi-graph-up-arrow"></i></div>
+      <div class="icon-badge flex-row">
+        <i class="bi bi-graph-up-arrow"></i>
+      </div>
       <h3>Misión</h3>
       <p>
         Brindar soluciones integrales en climatización, ventilación mecánica y
@@ -27,7 +31,7 @@
     </div>
 
     <div class="mv-card">
-      <div class="mv-icon flex-row"><i class="bi bi-lightbulb"></i></div>
+      <div class="icon-badge flex-row"><i class="bi bi-lightbulb"></i></div>
       <h3>Visión</h3>
       <p>
         Consolidarnos como la empresa líder en soluciones de climatización en el
@@ -51,38 +55,8 @@
     padding: 80px 24px;
     gap: 52px;
     align-items: center;
-  }
-
-  /* ─── HEADER ─── */
-  .mv-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    text-align: center;
-    max-width: 600px;
-  }
-
-  .mv-eyebrow {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--clr-red);
-    display: block;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-    color: #fff;
-    letter-spacing: 5px;
-    line-height: 1.2;
-  }
-
-  .mv-subtitle {
-    font-size: 0.84rem;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.3px;
+    --sh-h2-color: #fff;
+    --sh-p-color: rgba(255, 255, 255, 0.5);
   }
 
   /* ─── CARDS ─── */
@@ -105,17 +79,6 @@
     gap: 14px;
     transition: all 0.25s ease;
     overflow: hidden;
-  }
-
-  .mv-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(var(--rgb-red), 0.14);
-    border-radius: 14px;
-    color: var(--clr-red);
-    font-size: 22px;
-    transition: all 0.25s ease;
-    flex-shrink: 0;
   }
 
   h3 {
@@ -163,12 +126,12 @@
   @media (hover: hover) {
     .mv-card:hover {
       background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(var(--rgb-red), 0.4);
+      border-color: rgba(var(--rgb-highlight), 0.4);
       transform: translateY(-3px);
     }
 
-    .mv-card:hover .mv-icon {
-      background: var(--clr-red);
+    .mv-card:hover .icon-badge {
+      background: var(--clr-highlight);
       color: #fff;
     }
   }
@@ -179,8 +142,5 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    h2 {
-      font-size: 2rem;
-    }
   }
 </style>

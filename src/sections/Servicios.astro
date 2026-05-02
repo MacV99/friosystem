@@ -1,16 +1,17 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
 <section id="servicios">
-  <div class="srv-header">
-    <span class="srv-eyebrow">Lo que hacemos</span>
-    <h2>PORTAFOLIO DE SERVICIOS</h2>
-    <p>
-      Soluciones integrales en climatización para sectores doméstico, comercial,
-      industrial y hospitalario
-    </p>
-  </div>
+  <SectionHeader
+    eyebrow="Lo que hacemos"
+    title="PORTAFOLIO DE SERVICIOS"
+    description="Soluciones integrales en climatización para sectores doméstico, comercial, industrial y hospitalario"
+  />
 
   <div class="srv-grid">
     <div class="srv-card">
-      <div class="srv-icon flex-row"><i class="bi bi-tools"></i></div>
+      <div class="icon-badge flex-row"><i class="bi bi-tools"></i></div>
       <div class="srv-content">
         <h3>Mantenimiento</h3>
         <p>
@@ -22,7 +23,7 @@
     </div>
 
     <div class="srv-card">
-      <div class="srv-icon flex-row"><i class="bi bi-cpu"></i></div>
+      <div class="icon-badge flex-row"><i class="bi bi-cpu"></i></div>
       <div class="srv-content">
         <h3>Automatización y Control</h3>
         <p>
@@ -34,7 +35,7 @@
     </div>
 
     <div class="srv-card">
-      <div class="srv-icon flex-row"><i class="bi bi-box-seam"></i></div>
+      <div class="icon-badge flex-row"><i class="bi bi-box-seam"></i></div>
       <div class="srv-content">
         <h3>Suministro de Equipos</h3>
         <p>
@@ -45,7 +46,7 @@
     </div>
 
     <div class="srv-card">
-      <div class="srv-icon flex-row"><i class="bi bi-rulers"></i></div>
+      <div class="icon-badge flex-row"><i class="bi bi-rulers"></i></div>
       <div class="srv-content">
         <h3>Diseño y Consultoría</h3>
         <p>
@@ -57,7 +58,7 @@
     </div>
 
     <div class="srv-card">
-      <div class="srv-icon flex-row"><i class="bi bi-wind"></i></div>
+      <div class="icon-badge flex-row"><i class="bi bi-wind"></i></div>
       <div class="srv-content">
         <h3>Ventilación Mecánica</h3>
         <p>
@@ -69,7 +70,7 @@
     </div>
 
     <div class="srv-card">
-      <div class="srv-icon flex-row"><i class="bi bi-wrench-adjustable"></i></div>
+      <div class="icon-badge flex-row"><i class="bi bi-wrench-adjustable"></i></div>
       <div class="srv-content">
         <h3>Repuestos y Herramientas</h3>
         <p>
@@ -88,38 +89,8 @@
     padding: 80px 24px;
     gap: 52px;
     align-items: center;
-  }
-
-  /* ─── HEADER ─── */
-  .srv-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    max-width: 640px;
-    text-align: center;
-  }
-
-  .srv-eyebrow {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--clr-red);
-    display: block;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-    color: #fff;
-    letter-spacing: 4px;
-    line-height: 1.2;
-  }
-
-  .srv-header p {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.5px;
+    --sh-h2-color: #fff;
+    --sh-p-color: rgba(255, 255, 255, 0.5);
   }
 
   /* ─── GRID ─── */
@@ -140,21 +111,6 @@
     gap: 20px;
     align-items: flex-start;
     transition: all 0.25s ease;
-  }
-
-  .srv-icon {
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
-    background: rgba(var(--rgb-red), 0.12);
-    border-radius: 14px;
-    color: var(--clr-red);
-    font-size: 22px;
-    transition: all 0.25s ease;
-  }
-
-  .srv-icon i {
-    display: flex;
   }
 
   .srv-content {
@@ -182,7 +138,7 @@
       transform: translateY(-2px);
     }
 
-    .srv-card:hover .srv-icon {
+    .srv-card:hover .icon-badge {
       background: var(--clr-red);
       color: #fff;
     }
@@ -198,10 +154,6 @@
   @media (min-width: 900px) {
     .srv-grid {
       grid-template-columns: repeat(3, 1fr);
-    }
-
-    h2 {
-      font-size: 2rem;
     }
   }
 </style>

@@ -1,3 +1,8 @@
+---
+import FsModal from "./FsModal.astro";
+import FsToast from "./FsToast.astro";
+---
+
 <section id="reporte-mantenimiento" class="flex-column">
   <!-- ── PANTALLA DE ACCESO ── -->
   <div id="acceso-card" class="acceso-card flex-column">
@@ -329,50 +334,12 @@
     </div>
 
     <!-- ── MODAL ── -->
-    <div id="fsr-modal" class="fsr-modal-backdrop flex-row">
-      <div class="fsr-modal-card">
-        <button
-          id="fsr-modal-close"
-          class="fsr-modal-close flex-row"
-          aria-label="Cerrar"
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-
-        <div class="fsr-modal-icon-wrap flex-row">
-          <div id="fsr-modal-icon" class="fsr-modal-icon flex-row"></div>
-        </div>
-
-        <div class="fsr-modal-header flex-row">
-          <span id="fsr-modal-title">Aviso</span>
-        </div>
-
-        <div id="fsr-modal-body" class="fsr-modal-body"></div>
-
-        <div class="fsr-modal-footer flex-row">
-          <button id="fsr-modal-ok" class="fsr-modal-btn">Entendido</button>
-        </div>
-      </div>
-    </div>
+    <FsModal modalId="fsr-modal" />
   </div>
   <!-- /formulario-reporte -->
 
   <!-- ── TOAST ── -->
-  <div id="fsr-toast" class="fsr-toast flex-row">
-    <span id="fsr-toast-icon" class="fsr-toast-icon"></span>
-    <span id="fsr-toast-msg"></span>
-  </div>
+  <FsToast toastId="fsr-toast" />
 </section>
 
 <style>
@@ -727,178 +694,6 @@
     color: #aaa;
   }
 
-  /* ── MODAL BACKDROP ── */
-  .fsr-modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: var(--modal-backdrop);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 9999;
-    padding: 16px;
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 0.25s ease,
-      visibility 0.25s ease;
-    max-width: none;
-    width: 100%;
-  }
-
-  .fsr-modal-backdrop.fsr-modal-visible {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* ── MODAL CARD ── */
-  .fsr-modal-card {
-    position: relative;
-    width: min(460px, 95vw);
-    background-color: var(--clr-white);
-    border-radius: 24px;
-    box-shadow:
-      0 8px 40px rgba(0, 0, 0, 0.14),
-      0 2px 8px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    transform: translateY(24px) scale(0.96);
-    transition:
-      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-      opacity 0.25s ease;
-    opacity: 0;
-  }
-
-  .fsr-modal-backdrop.fsr-modal-visible .fsr-modal-card {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-
-  /* ── BOTÓN CERRAR ── */
-  .fsr-modal-card .fsr-modal-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    background: transparent;
-    color: #9ca3af;
-    border: none;
-    border-radius: 6px;
-    padding: 4px;
-    width: auto;
-    min-width: unset;
-    cursor: pointer;
-    transition: color 0.15s ease;
-    box-shadow: none;
-    transform: none;
-  }
-
-  /* ── ÍCONO MODAL ── */
-  .fsr-modal-icon-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 28px 0 4px;
-  }
-
-  .fsr-modal-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    font-size: 26px;
-    line-height: 1;
-  }
-
-  .fsr-icon-aviso {
-    background: var(--clr-modal-aviso);
-  }
-  .fsr-icon-error {
-    background: var(--clr-modal-error);
-  }
-  .fsr-icon-exito {
-    background: var(--clr-modal-exito);
-  }
-
-  /* ── HEADER MODAL ── */
-  .fsr-modal-header {
-    padding: 10px 24px 0;
-  }
-
-  #fsr-modal-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: #111827;
-    text-align: center;
-    letter-spacing: 1px;
-  }
-
-  /* ── BODY MODAL ── */
-  .fsr-modal-body {
-    padding: 14px 24px 8px;
-    color: #4b5563;
-    line-height: 1.6;
-    text-align: center;
-    font-size: 14px;
-  }
-
-  /* ── FOOTER MODAL ── */
-  .fsr-modal-footer {
-    padding: 16px 24px 28px;
-  }
-
-  .fsr-modal-card .fsr-modal-btn {
-    background-color: var(--clr-blue);
-    color: var(--clr-white);
-    border: none;
-    border-radius: 12px;
-    padding: 11px 36px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: var(--transition);
-    width: auto;
-    max-width: unset;
-  }
-
-  /* ── TOAST ── */
-  .fsr-toast {
-    position: fixed;
-    left: 50%;
-    bottom: 28px;
-    transform: translateX(-50%) translateY(16px);
-    background: #1e293b;
-    color: #f8fafc;
-    padding: 12px 22px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-    gap: 8px;
-    z-index: 10000;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 0.25s ease,
-      transform 0.32s cubic-bezier(0.34, 1.4, 0.64, 1),
-      visibility 0.25s ease;
-    white-space: nowrap;
-    pointer-events: none;
-    max-width: none;
-    width: auto;
-  }
-
-  .fsr-toast.fsr-toast-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .fsr-toast-icon {
-    font-size: 16px;
-    line-height: 1;
-  }
-
   /* ── HOVER ── */
   @media (hover: hover) {
     .btn-generar:hover {
@@ -907,14 +702,6 @@
       box-shadow: var(--shadow-md);
     }
 
-    .fsr-modal-card .fsr-modal-close:hover {
-      color: #374151;
-    }
-
-    .fsr-modal-card .fsr-modal-btn:hover {
-      opacity: 0.88;
-      transform: translateY(-1px);
-    }
   }
 
   /* ── RESPONSIVE ── */
@@ -978,32 +765,32 @@
     const t = document.getElementById("fsr-toast");
     document.getElementById("fsr-toast-icon").textContent = icono;
     document.getElementById("fsr-toast-msg").textContent = msg;
-    t.classList.add("fsr-toast-visible");
+    t.classList.add("fs-toast-visible");
     fsrToastTimer = setTimeout(
-      () => t.classList.remove("fsr-toast-visible"),
+      () => t.classList.remove("fs-toast-visible"),
       3200,
     );
   }
 
   /* ── MODAL ── */
   const FSR_VARIANTES = {
-    aviso: { emoji: "💡", clase: "fsr-icon-aviso" },
-    error: { emoji: "❌", clase: "fsr-icon-error" },
-    exito: { emoji: "✅", clase: "fsr-icon-exito" },
+    aviso: { emoji: "💡", clase: "fs-icon-aviso" },
+    error: { emoji: "❌", clase: "fs-icon-error" },
+    exito: { emoji: "✅", clase: "fs-icon-exito" },
   };
 
   function fsrModalShow({ title, body, variante = "aviso" }) {
     const v = FSR_VARIANTES[variante] || FSR_VARIANTES.aviso;
     const iconEl = document.getElementById("fsr-modal-icon");
     iconEl.textContent = v.emoji;
-    iconEl.className = "fsr-modal-icon flex-row " + v.clase;
+    iconEl.className = "fs-modal-icon flex-row " + v.clase;
     document.getElementById("fsr-modal-title").textContent = title;
     document.getElementById("fsr-modal-body").innerHTML = body;
-    document.getElementById("fsr-modal").classList.add("fsr-modal-visible");
+    document.getElementById("fsr-modal").classList.add("fs-modal-visible");
   }
 
   function fsrModalHide() {
-    document.getElementById("fsr-modal").classList.remove("fsr-modal-visible");
+    document.getElementById("fsr-modal").classList.remove("fs-modal-visible");
   }
 
   document.getElementById("fsr-modal-ok").onclick = fsrModalHide;

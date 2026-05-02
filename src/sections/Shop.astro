@@ -3,18 +3,16 @@ import Product_card from "../components/product_card.astro";
 import ViewProduct from "../components/view_product.astro";
 import CartTab from "../components/cart_tab.astro";
 import CategorySearch from "../components/category_search.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 ---
 
 <!-- PRODUCTS + CART -->
 <section id="products" class="flex-column">
   <!-- Encabezado de sección -->
-  <div class="shop-header">
-    <h2>Nuestro Catálogo</h2>
-    <p>
-      Selecciona el equipo ideal para tu espacio y realiza tu pedido por
-      WhatsApp
-    </p>
-  </div>
+  <SectionHeader
+    title="Nuestro Catálogo"
+    description="Selecciona el equipo ideal para tu espacio y realiza tu pedido por WhatsApp"
+  />
 
   <!-- Marcas + CTA -->
   <div class="brands-bar">
@@ -61,38 +59,6 @@ import CategorySearch from "../components/category_search.astro";
     background: var(--clr-white);
     padding: 60px 20px 80px;
     gap: 28px;
-  }
-
-  /* ── ENCABEZADO ── */
-  .shop-header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    max-width: 580px;
-    animation: fadeInUp 0.6s ease both;
-  }
-  .shop-eyebrow {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--clr-blue-mid);
-    display: block;
-  }
-  .shop-header h2 {
-    font-size: 1.7rem;
-    color: var(--clr-blue);
-    letter-spacing: 5px;
-    line-height: 1.2;
-  }
-  .shop-header p {
-    font-size: 0.83rem;
-    color: var(--clr-dark2);
-    max-width: 440px;
-    line-height: 1.6;
-    letter-spacing: 0.3px;
   }
 
   /* ── MARCAS + CTA ── */
@@ -234,11 +200,6 @@ import CategorySearch from "../components/category_search.astro";
     animation: shake 0.3s ease-in-out;
   }
 
-  @media (min-width: 750px) {
-    .shop-header h2 {
-      font-size: 2.1rem;
-    }
-  }
 </style>
 
 <script is:inline>

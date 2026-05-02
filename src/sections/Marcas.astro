@@ -1,9 +1,13 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
 <section id="marcas">
-  <div class="marcas-header">
-    <span class="marcas-eyebrow">Con quiénes trabajamos</span>
-    <h2>MARCAS QUE MANEJAMOS</h2>
-    <p>Tecnología de alto nivel de los mejores fabricantes del mundo</p>
-  </div>
+  <SectionHeader
+    eyebrow="Con quiénes trabajamos"
+    title="MARCAS QUE MANEJAMOS"
+    description="Tecnología de alto nivel de los mejores fabricantes del mundo"
+  />
 
   <div class="brands-row">
     <div class="brand-pill">
@@ -68,35 +72,6 @@
     padding: 80px 24px;
     gap: 52px;
     align-items: center;
-  }
-
-  /* ─── HEADER ─── */
-  .marcas-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    max-width: 600px;
-    text-align: center;
-  }
-
-  .marcas-eyebrow {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--clr-red);
-  }
-
-  h2 {
-    font-size: 1.6rem;
-    color: var(--clr-blue);
-    letter-spacing: 4px;
-  }
-
-  .marcas-header p {
-    font-size: 0.85rem;
-    color: var(--clr-dark2);
   }
 
   /* ─── BRANDS ─── */
@@ -201,9 +176,4 @@
     }
   }
 
-  @media (min-width: 750px) {
-    h2 {
-      font-size: 2rem;
-    }
-  }
 </style>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  zIndex?: number;
+}
+const { zIndex = 1 } = Astro.props;
+---
+
+<div class="snow-particles" style={`z-index: ${zIndex}`} aria-hidden="true">
+  <i class="bi bi-snow  p1"></i>
+  <i class="bi bi-snow2 p2"></i>
+  <i class="bi bi-snow  p3"></i>
+  <i class="bi bi-snow2 p4"></i>
+  <i class="bi bi-snow  p5"></i>
+  <i class="bi bi-snow2 p6"></i>
+  <i class="bi bi-snow  p7"></i>
+  <i class="bi bi-snow2 p8"></i>
+  <i class="bi bi-snow  p9"></i>
+  <i class="bi bi-snow2 p10"></i>
+  <i class="bi bi-snow  p11"></i>
+  <i class="bi bi-snow2 p12"></i>
+</div>
+
+<style>
+  .snow-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    max-width: none;
+    width: 100%;
+  }
+
+  .snow-particles i {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  .p1  { font-size: 30px; top: 12%; left:  3%; animation: windDrift 4.5s 0.0s linear infinite; }
+  .p2  { font-size: 20px; top: 65%; left: 10%; animation: windDrift 5.2s 1.2s linear infinite; }
+  .p3  { font-size: 16px; top: 28%; left: 20%; animation: windDrift 3.8s 0.5s linear infinite; }
+  .p4  { font-size: 24px; top: 75%; left: 30%; animation: windDrift 4.8s 2.1s linear infinite; }
+  .p5  { font-size: 18px; top: 18%; left: 42%; animation: windDrift 5.5s 0.8s linear infinite; }
+  .p6  { font-size: 26px; top: 58%; left: 52%; animation: windDrift 4.2s 1.7s linear infinite; }
+  .p7  { font-size: 22px; top: 35%; left: 63%; animation: windDrift 4.9s 0.3s linear infinite; }
+  .p8  { font-size: 14px; top: 80%; left: 72%; animation: windDrift 3.6s 2.5s linear infinite; }
+  .p9  { font-size: 28px; top: 20%; left: 81%; animation: windDrift 5.1s 1.0s linear infinite; }
+  .p10 { font-size: 18px; top: 60%; left: 88%; animation: windDrift 4.4s 1.8s linear infinite; }
+  .p11 { font-size: 22px; top: 40%; left: 93%; animation: windDrift 5.0s 0.6s linear infinite; }
+  .p12 { font-size: 16px; top: 82%; left: 97%; animation: windDrift 3.9s 2.8s linear infinite; }
+</style>

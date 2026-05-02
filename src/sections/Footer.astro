@@ -1,19 +1,9 @@
+---
+import Particles from "../components/Particles.astro";
+---
+
 <footer class="flex-column">
-  <!-- Partículas temáticas (igual que el Hero) -->
-  <div class="footer-particles" aria-hidden="true">
-    <i class="bi bi-snow fp1"></i>
-    <i class="bi bi-snow2 fp2"></i>
-    <i class="bi bi-snow2 fp3"></i>
-    <i class="bi bi-snow fp4"></i>
-    <i class="bi bi-snow fp5"></i>
-    <i class="bi bi-snow2 fp6"></i>
-    <i class="bi bi-snow2 fp7"></i>
-    <i class="bi bi-snow fp8"></i>
-    <i class="bi bi-snow fp9"></i>
-    <i class="bi bi-snow2 fp10"></i>
-    <i class="bi bi-snow fp11"></i>
-    <i class="bi bi-snow2 fp12"></i>
-  </div>
+  <Particles zIndex={0} />
 
   <img src="/img/logo.jpg" alt="logo" />
   <h3>AC FRIOSYSTEM S.A.S</h3>
@@ -71,7 +61,7 @@
     z-index: 0;
   }
 
-  footer > *:not(.footer-particles) {
+  footer > *:not(.snow-particles) {
     position: relative;
     z-index: 1;
   }
@@ -120,93 +110,4 @@
       background-color: var(--footer-hover-bg);
     }
   }
-
-  /* ── PARTÍCULAS ── */
-  .footer-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    max-width: none;
-    width: 100%;
-  }
-
-  .footer-particles i {
-    position: absolute;
-    color: rgba(255, 255, 255, 0.38);
-  }
-
-  .fp1 {
-    font-size: 28px;
-    top: 10%;
-    left: 3%;
-    animation: windDrift 4.8s 0s linear infinite;
-  }
-  .fp2 {
-    font-size: 18px;
-    top: 70%;
-    left: 9%;
-    animation: windDrift 5.3s 1.3s linear infinite;
-  }
-  .fp3 {
-    font-size: 16px;
-    top: 30%;
-    left: 19%;
-    animation: windDrift 3.9s 0.6s linear infinite;
-  }
-  .fp4 {
-    font-size: 22px;
-    top: 78%;
-    left: 28%;
-    animation: windDrift 4.7s 2s linear infinite;
-  }
-  .fp5 {
-    font-size: 20px;
-    top: 15%;
-    left: 40%;
-    animation: windDrift 5.4s 0.9s linear infinite;
-  }
-  .fp6 {
-    font-size: 24px;
-    top: 60%;
-    left: 50%;
-    animation: windDrift 4.3s 1.6s linear infinite;
-  }
-  .fp7 {
-    font-size: 20px;
-    top: 38%;
-    left: 62%;
-    animation: windDrift 5s 0.4s linear infinite;
-  }
-  .fp8 {
-    font-size: 14px;
-    top: 82%;
-    left: 71%;
-    animation: windDrift 3.7s 2.4s linear infinite;
-  }
-  .fp9 {
-    font-size: 26px;
-    top: 22%;
-    left: 80%;
-    animation: windDrift 5.2s 1.1s linear infinite;
-  }
-  .fp10 {
-    font-size: 18px;
-    top: 65%;
-    left: 87%;
-    animation: windDrift 4.5s 1.9s linear infinite;
-  }
-  .fp11 {
-    font-size: 20px;
-    top: 42%;
-    left: 93%;
-    animation: windDrift 5.1s 0.7s linear infinite;
-  }
-  .fp12 {
-    font-size: 15px;
-    top: 85%;
-    left: 97%;
-    animation: windDrift 4s 2.7s linear infinite;
-  }
-
 </style>
