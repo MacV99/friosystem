@@ -443,9 +443,9 @@ import CategorySearch from "../components/category_search.astro";
         <div class="name">${product.name}</div>
         <div class="totalPrice">$${itemTotal.toLocaleString("es-CO")}</div>
         <div class="quantity flex-row">
-          <span><i class="bi bi-dash minus"></i></span>
+          <span class="minus"><i class="bi bi-dash"></i></span>
           <span>${item.quantity}</span>
-          <span><i class="bi bi-plus plus"></i></span>
+          <span class="plus"><i class="bi bi-plus"></i></span>
         </div>`;
       fragment.appendChild(newItem);
     });
@@ -461,11 +461,10 @@ import CategorySearch from "../components/category_search.astro";
 
   // Cambiar cantidad en carrito
   listCartHTML.addEventListener("click", (event) => {
-    const isMinus = event.target.classList.contains("minus");
-    const isPlus = event.target.classList.contains("plus");
-    if (!isMinus && !isPlus) return;
-    const product_id = event.target.closest(".item").dataset.id;
-    changeQuantityCart(product_id, isMinus ? "minus" : "plus");
+    const btn = event.target.closest(".minus, .plus");
+    if (!btn) return;
+    const product_id = btn.closest(".item").dataset.id;
+    changeQuantityCart(product_id, btn.classList.contains("minus") ? "minus" : "plus");
   });
 
   const changeQuantityCart = (product_id, type) => {
