@@ -1,40 +1,37 @@
 /* =============================================
-   AC FRIOSYSTEM — Global Styles
+   Global Styles — Plantilla base MacV
+   Colores neutros por defecto; sobrescribir
+   en project.css para cada proyecto.
    ============================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* COLORES */
-  --clr-red: #e1e0e7;
-  --clr-danger: #e11d48;
-  --clr-blue: #032132;
-  /* Azul oscuro — primario */
-  --clr-blue-mid: #08334e;
-  /* Azul medio — acento hover */
-  --clr-blue-light: #e8f4fd;
-  /* Azul muy claro — fondos */
-  --clr-green: #2b9348;
-  /* 🔧 FIX: variable faltante */
-  --clr-green2: #698459;
+  /* COLORES — escala neutra (sobrescribir en project.css) */
+  --clr-primary:       #1a1a1a; /* color principal — dark */
+  --clr-primary-mid:   #333333; /* variante media — hover */
+  --clr-primary-light: #eeeeee; /* variante clara — fondos */
+  --clr-accent:        #555555; /* acento — botones, activos */
+  --clr-accent2:       #777777; /* acento hover */
+  --clr-highlight:     #999999; /* tercer color — eyebrows, íconos decorativos */
+  --clr-danger:        #e11d48; /* rojo semántico — errores/alertas */
 
-  --clr-dark: #191919;
+  --clr-dark:  #191919;
   --clr-dark2: #464646;
-
-  --clr-gray: #dcdcdc;
+  --clr-gray:  #dcdcdc;
   --clr-white: #f4f4f4;
 
   --transition: all 0.2s ease;
 
-  /* CANALES RGB — para rgba() con opacidad variable */
-  --rgb-blue: 3, 33, 50;
-  --rgb-red: 234, 75, 94;
-  --rgb-green: 43, 147, 72;
+  /* CANALES RGB (sobrescribir en project.css junto con los colores) */
+  --rgb-primary:   26, 26, 26;
+  --rgb-accent:    85, 85, 85;
+  --rgb-highlight: 153, 153, 153;
 
   /* SOMBRAS */
-  --shadow-sm: 0 2px 8px rgba(var(--rgb-blue), 0.08);
-  --shadow-md: 0 4px 20px rgba(var(--rgb-blue), 0.12);
-  --shadow-lg: 0 8px 40px rgba(var(--rgb-blue), 0.18);
+  --shadow-sm: 0 2px 8px  rgba(var(--rgb-primary), 0.08);
+  --shadow-md: 0 4px 20px rgba(var(--rgb-primary), 0.12);
+  --shadow-lg: 0 8px 40px rgba(var(--rgb-primary), 0.18);
 }
 
 /* =============================================
@@ -158,7 +155,7 @@ a.boton,
 }
 
 .button1 {
-  background-color: var(--clr-green);
+  background-color: var(--clr-accent);
   color: var(--clr-white);
 }
 
@@ -176,85 +173,48 @@ a.boton,
 }
 
 .button2.active {
-  background-color: var(--clr-blue);
+  background-color: var(--clr-primary);
   color: var(--clr-white);
-  border-color: var(--clr-blue);
+  border-color: var(--clr-primary);
 }
 
 /* =============================================
-   ANIMACIÓN BRISA (tema AC)
+   ANIMACIONES GENÉRICAS
    ============================================= */
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(0px);
-    opacity: 0.6;
-  }
-
-  50% {
-    transform: translateY(-8px);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0px);
-    opacity: 0.6;
-  }
+  0%   { transform: translateY(0px);  opacity: 0.6; }
+  50%  { transform: translateY(-8px); opacity: 1;   }
+  100% { transform: translateY(0px);  opacity: 0.6; }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-@keyframes windDrift {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) rotate(0deg);
-  }
-  12% {
-    opacity: 0.55;
-  }
-  85% {
-    opacity: 0.45;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(40px, -55px) rotate(28deg);
-  }
-}
+/* =============================================
+   HOVER & RESPONSIVE
+   ============================================= */
 
 @media (hover: hover) {
   .button1:hover {
-    background-color: var(--clr-green2);
+    background-color: var(--clr-accent2);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
   }
 
   .button2:hover {
-    background-color: var(--clr-blue);
+    background-color: var(--clr-primary);
     color: var(--clr-white);
-    border-color: var(--clr-blue);
+    border-color: var(--clr-primary);
   }
 }
-
 
 @media (min-width: 750px) {
   h1 {

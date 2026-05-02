@@ -1,40 +1,73 @@
 /* =============================================
    AC FRIOSYSTEM — Project Styles
+   Sobreescribe los valores neutros de global.css
+   con la paleta y configuración de este proyecto.
    ============================================= */
 
 :root {
-  /* Estado — modales (compartidos por form_reporte e info_clientes) */
+  /* ── PALETA DEL PROYECTO ── */
+  --clr-primary:       #032132; /* azul oscuro */
+  --clr-primary-mid:   #08334e; /* azul medio — hover */
+  --clr-primary-light: #e8f4fd; /* azul muy claro — fondos */
+  --clr-accent:        #2b9348; /* verde — botones, activos */
+  --clr-accent2:       #698459; /* verde hover */
+  --clr-highlight:     #e1e0e7; /* acento decorativo — valor plano (preferencia cliente) */
+
+  /* ── CANALES RGB DEL PROYECTO ── */
+  --rgb-primary:   3, 33, 50;
+  --rgb-accent:    43, 147, 72;
+  --rgb-highlight: 234, 75, 94; /* rojo decorativo — para fondos/bordes con opacidad */
+
+  /* ── SOMBRAS CON PRIMARIO DEL PROYECTO ── */
+  --shadow-sm: 0 2px 8px  rgba(var(--rgb-primary), 0.08);
+  --shadow-md: 0 4px 20px rgba(var(--rgb-primary), 0.12);
+  --shadow-lg: 0 8px 40px rgba(var(--rgb-primary), 0.18);
+
+  /* ── ALIASES — compatibilidad con componentes existentes ── */
+  /* Permiten que los componentes sigan usando --clr-blue, --clr-green, etc.
+     sin necesidad de actualizarlos. */
+  --clr-blue:       var(--clr-primary);
+  --clr-blue-mid:   var(--clr-primary-mid);
+  --clr-blue-light: var(--clr-primary-light);
+  --clr-green:      var(--clr-accent);
+  --clr-green2:     var(--clr-accent2);
+  --clr-red:        var(--clr-highlight);
+  --rgb-blue:       var(--rgb-primary);
+  --rgb-green:      var(--rgb-accent);
+  --rgb-red:        var(--rgb-highlight);
+
+  /* ── MODALES (form_reporte e info_clientes) ── */
   --clr-modal-aviso: #fef9c3;
   --clr-modal-error: #fee2e2;
   --clr-modal-exito: #dcfce7;
   --clr-modal-carga: #e0f2fe;
 
-  /* Overlays con transparencia */
+  /* ── OVERLAYS ── */
   --modal-backdrop: rgba(15, 23, 42, 0.38);
-  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --overlay-bg:     rgba(0, 0, 0, 0.7);
 
-  /* Header con transparencia */
-  --header-bg-mobile: rgba(255, 255, 255, 0.95);
+  /* ── HEADER ── */
+  --header-bg-mobile:  rgba(255, 255, 255, 0.95);
   --header-bg-desktop: rgba(255, 255, 255, 0.6);
 
-  /* Hero overlay */
-  --hero-overlay: rgba(3, 33, 50, 0.72);
+  /* ── HERO ── */
+  --hero-overlay: rgba(var(--rgb-primary), 0.72);
 
-  /* Cart — items zebra */
+  /* ── CARRITO ── */
   --cart-item-odd: #f5f5f5;
-  --cart-item-even: #ececec;
 
-  /* Footer hover */
+  /* ── FOOTER ── */
   --footer-hover-bg: rgba(255, 255, 255, 0.07);
+}
 
-  /* Sombra de panel lateral */
-  --shadow-panel: 0 0 14px rgba(0, 0, 0, 0.7);
+/* ── ANIMACIÓN PARTÍCULAS (tema AC — viento) ── */
+@keyframes windDrift {
+  0%   { opacity: 0; transform: translate(0, 0) rotate(0deg);          }
+  12%  { opacity: 0.55;                                                  }
+  85%  { opacity: 0.45;                                                  }
+  100% { opacity: 0; transform: translate(40px, -55px) rotate(28deg);  }
 }
 
 @view-transition {
   navigation: auto;
 }
-
-/* ── ESTILOS GLOBALES DEL PROYECTO ── */
-
-/* #nosotros ahora es manejado por Nosotros.astro */
