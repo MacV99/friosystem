@@ -427,7 +427,7 @@
   .acceso-input-wrap input:focus {
     outline: none;
     border-color: var(--clr-blue);
-    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.08);
+    box-shadow: 0 0 0 3px rgba(var(--rgb-blue), 0.08);
   }
 
   .acceso-input-wrap button {
@@ -611,7 +611,7 @@
   .form-group textarea:focus {
     outline: none;
     border-color: var(--clr-blue);
-    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.08);
+    box-shadow: 0 0 0 3px rgba(var(--rgb-blue), 0.08);
   }
 
   .form-group input::placeholder,
@@ -705,7 +705,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition);
     margin-top: 8px;
     gap: 8px;
   }
@@ -856,7 +856,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition);
     width: auto;
     max-width: unset;
   }

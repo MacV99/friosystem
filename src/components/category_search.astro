@@ -43,7 +43,6 @@
     color: var(--clr-dark2);
     font-size: 14px;
     pointer-events: none;
-    display: flex;
   }
   .search-bar input {
     width: 100%;
@@ -59,7 +58,7 @@
   }
   .search-bar input:focus {
     border-color: var(--clr-blue);
-    box-shadow: 0 0 0 3px rgba(3, 33, 50, 0.07);
+    box-shadow: 0 0 0 3px rgba(var(--rgb-blue), 0.07);
   }
   .search-bar input::placeholder {
     color: #bbb;

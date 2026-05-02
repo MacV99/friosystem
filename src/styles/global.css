@@ -26,10 +26,15 @@
 
   --transition: all 0.2s ease;
 
+  /* CANALES RGB — para rgba() con opacidad variable */
+  --rgb-blue: 3, 33, 50;
+  --rgb-red: 234, 75, 94;
+  --rgb-green: 43, 147, 72;
+
   /* SOMBRAS */
-  --shadow-sm: 0 2px 8px rgba(3, 33, 50, 0.08);
-  --shadow-md: 0 4px 20px rgba(3, 33, 50, 0.12);
-  --shadow-lg: 0 8px 40px rgba(3, 33, 50, 0.18);
+  --shadow-sm: 0 2px 8px rgba(var(--rgb-blue), 0.08);
+  --shadow-md: 0 4px 20px rgba(var(--rgb-blue), 0.12);
+  --shadow-lg: 0 8px 40px rgba(var(--rgb-blue), 0.18);
 }
 
 /* =============================================
