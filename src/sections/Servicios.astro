@@ -93,6 +93,8 @@ import SectionHeader from "../components/SectionHeader.astro";
     align-items: center;
     --sh-h2-color: #fff;
     --sh-p-color: rgba(255, 255, 255, 0.5);
+    --border-soft: rgba(255, 255, 255, 0.09);
+    --border-hover: rgba(255, 255, 255, 0.25);
   }
 
   /* ─── GRID ─── */
@@ -106,7 +108,7 @@ import SectionHeader from "../components/SectionHeader.astro";
 
   .srv-card {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    border: 1px solid var(--border-soft);
     border-radius: 18px;
     padding: 28px 24px;
     display: flex;
@@ -134,8 +136,13 @@ import SectionHeader from "../components/SectionHeader.astro";
 
   /* ─── HOVER ─── */
   @media (hover: hover) {
+    .srv-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
     .srv-card:hover .icon-badge {
-      background: var(--clr-highlight);
+      background: var(--clr-accent);
       color: #fff;
     }
   }

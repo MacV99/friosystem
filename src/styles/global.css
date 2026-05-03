@@ -11,9 +11,9 @@
   --clr-primary:       #1a1a1a; /* color principal — dark */
   --clr-primary-mid:   #333333; /* variante media — hover */
   --clr-primary-light: #eeeeee; /* variante clara — fondos */
-  --clr-accent:        #555555; /* acento — botones, activos */
-  --clr-accent2:       #777777; /* acento hover */
-  --clr-highlight:     #999999; /* tercer color — eyebrows, íconos decorativos */
+  --clr-green:        #555555; /* acento — botones, activos */
+  --clr-green2:       #777777; /* acento hover */
+  --clr-accent:     #999999; /* tercer color — eyebrows, íconos decorativos */
   --clr-danger:        #e11d48; /* rojo semántico — errores/alertas */
 
   --clr-dark:  #191919;
@@ -25,8 +25,8 @@
 
   /* CANALES RGB (sobrescribir en project.css junto con los colores) */
   --rgb-primary:   26, 26, 26;
-  --rgb-accent:    85, 85, 85;
-  --rgb-highlight: 153, 153, 153;
+  --rgb-green:    85, 85, 85;
+  --rgb-accent: 153, 153, 153;
 
   /* SOMBRAS */
   --shadow-sm: 0 2px 8px  rgba(var(--rgb-primary), 0.08);
@@ -155,7 +155,7 @@ a.boton,
 }
 
 .button1 {
-  background-color: var(--clr-accent);
+  background-color: var(--clr-green);
   color: var(--clr-white);
 }
 
@@ -204,7 +204,7 @@ a.boton,
 
 @media (hover: hover) {
   .button1:hover {
-    background-color: var(--clr-accent2);
+    background-color: var(--clr-green2);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
   }

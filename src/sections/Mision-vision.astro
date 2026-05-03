@@ -57,6 +57,8 @@ import SectionHeader from "../components/SectionHeader.astro";
     align-items: center;
     --sh-h2-color: #fff;
     --sh-p-color: rgba(255, 255, 255, 0.5);
+    --border-soft: rgba(255, 255, 255, 0.09);
+    --border-hover: rgba(255, 255, 255, 0.25);
   }
 
   /* ─── CARDS ─── */
@@ -71,7 +73,7 @@ import SectionHeader from "../components/SectionHeader.astro";
   .mv-card {
     position: relative;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    border: 1px solid var(--border-soft);
     border-radius: 20px;
     padding: 36px 28px 28px;
     display: flex;
@@ -117,7 +119,7 @@ import SectionHeader from "../components/SectionHeader.astro";
 
   .mv-values li i {
     font-size: 14px;
-    color: var(--clr-highlight);
+    color: var(--clr-accent);
     display: inline-flex;
     flex-shrink: 0;
   }
@@ -125,13 +127,12 @@ import SectionHeader from "../components/SectionHeader.astro";
   /* ─── HOVER ─── */
   @media (hover: hover) {
     .mv-card:hover {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(var(--rgb-highlight), 0.4);
+      border-color: var(--border-hover);
       transform: translateY(-3px);
     }
 
     .mv-card:hover .icon-badge {
-      background: var(--clr-highlight);
+      background: var(--clr-accent);
       color: #fff;
     }
   }
