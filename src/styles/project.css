@@ -16,7 +16,7 @@
   /* verde — botones, activos */
   --clr-accent2: #698459;
   /* verde hover */
-  --clr-highlight: #27acff;
+  --clr-highlight: #77cbff;
   /* acento decorativo — valor plano (preferencia cliente) */
 
   /* ── CANALES RGB DEL PROYECTO ── */
@@ -30,20 +30,7 @@
   --shadow-md: 0 4px 20px rgba(var(--rgb-primary), 0.12);
   --shadow-lg: 0 8px 40px rgba(var(--rgb-primary), 0.18);
 
-  /* ── ALIASES — compatibilidad con componentes existentes ── */
-  /* Permiten que los componentes sigan usando --clr-blue, --clr-green, etc.
-     sin necesidad de actualizarlos. */
-  --clr-blue: var(--clr-primary);
-  --clr-blue-mid: var(--clr-primary-mid);
-  --clr-blue-light: var(--clr-primary-light);
-  --clr-green: var(--clr-accent);
-  --clr-green2: var(--clr-accent2);
-  --clr-red: var(--clr-highlight);
-  --rgb-blue: var(--rgb-primary);
-  --rgb-green: var(--rgb-accent);
-  --rgb-red: var(--rgb-highlight);
-
-  /* ── MODALES (form_reporte e info_clientes) ── */
+  /* ── MODALES ── */
   --clr-modal-aviso: #fef9c3;
   --clr-modal-error: #fee2e2;
   --clr-modal-exito: #dcfce7;
@@ -74,7 +61,7 @@
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--clr-red);
+  color: var(--clr-highlight);
   display: block;
 }
 
@@ -83,9 +70,9 @@
   height: 50px;
   min-width: 50px;
   flex-shrink: 0;
-  background: rgba(var(--rgb-red), 0.12);
+  background: rgba(var(--rgb-highlight), 0.12);
   border-radius: 14px;
-  color: var(--clr-red);
+  color: var(--clr-highlight);
   font-size: 22px;
   transition: all 0.25s ease;
 }

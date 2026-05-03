@@ -70,7 +70,9 @@ import SectionHeader from "../components/SectionHeader.astro";
     </div>
 
     <div class="srv-card">
-      <div class="icon-badge flex-row"><i class="bi bi-wrench-adjustable"></i></div>
+      <div class="icon-badge flex-row">
+        <i class="bi bi-wrench-adjustable"></i>
+      </div>
       <div class="srv-content">
         <h3>Repuestos y Herramientas</h3>
         <p>
@@ -85,7 +87,7 @@ import SectionHeader from "../components/SectionHeader.astro";
 
 <style>
   #servicios {
-    background-color: var(--clr-blue);
+    background-color: var(--clr-primary);
     padding: 80px 24px;
     gap: 52px;
     align-items: center;
@@ -132,14 +134,8 @@ import SectionHeader from "../components/SectionHeader.astro";
 
   /* ─── HOVER ─── */
   @media (hover: hover) {
-    .srv-card:hover {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(var(--rgb-red), 0.4);
-      transform: translateY(-2px);
-    }
-
     .srv-card:hover .icon-badge {
-      background: var(--clr-red);
+      background: var(--clr-highlight);
       color: #fff;
     }
   }

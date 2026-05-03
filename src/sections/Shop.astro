@@ -111,7 +111,7 @@ import SectionHeader from "../components/SectionHeader.astro";
     gap: 8px;
     width: 100%;
     padding: 11px 24px;
-    background: var(--clr-blue);
+    background: var(--clr-primary);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.72rem;
     font-weight: 600;
@@ -139,20 +139,20 @@ import SectionHeader from "../components/SectionHeader.astro";
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--clr-green);
+    background: var(--clr-accent);
     flex-shrink: 0;
-    box-shadow: 0 0 0 0 rgba(var(--rgb-green), 0.5);
+    box-shadow: 0 0 0 0 rgba(var(--rgb-accent), 0.5);
     animation: pulse-dot 2s ease infinite;
   }
   @keyframes pulse-dot {
     0% {
-      box-shadow: 0 0 0 0 rgba(var(--rgb-green), 0.5);
+      box-shadow: 0 0 0 0 rgba(var(--rgb-accent), 0.5);
     }
     70% {
-      box-shadow: 0 0 0 6px rgba(var(--rgb-green), 0);
+      box-shadow: 0 0 0 6px rgba(var(--rgb-accent), 0);
     }
     100% {
-      box-shadow: 0 0 0 0 rgba(var(--rgb-green), 0);
+      box-shadow: 0 0 0 0 rgba(var(--rgb-accent), 0);
     }
   }
 

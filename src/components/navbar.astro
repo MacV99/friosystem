@@ -67,9 +67,9 @@
   /* HOVER */
   @media (hover: hover) {
     #overlay a:hover {
-      background-color: var(--clr-blue);
+      background-color: var(--clr-primary);
       color: var(--clr-white);
-      border-color: var(--clr-blue);
+      border-color: var(--clr-primary);
     }
   }
 
@@ -123,9 +123,9 @@
     const currentPath = window.location.pathname;
     overlay?.querySelectorAll("a").forEach((link) => {
       if (link.getAttribute("href") === currentPath) {
-        link.style.backgroundColor = "var(--clr-blue)";
+        link.style.backgroundColor = "var(--clr-primary)";
         link.style.color = "#fff";
-        link.style.borderColor = "var(--clr-blue)";
+        link.style.borderColor = "var(--clr-primary)";
       }
     });
   });
