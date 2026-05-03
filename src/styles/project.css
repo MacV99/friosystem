@@ -6,7 +6,7 @@
 
   --clr-accent: #77cbff;
 
-  --clr-green:  #2b9348;
+  --clr-green: #2b9348;
   --clr-green2: color-mix(in oklch, var(--clr-green) 75%, black);
 
   /* ── CANALES RGB DEL PROYECTO ── */
