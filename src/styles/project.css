@@ -4,7 +4,7 @@
   --clr-primary-mid: color-mix(in oklch, var(--clr-primary) 90%, white);
   --clr-primary-light: color-mix(in oklch, var(--clr-primary) 8%, white);
 
-  --clr-accent: #77cbff;
+  --clr-accent: #61c3ff;
 
   --clr-green: #2b9348;
   --clr-green2: color-mix(in oklch, var(--clr-green) 75%, black);
