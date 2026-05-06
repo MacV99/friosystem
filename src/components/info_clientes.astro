@@ -942,6 +942,7 @@ import FsToast from "./FsToast.astro";
         <div class="reporte-card flex-row">
           <div class="reporte-card-info">
             <span class="reporte-label">${etiqueta}</span>
+            ${r.fecha ? `<span class="reporte-sub"><i class="bi bi-calendar3"></i> ${r.fecha.split(" ")[0].replace(/,/g, "")}</span>` : ""}
             ${(r.zona || r.marca) ? `<span class="reporte-sub"><i class="bi bi-geo-alt"></i> ${[r.zona, r.marca].filter(Boolean).join(" · ")}</span>` : ""}
           </div>
           <button class="reporte-btn flex-row" id="reporte-btn-${i}" onclick="descargarReporteHTML(${i})">
