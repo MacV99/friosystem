@@ -307,11 +307,17 @@ import FsToast from "./FsToast.astro";
         <label for="tecnico">
           <i class="bi bi-person-badge"></i> Técnico <span class="req">*</span>
         </label>
-        <input
-          type="text"
-          id="tecnico"
-          placeholder="Nombre del técnico responsable"
-        />
+        <select id="tecnico">
+          <option value="">Seleccionar técnico...</option>
+          <option value="Luis Camilo Sánchez">Luis Camilo Sánchez</option>
+          <option value="Juan Diego Parra">Juan Diego Parra</option>
+          <option value="Sergio Mauricio Tovar">Sergio Mauricio Tovar</option>
+          <option value="John Fausto Quintero">John Fausto Quintero</option>
+          <option value="Iván Darío Ibáñez">Iván Darío Ibáñez</option>
+          <option value="Juan Camilo Peñuela">Juan Camilo Peñuela</option>
+          <option value="Ing. Luis Alberto Sánchez">Ing. Luis Alberto Sánchez</option>
+          <option value="Elvis Fernando Parra">Elvis Fernando Parra</option>
+        </select>
       </div>
 
       <input type="hidden" id="fecha-servicio" />
