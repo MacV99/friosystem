@@ -269,17 +269,20 @@ import FsToast from "./FsToast.astro";
 
       <div class="form-group">
         <label><i class="bi bi-camera-fill"></i> Foto del Servicio</label>
-        <input
-          type="file"
-          id="foto-input"
-          accept="image/*"
-          capture="environment"
-          style="display:none"
-        />
+        <input type="file" id="foto-camera-input" accept="image/*" capture="environment" style="display:none" />
+        <input type="file" id="foto-gallery-input" accept="image/*" style="display:none" />
         <div class="foto-upload-area flex-column" id="foto-upload-area">
           <div id="foto-placeholder" class="foto-placeholder flex-column">
-            <i class="bi bi-camera-fill"></i>
-            <span>Tomar foto o seleccionar imagen</span>
+            <div class="foto-btns flex-row">
+              <button type="button" id="btn-camara" class="foto-btn">
+                <i class="bi bi-camera-fill"></i>
+                <span>Cámara</span>
+              </button>
+              <button type="button" id="btn-galeria" class="foto-btn">
+                <i class="bi bi-images"></i>
+                <span>Galería</span>
+              </button>
+            </div>
             <small>Se comprime automáticamente antes de enviar</small>
           </div>
           <img id="foto-preview" style="display:none;" alt="Vista previa" />
@@ -632,25 +635,51 @@ import FsToast from "./FsToast.astro";
   }
 
   .foto-placeholder {
-    gap: 8px;
+    gap: 12px;
     color: var(--clr-dark2);
     padding: 24px;
     text-align: center;
   }
 
-  .foto-placeholder .bi {
-    font-size: 32px;
-    color: var(--clr-primary);
-  }
-
-  .foto-placeholder span {
-    font-size: 13px;
-    font-weight: 600;
-  }
-
   .foto-placeholder small {
     font-size: 11px;
     color: #bbb;
+  }
+
+  .foto-btns {
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .foto-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 24px;
+    border: 2px solid var(--clr-primary);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--clr-primary);
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .foto-btn .bi {
+    font-size: 28px;
+  }
+
+  .foto-btn span {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  @media (hover: hover) {
+    .foto-btn:hover {
+      background: var(--clr-primary);
+      color: #fff;
+    }
   }
 
   #foto-preview {
@@ -898,7 +927,8 @@ import FsToast from "./FsToast.astro";
       });
     // Resetear foto
     fotoBase64 = null;
-    document.getElementById("foto-input").value = "";
+    document.getElementById("foto-camera-input").value = "";
+    document.getElementById("foto-gallery-input").value = "";
     document.getElementById("foto-preview").style.display = "none";
     document.getElementById("foto-placeholder").style.display = "flex";
     document.getElementById("foto-upload-area").classList.remove("tiene-foto");
@@ -999,10 +1029,12 @@ import FsToast from "./FsToast.astro";
   }
 
   /* ── CONECTAR ZONA DE FOTO ── */
-  const fotoArea = document.getElementById("foto-upload-area");
-  const fotoInput = document.getElementById("foto-input");
-  fotoArea.addEventListener("click", () => fotoInput.click());
-  fotoInput.addEventListener("change", () => previsualizarFoto(fotoInput));
+  const fotoCameraInput = document.getElementById("foto-camera-input");
+  const fotoGalleryInput = document.getElementById("foto-gallery-input");
+  document.getElementById("btn-camara").addEventListener("click", () => fotoCameraInput.click());
+  document.getElementById("btn-galeria").addEventListener("click", () => fotoGalleryInput.click());
+  fotoCameraInput.addEventListener("change", () => previsualizarFoto(fotoCameraInput));
+  fotoGalleryInput.addEventListener("change", () => previsualizarFoto(fotoGalleryInput));
 
   window.verificarAcceso = verificarAcceso;
   window.enviarReporte = enviarReporte;
