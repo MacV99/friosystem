@@ -40,20 +40,65 @@
       </p>
     </div>
 
-    <div class="nos-visual">
-      <!--
-        IMAGEN DE REFERENCIA — reemplazar /img/hero.jpg con una foto
-        del equipo técnico o de una instalación real.
-      -->
-      <img
-        src="/img/hero.jpg"
-        alt="Equipo técnico AC Friosystem en instalación"
-      />
+    <div class="nos-visual" id="nosSlider">
+      <div class="slider-track">
+        <img src="/img/general/ind (1).avif" alt="AC Friosystem instalación 1" class="slide active" />
+        <img src="/img/general/ind (2).avif" alt="AC Friosystem instalación 2" class="slide" />
+        <img src="/img/general/ind (3).avif" alt="AC Friosystem instalación 3" class="slide" />
+        <img src="/img/general/ind (4).avif" alt="AC Friosystem instalación 4" class="slide" />
+        <img src="/img/general/ind (5).avif" alt="AC Friosystem instalación 5" class="slide" />
+        <img src="/img/general/ind (6).avif" alt="AC Friosystem instalación 6" class="slide" />
+        <img src="/img/general/ind (7).avif" alt="AC Friosystem instalación 7" class="slide" />
+        <img src="/img/general/ind (8).avif" alt="AC Friosystem instalación 8" class="slide" />
+        <img src="/img/general/ind (9).avif" alt="AC Friosystem instalación 9" class="slide" />
+      </div>
+
       <div class="nos-overlay-badge">
         <i class="bi bi-people-fill"></i>
         <span>Equipo altamente calificado</span>
       </div>
+
+      <div class="slider-dots" id="nosDots"></div>
     </div>
+
+    <script>
+      (function () {
+        const slider = document.getElementById("nosSlider");
+        if (!slider) return;
+        const slides = slider.querySelectorAll(".slide");
+        const dotsContainer = slider.querySelector("#nosDots");
+        let current = 0;
+        let timer;
+
+        slides.forEach((_, i) => {
+          const d = document.createElement("button");
+          d.className = "dot" + (i === 0 ? " dot-active" : "");
+          d.setAttribute("aria-label", `Foto ${i + 1}`);
+          d.addEventListener("click", () => goTo(i));
+          dotsContainer.appendChild(d);
+        });
+
+        function goTo(n) {
+          slides[current].classList.remove("active");
+          dotsContainer.children[current].classList.remove("dot-active");
+          current = (n + slides.length) % slides.length;
+          slides[current].classList.add("active");
+          dotsContainer.children[current].classList.add("dot-active");
+        }
+
+        function start() {
+          timer = setInterval(() => goTo(current + 1), 4000);
+        }
+
+        function stop() {
+          clearInterval(timer);
+        }
+
+        slider.addEventListener("mouseenter", stop);
+        slider.addEventListener("mouseleave", start);
+        start();
+      })();
+    </script>
   </div>
 </section>
 
@@ -139,7 +184,7 @@
     display: block;
   }
 
-  /* ─── IMAGE COLUMN ─── */
+  /* ─── IMAGE COLUMN / SLIDER ─── */
   .nos-visual {
     position: relative;
     border-radius: 22px;
@@ -149,19 +194,37 @@
     box-shadow: var(--shadow-lg);
   }
 
-  .nos-visual img {
+  .slider-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
     display: block;
-    transition: transform 0.5s ease;
   }
 
-  @media (hover: hover) {
-    .nos-visual:hover img {
-      transform: scale(1.03);
-    }
+  .slide.active {
+    opacity: 1;
   }
+
+  .slider-dots {
+    position: absolute;
+    bottom: 52px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 10;
+  }
+
 
   .nos-overlay-badge {
     position: absolute;
@@ -198,5 +261,23 @@
     h2 {
       font-size: 3.4rem;
     }
+  }
+</style>
+
+<style is:global>
+  .slider-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .slider-dots .dot-active {
+    background: white;
+    transform: scale(1.35);
   }
 </style>
