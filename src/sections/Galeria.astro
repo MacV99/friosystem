@@ -1,0 +1,298 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
+<section id="galeria">
+  <SectionHeader
+    eyebrow="Nuestro trabajo"
+    title="GALERÍA DE PROYECTOS"
+    description="Instalaciones reales, proyectos de alto nivel y soluciones a medida en Neiva y el Huila"
+  />
+
+  <div class="tech-banner">
+    <div class="tech-item">
+      <i class="bi bi-cpu-fill"></i>
+      <span>VRF</span>
+      <p>Volumen de refrigerante variable</p>
+    </div>
+    <div class="tech-item">
+      <i class="bi bi-snow2"></i>
+      <span>Chiller</span>
+      <p>Enfriadores industriales y comerciales</p>
+    </div>
+    <div class="tech-item">
+      <i class="bi bi-hospital"></i>
+      <span>Hospitalario</span>
+      <p>Clínicas, laboratorios y centros médicos</p>
+    </div>
+    <div class="tech-item">
+      <i class="bi bi-buildings"></i>
+      <span>Comercial</span>
+      <p>Centros comerciales, oficinas e industria</p>
+    </div>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item">
+      <img src="/img/general/ind (1).avif" alt="Proyecto de instalación AC Friosystem" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/img/general/ind (2).avif" alt="Proyecto de climatización industrial" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/img/general/ind (3).avif" alt="Instalación aire acondicionado comercial" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/img/general/ind (4).avif" alt="Mantenimiento sistema HVAC" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/img/general/ind (5).avif" alt="Proyecto VRF Neiva" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/img/general/ind (6).avif" alt="Instalación equipo industrial" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/img/general/ind (7).avif" alt="Sistema de ventilación mecánica" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/img/general/ind (8).avif" alt="Montaje aire acondicionado hospitalario" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/img/general/ind (9).avif" alt="Proyecto integral de climatización" loading="lazy" />
+      <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+    <button class="lb-prev" id="lbPrev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
+    <img src="" alt="" id="lbImg" />
+    <button class="lb-next" id="lbNext" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
+  </div>
+</section>
+
+<script>
+  const items = document.querySelectorAll('#galleryGrid .gallery-item');
+  const lb = document.getElementById('lightbox') as HTMLDivElement;
+  const lbImg = document.getElementById('lbImg') as HTMLImageElement;
+  const lbClose = document.getElementById('lbClose')!;
+  const lbPrev = document.getElementById('lbPrev')!;
+  const lbNext = document.getElementById('lbNext')!;
+  let current = 0;
+
+  const imgs = Array.from(items).map(item => {
+    const img = item.querySelector('img') as HTMLImageElement | null;
+    return img ? { src: img.src, alt: img.alt } : { src: '', alt: '' };
+  });
+
+  let prevOverflow = '';
+
+  function openLb(index: number) {
+    current = index;
+    if (!imgs[current].src) return;
+    lbImg.src = imgs[current].src;
+    lbImg.alt = imgs[current].alt;
+    lb.classList.add('open');
+    prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = prevOverflow;
+  }
+
+  items.forEach((item, i) => item.addEventListener('click', () => openLb(i)));
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  lbPrev.addEventListener('click', () => openLb((current - 1 + imgs.length) % imgs.length));
+  lbNext.addEventListener('click', () => openLb((current + 1) % imgs.length));
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') openLb((current - 1 + imgs.length) % imgs.length);
+    if (e.key === 'ArrowRight') openLb((current + 1) % imgs.length);
+  });
+</script>
+
+<style>
+  #galeria {
+    background: #fff;
+    padding: 80px 24px;
+    gap: 52px;
+    align-items: center;
+  }
+
+  /* ─── TECH BANNER ─── */
+  .tech-banner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: #f4f6f8;
+    border: 1.5px solid #e2e6ea;
+    border-radius: 16px;
+    padding: 20px 28px;
+    flex: 1 1 160px;
+    text-align: center;
+    transition: transform 0.22s ease;
+  }
+
+  .tech-item i {
+    font-size: 22px;
+    color: var(--clr-primary);
+  }
+
+  .tech-item span {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--clr-primary);
+    text-transform: uppercase;
+  }
+
+  .tech-item p {
+    font-size: 0.7rem;
+    color: var(--clr-dark2);
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  @media (hover: hover) {
+    .tech-item:hover { transform: translateY(-3px); }
+  }
+
+  /* ─── GALLERY GRID ─── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+    background: var(--clr-gray);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 33, 50, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-overlay i {
+    font-size: 28px;
+    color: #fff;
+  }
+
+  @media (hover: hover) {
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+  }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    max-width: unset !important;
+    width: 100vw !important;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 8px 60px rgba(0,0,0,0.6);
+  }
+
+  .lb-close, .lb-prev, .lb-next {
+    position: absolute;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .lb-close {
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .lb-prev, .lb-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .lb-prev { left: 12px; }
+  .lb-next { right: 12px; }
+
+  @media (hover: hover) {
+    .lb-close:hover, .lb-prev:hover, .lb-next:hover {
+      background: rgba(255,255,255,0.25);
+    }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (min-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,357 @@
+---
+const handle = "ac_friosystem_sas";
+const profileUrl = `https://www.instagram.com/${handle}/`;
+
+const posts = [
+  "/img/general/ind (1).avif",
+  "/img/general/ind (2).avif",
+  "/img/general/ind (3).avif",
+  "/img/general/ind (4).avif",
+  "/img/general/ind (5).avif",
+  "/img/general/ind (6).avif",
+];
+---
+
+<section id="instagram">
+  <div class="ig-wrapper">
+
+    <!-- Profile card -->
+    <div class="ig-card">
+      <div class="ig-avatar-wrap">
+        <div class="ig-avatar-ring"></div>
+        <img
+          src="/img/logo.jpg"
+          alt="AC Friosystem SAS logo"
+          class="ig-avatar"
+        />
+      </div>
+
+      <div class="ig-info">
+        <p class="ig-name">AC FRIOSYSTEM SAS</p>
+        <a class="ig-handle" href={profileUrl} target="_blank" rel="noopener noreferrer">
+          @{handle}
+        </a>
+        <p class="ig-bio">Venta, mantenimiento e instalación de aire acondicionado 🔧❄️</p>
+
+        <div class="ig-stats">
+          <div class="ig-stat">
+            <strong>100</strong>
+            <span>Posts</span>
+          </div>
+          <div class="ig-stat">
+            <strong>163</strong>
+            <span>Seguidores</span>
+          </div>
+          <div class="ig-stat">
+            <strong>190</strong>
+            <span>Seguidos</span>
+          </div>
+        </div>
+
+        <a
+          href={profileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ig-follow-btn"
+        >
+          <i class="bi bi-instagram"></i>
+          Seguir en Instagram
+        </a>
+      </div>
+    </div>
+
+    <!-- Feed grid -->
+    <div class="ig-feed">
+      <div class="ig-feed-header">
+        <i class="bi bi-grid-3x3-gap"></i>
+        <span>Publicaciones recientes</span>
+      </div>
+      <div class="ig-grid">
+        {posts.map((src, i) => (
+          <a
+            href={profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ig-post"
+            aria-label={`Ver publicación ${i + 1} en Instagram`}
+          >
+            <img src={src} alt={`Proyecto AC Friosystem ${i + 1}`} loading="lazy" />
+            <div class="ig-post-overlay">
+              <i class="bi bi-instagram"></i>
+            </div>
+          </a>
+        ))}
+      </div>
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ig-see-more"
+      >
+        Ver más en Instagram
+        <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #instagram {
+    background: var(--clr-primary);
+    padding: 80px 24px;
+    align-items: center;
+    gap: 0;
+  }
+
+  .ig-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  /* ─── PROFILE CARD ─── */
+  .ig-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 36px 28px;
+    text-align: center;
+    align-self: stretch;
+  }
+
+  .ig-avatar-wrap {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    flex-shrink: 0;
+  }
+
+  .ig-avatar-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+    animation: igRingRotate 4s linear infinite;
+  }
+
+  @keyframes igRingRotate {
+    to { transform: rotate(360deg); }
+  }
+
+  .ig-avatar {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--clr-primary);
+  }
+
+  .ig-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .ig-name {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .ig-handle {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+
+  @media (hover: hover) {
+    .ig-handle:hover { color: rgba(255,255,255,0.9); }
+  }
+
+  .ig-bio {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 260px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* ─── STATS ─── */
+  .ig-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 14px 12px;
+    margin: 4px 0;
+  }
+
+  .ig-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .ig-stat strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .ig-stat span {
+    font-size: 0.52rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+
+  .ig-follow-btn {
+    display: inline-flex;
+    align-items: center;
+    align-self: center;
+    gap: 7px;
+    background: linear-gradient(135deg, #ee2a7b, #6228d7);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 9px 20px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 4px;
+    width: fit-content;
+  }
+
+  .ig-follow-btn i { font-size: 14px; }
+
+  @media (hover: hover) {
+    .ig-follow-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+  }
+
+  /* ─── FEED GRID ─── */
+  .ig-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ig-feed-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .ig-feed-header i { font-size: 14px; }
+
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+
+  .ig-post {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .ig-post img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .ig-post-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 33, 50, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .ig-post-overlay i {
+    font-size: 24px;
+    color: #fff;
+  }
+
+  @media (hover: hover) {
+    .ig-post:hover img { transform: scale(1.07); }
+    .ig-post:hover .ig-post-overlay { opacity: 1; }
+  }
+
+  .ig-see-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    align-self: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    padding: 8px 0;
+  }
+
+  .ig-see-more i { font-size: 13px; transition: transform 0.2s; }
+
+  @media (hover: hover) {
+    .ig-see-more:hover { color: rgba(255,255,255,0.85); }
+    .ig-see-more:hover i { transform: translateX(4px); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (min-width: 700px) {
+    .ig-wrapper {
+      grid-template-columns: 300px 1fr;
+      align-items: stretch;
+    }
+
+    .ig-card {
+      position: static;
+    }
+  }
+</style>

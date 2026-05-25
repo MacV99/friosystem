@@ -4,15 +4,129 @@ import "../styles/project.css";
 import Footer from "../sections/Footer.astro";
 import Header from "../sections/Header.astro";
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "Empresa de aire acondicionado en Neiva, Huila. Instalación, mantenimiento y suministro de equipos INVERTER, Mini Split, VRF y Chiller. +13 años de experiencia. ☎ Contáctenos.",
+  canonical = "https://www.friosystem.com/",
+  ogImage = "https://www.friosystem.com/img/hero.jpg",
+} = Astro.props;
+
+const siteUrl = "https://www.friosystem.com";
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/img/logo.jpg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Primary -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="AC Friosystem S.A.S" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/jpeg" href="/img/logo.jpg" />
+
+    <!-- LocalBusiness Schema (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HVACBusiness",
+        "name": "AC Friosystem S.A.S",
+        "image": "https://www.friosystem.com/img/logo.jpg",
+        "url": "https://www.friosystem.com",
+        "telephone": "+573107751017",
+        "priceRange": "$$",
+        "description": "Empresa de aire acondicionado en Neiva, Huila. Instalación, mantenimiento preventivo y correctivo, suministro de equipos INVERTER, Mini Split, VRF, Chiller y ventilación mecánica.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Neiva",
+          "addressRegion": "Huila",
+          "addressCountry": "CO"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "2.9273",
+          "longitude": "-75.2820"
+        },
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Neiva"
+          },
+          {
+            "@type": "State",
+            "name": "Huila"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Aire Acondicionado",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Mantenimiento de Aire Acondicionado",
+                "description": "Mantenimiento preventivo y correctivo de equipos INVERTER, Mini Split, Cassette, Chiller en Neiva y Huila"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Instalación de Aire Acondicionado",
+                "description": "Instalación y montaje de sistemas de aire acondicionado INVERTER en Neiva, Huila"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Suministro de Equipos INVERTER",
+                "description": "Venta y suministro de equipos de aire acondicionado INVERTER, Mini Split, VRF de las mejores marcas"
+              }
+            }
+          ]
+        },
+        "sameAs": [
+          "https://www.instagram.com/acfriosystem"
+        ],
+        "foundingDate": "2011",
+        "numberOfEmployees": {
+          "@type": "QuantitativeValue",
+          "minValue": 5,
+          "maxValue": 20
+        }
+      }
+    </script>
 
     <!-- Google Fonts: Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,8 +137,6 @@ const { title } = Astro.props;
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
-
-    <title>{title}</title>
   </head>
 
   <body>
@@ -34,7 +146,7 @@ const { title } = Astro.props;
     </main>
     <Footer />
     <a
-      href="https://wa.me/573107751017"
+      href="https://wa.link/o7aqgt"
       target="_blank"
       rel="noopener noreferrer"
       class="whatsapp-float"
@@ -68,8 +180,11 @@ const { title } = Astro.props;
     transition: transform 0.2s, box-shadow 0.2s;
     text-decoration: none;
   }
-  .whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+
+  @media (hover: hover) {
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
   }
 </style>

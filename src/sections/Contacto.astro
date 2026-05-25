@@ -1,0 +1,257 @@
+---
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
+<section id="contacto">
+  <SectionHeader
+    eyebrow="Estamos para servirte"
+    title="CONTÁCTANOS"
+    description="Visítanos, escríbenos o llámanos. Respondemos rápido y sin compromiso."
+  />
+
+  <div class="contact-grid">
+
+    <!-- Info column -->
+    <div class="contact-info">
+
+      <div class="contact-item">
+        <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+        <div>
+          <p class="contact-label">Dirección</p>
+          <p class="contact-value">Calle 7 # 23A – 29<br />Neiva, Huila, Colombia</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+        <div>
+          <p class="contact-label">Teléfono</p>
+          <a class="contact-value contact-link" href="tel:+573107751017">+57 310 775 1017</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+        <div>
+          <p class="contact-label">Correo electrónico</p>
+          <a class="contact-value contact-link" href="mailto:friosystemneiva@gmail.com">friosystemneiva@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon"><i class="bi bi-clock-fill"></i></div>
+        <div>
+          <p class="contact-label">Horario de atención</p>
+          <p class="contact-value">Lun – Vie: 8:00 am – 6:00 pm<br />Sábado: 8:00 am – 1:00 pm</p>
+        </div>
+      </div>
+
+      <div class="contact-ctas">
+        <a
+          href="https://wa.link/o7aqgt"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-wa"
+        >
+          <i class="bi bi-whatsapp"></i>
+          Escribir por WhatsApp
+        </a>
+        <a
+          href="mailto:friosystemneiva@gmail.com"
+          class="cta-email"
+        >
+          <i class="bi bi-envelope"></i>
+          Enviar correo
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Map column -->
+    <div class="contact-map">
+      <iframe
+        title="Ubicación AC Friosystem SAS en Neiva"
+        src="https://maps.google.com/maps?q=2.9273,-75.2820&hl=es&z=16&output=embed"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <a
+        href="https://maps.google.com/maps?q=Calle+7+%23+23A-29+Neiva+Huila+Colombia"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="map-link"
+      >
+        <i class="bi bi-box-arrow-up-right"></i>
+        Abrir en Google Maps
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #contacto {
+    background: #f4f6f8;
+    padding: 80px 24px;
+    gap: 52px;
+    align-items: center;
+  }
+
+  /* ─── GRID ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  /* ─── INFO ─── */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--bg-subtle, #f0f2f4);
+    border: 1px solid var(--border-soft, #e2e6ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon i {
+    font-size: 16px;
+    color: var(--clr-primary);
+  }
+
+  .contact-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clr-dark2);
+    margin-bottom: 3px;
+  }
+
+  .contact-value {
+    font-size: 0.85rem;
+    color: var(--clr-dark);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .contact-link {
+    transition: color 0.2s;
+    display: inline-block;
+  }
+
+  @media (hover: hover) {
+    .contact-link:hover { color: var(--clr-primary); }
+  }
+
+  /* ─── CTAs ─── */
+  .contact-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .cta-wa, .cta-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 50px;
+    transition: all 0.22s ease;
+  }
+
+  .cta-wa {
+    background: #d4f5e2;
+    color: #1a7a45;
+    border: 1.5px solid #a8e6c3;
+  }
+
+  .cta-email {
+    background: #e8ecf0;
+    color: var(--clr-primary);
+    border: 1.5px solid #c8d0d9;
+  }
+
+  .cta-wa i, .cta-email i { font-size: 16px; }
+
+  @media (hover: hover) {
+    .cta-wa:hover { background: #bfedd5; transform: translateY(-2px); }
+    .cta-email:hover { background: #dde2e8; transform: translateY(-2px); }
+  }
+
+  /* ─── MAP ─── */
+  .contact-map {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 360px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-map iframe {
+    flex: 1;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .map-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 12px;
+    background: var(--clr-primary);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .map-link i { font-size: 13px; }
+
+  @media (hover: hover) {
+    .map-link:hover { color: #fff; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (min-width: 750px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .contact-map {
+      height: 100%;
+      min-height: 400px;
+    }
+  }
+</style>
