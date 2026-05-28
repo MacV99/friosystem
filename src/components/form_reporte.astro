@@ -775,7 +775,7 @@ import FsToast from "./FsToast.astro";
      Ejemplo: "https://script.google.com/macros/s/AKfy.../exec"
   ─────────────────────────────────────────────────────────────────── */
   const APPS_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzETUPQlKW4G36Zj4rMdh9dwjX5jHQfdusOX1A96bRZ8jqJH3zUm7ZzFl_zO-4O5jD_/exec";
+    "https://script.google.com/macros/s/AKfycbzO7TUz_kLC2dQBo4p-su7O0ltJ2NMoX8H7JbXXey6FUwNEe60XOIkw9K4UDbhLmzpX/exec";
 
   /* ── CONTROL DE ACCESO ── */
   function verificarAcceso() {
@@ -994,14 +994,23 @@ import FsToast from "./FsToast.astro";
     fsrToast("Guardando reporte...", "⏳");
 
     try {
-      /* Enviamos con mode:'no-cors' para evitar problemas de CORS con Apps Script.
-         La petición llega al servidor pero no podemos leer la respuesta — esto es normal. */
-      await fetch(APPS_SCRIPT_URL, {
+      /* text/plain = simple request → sin preflight CORS.
+         Apps Script debe responder JSON con { ok: true } o { ok: false, error }. */
+      const res = await fetch(APPS_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(datos),
+        redirect: "follow",
       });
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
+      const json = await res.json().catch(() => ({ ok: false, error: "Respuesta no es JSON" }));
+      if (!json.ok) {
+        throw new Error(json.error || "Apps Script reportó fallo");
+      }
 
       setBtnEstado("exito");
       fsrToast("¡Reporte guardado!", "✅");
@@ -1016,12 +1025,13 @@ import FsToast from "./FsToast.astro";
         limpiarFormulario();
       }, 800);
     } catch (err) {
+      console.error("Error guardando reporte:", err);
       setBtnEstado("normal");
       fsrToast("Error al guardar el reporte", "❌");
       setTimeout(() => {
         fsrModalShow({
-          title: "Error de conexión",
-          body: "No se pudo guardar el reporte. Verifica tu conexión a internet e intenta nuevamente.",
+          title: "Error al guardar",
+          body: `No se pudo guardar el reporte.<br><small style="color:#888">${err?.message ?? err}</small>`,
           variante: "error",
         });
       }, 400);
