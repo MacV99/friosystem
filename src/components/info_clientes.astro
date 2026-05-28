@@ -829,6 +829,59 @@ import FsToast from "./FsToast.astro";
     return headers.findIndex((h) => keywords.some((kw) => h.toLowerCase().includes(kw.toLowerCase())));
   }
 
+  /* URL del Apps Script — mismo endpoint usado para guardar reportes. */
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzO7TUz_kLC2dQBo4p-su7O0ltJ2NMoX8H7JbXXey6FUwNEe60XOIkw9K4UDbhLmzpX/exec";
+
+  /* Convierte URLs de Google Drive a formato CDN hotlinkeable.
+     Soporta: drive.google.com/uc?id=ID, drive.google.com/file/d/ID/view, open?id=ID, lh3.googleusercontent.com/d/ID. */
+  function normalizarUrlDrive(url) {
+    if (!url) return "";
+    const patrones = [
+      /drive\.google\.com\/uc\?(?:.*&)?id=([a-zA-Z0-9_-]+)/,
+      /drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/,
+      /drive\.google\.com\/open\?(?:.*&)?id=([a-zA-Z0-9_-]+)/,
+      /drive\.google\.com\/thumbnail\?(?:.*&)?id=([a-zA-Z0-9_-]+)/,
+      /lh3\.googleusercontent\.com\/d\/([a-zA-Z0-9_-]+)/,
+    ];
+    for (const re of patrones) {
+      const m = url.match(re);
+      if (m) return `https://lh3.googleusercontent.com/d/${m[1]}=w2000`;
+    }
+    return url;
+  }
+
+  /* Extrae file ID de cualquier URL de Drive/lh3. */
+  function extraerIdDrive(url) {
+    if (!url) return "";
+    const patrones = [
+      /lh3\.googleusercontent\.com\/d\/([a-zA-Z0-9_-]+)/,
+      /drive\.google\.com\/uc\?(?:.*&)?id=([a-zA-Z0-9_-]+)/,
+      /drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/,
+      /drive\.google\.com\/open\?(?:.*&)?id=([a-zA-Z0-9_-]+)/,
+      /drive\.google\.com\/thumbnail\?(?:.*&)?id=([a-zA-Z0-9_-]+)/,
+    ];
+    for (const re of patrones) {
+      const m = url.match(re);
+      if (m) return m[1];
+    }
+    return "";
+  }
+
+  /* Pide al Apps Script el archivo en base64 para que html2canvas pueda capturarlo sin CORS. */
+  async function obtenerFotoDataUrl(url) {
+    const id = extraerIdDrive(url);
+    if (!id) return "";
+    try {
+      const res = await fetch(`${APPS_SCRIPT_URL}?id=${id}`);
+      if (!res.ok) return "";
+      const json = await res.json();
+      return json.ok ? json.dataUrl : "";
+    } catch {
+      return "";
+    }
+  }
+
   /* ── LÓGICA DE BÚSQUEDA ── */
   async function buscarDatos(identificacion, url) {
     const res = await fetch(`${url}&rand=${Date.now()}`, {
@@ -997,7 +1050,7 @@ import FsToast from "./FsToast.astro";
     if (el) el.textContent = val || "—";
   }
 
-  function descargarReporteHTML(index) {
+  async function descargarReporteHTML(index) {
     const d = _registrosActuales[index];
     if (!d) return;
 
@@ -1061,10 +1114,11 @@ import FsToast from "./FsToast.astro";
       { elId: "rh-chk-malo", label: "MALO" },
     ]);
 
-    // Foto
+    // Foto — normalizar URL de Google Drive a CDN hotlinkeable
+    const fotoUrl = normalizarUrlDrive(d.foto);
     const fotoEl = document.getElementById("rh-foto");
-    if (d.foto) {
-      fotoEl.style.backgroundImage = `url('${d.foto}')`;
+    if (fotoUrl) {
+      fotoEl.style.backgroundImage = `url('${fotoUrl}')`;
       fotoEl.style.backgroundSize = "cover";
       fotoEl.style.backgroundPosition = "center";
     } else {
@@ -1107,13 +1161,23 @@ import FsToast from "./FsToast.astro";
       }
     };
 
-    // Con background-image no hay evento onload — esperamos un tick para que el browser aplique el estilo
-    if (d.foto) {
-      const tempImg = new Image();
-      tempImg.crossOrigin = "anonymous";
-      tempImg.onload = doCapture;
-      tempImg.onerror = doCapture;
-      tempImg.src = d.foto;
+    // Para el PDF: pedir base64 al Apps Script (evita CORS en html2canvas) y reemplazar background-image.
+    if (fotoUrl) {
+      const dataUrl = await obtenerFotoDataUrl(fotoUrl);
+      if (dataUrl) {
+        fotoEl.style.backgroundImage = `url('${dataUrl}')`;
+        const tempImg = new Image();
+        tempImg.onload = doCapture;
+        tempImg.onerror = doCapture;
+        tempImg.src = dataUrl;
+      } else {
+        // Fallback: usar la URL hotlinkeable directa (puede salir vacía en el PDF si CORS falla).
+        const tempImg = new Image();
+        tempImg.crossOrigin = "anonymous";
+        tempImg.onload = doCapture;
+        tempImg.onerror = doCapture;
+        tempImg.src = fotoUrl;
+      }
     } else {
       doCapture();
     }
