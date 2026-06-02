@@ -805,23 +805,47 @@ import FsToast from "./FsToast.astro";
   });
 
   /* ── CSV PARSER (maneja campos con comas entre comillas) ── */
-  function parseCsvLine(line) {
-    const result = [];
-    let cur = "",
+  /* Parsea CSV completo respetando comillas: maneja comas y saltos de línea
+     dentro de campos entre comillas, y comillas escapadas ("").
+     Devuelve array de filas, cada fila array de celdas (trim aplicado). */
+  function parseCsv(text) {
+    const rows = [];
+    let row = [],
+      cur = "",
       inQuote = false;
-    for (let i = 0; i < line.length; i++) {
-      const ch = line[i];
-      if (ch === '"') {
-        inQuote = !inQuote;
-      } else if (ch === "," && !inQuote) {
-        result.push(cur.trim());
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (inQuote) {
+        if (ch === '"') {
+          if (text[i + 1] === '"') {
+            cur += '"';
+            i++;
+          } else {
+            inQuote = false;
+          }
+        } else {
+          cur += ch;
+        }
+      } else if (ch === '"') {
+        inQuote = true;
+      } else if (ch === ",") {
+        row.push(cur.trim());
         cur = "";
+      } else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && text[i + 1] === "\n") i++;
+        row.push(cur.trim());
+        cur = "";
+        rows.push(row);
+        row = [];
       } else {
         cur += ch;
       }
     }
-    result.push(cur.trim());
-    return result;
+    if (cur !== "" || row.length) {
+      row.push(cur.trim());
+      rows.push(row);
+    }
+    return rows;
   }
 
   /* ── BUSCAR COLUMNA POR PALABRAS CLAVE ── */
@@ -891,12 +915,10 @@ import FsToast from "./FsToast.astro";
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const csv = await res.text();
-    const lines = csv.trim().split("\n");
-    if (lines.length < 2) return null;
+    const rows = parseCsv(csv.trim());
+    if (rows.length < 2) return null;
 
-    const headers = parseCsvLine(lines[0]).map((h) =>
-      h.toLowerCase().replace(/['"]/g, ""),
-    );
+    const headers = rows[0].map((h) => h.toLowerCase().replace(/['"]/g, ""));
 
     const iCedula = findCol(
       headers,
@@ -944,9 +966,8 @@ import FsToast from "./FsToast.astro";
     const id = identificacion.trim().toLowerCase();
     const filas = [];
 
-    for (let i = 1; i < lines.length; i++) {
-      if (!lines[i].trim()) continue;
-      const cells = parseCsvLine(lines[i]);
+    for (let i = 1; i < rows.length; i++) {
+      const cells = rows[i];
       if (cells[iCedula]?.toLowerCase().trim() === id) {
         filas.push({
           cedula: cells[iCedula] || "",
@@ -1060,11 +1081,10 @@ import FsToast from "./FsToast.astro";
       btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Generando...';
     }
 
-    const fechaStr = d.fecha || (() => {
-      const f = new Date();
-      return `${String(f.getDate()).padStart(2, "0")}/${String(f.getMonth() + 1).padStart(2, "0")}/${f.getFullYear()}`;
-    })();
-    const [dd, mm, yyyy] = fechaStr.split("/");
+    // Fecha+hora tal cual viene. Vacío si el registro no la trae (sin fallback a hoy).
+    const fechaStr = d.fecha || "";
+    // Para el nombre del archivo solo se usa la parte de fecha (sin hora).
+    const [dd, mm, yyyy] = fechaStr.split(" ")[0].replace(/,/g, "").split("/");
 
     // Rellenar campos de texto
     setText("rh-fecha", fechaStr);
@@ -1145,7 +1165,8 @@ import FsToast from "./FsToast.astro";
         const pdfH = (canvas.height * pdfW) / canvas.width;
         const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [pdfW, pdfH] });
         pdf.addImage(imgData, "JPEG", 0, 0, pdfW, pdfH);
-        const nombre = `ReporteV2_${(d.cliente || "cliente").replace(/\s+/g, "_")}_${dd}-${mm}-${yyyy}.pdf`;
+        const sufFecha = fechaStr ? `_${dd}-${mm}-${yyyy}` : "";
+        const nombre = `ReporteV2_${(d.cliente || "cliente").replace(/\s+/g, "_")}${sufFecha}.pdf`;
         pdf.save(nombre);
         if (btn) {
           btn.disabled = false;
