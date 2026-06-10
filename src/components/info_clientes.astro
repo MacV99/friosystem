@@ -1046,6 +1046,16 @@ import FsToast from "./FsToast.astro";
     });
   }
 
+  // Normaliza para comparar sin importar mayúsculas ni acentos
+  // (ej. "Instalación" del Sheet vs "Instalacion" de la etiqueta).
+  function normalizarComparable(str) {
+    return str
+      .trim()
+      .toUpperCase()
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "");
+  }
+
   function marcarCheckboxHTML(id, valor, etiquetas) {
     // Limpia todos primero
     etiquetas.forEach(({ elId }) => {
@@ -1053,12 +1063,10 @@ import FsToast from "./FsToast.astro";
       if (el) el.style.background = "white";
     });
     if (!valor) return;
-    const norm = valor.trim().toUpperCase();
+    const norm = normalizarComparable(valor);
     for (const { elId, label } of etiquetas) {
-      if (
-        norm.includes(label.toUpperCase()) ||
-        label.toUpperCase().includes(norm)
-      ) {
+      const labelNorm = normalizarComparable(label);
+      if (norm.includes(labelNorm) || labelNorm.includes(norm)) {
         const el = document.getElementById(elId);
         if (el) el.style.background = "#032132";
         break;
