@@ -1012,13 +1012,15 @@ import FsToast from "./FsToast.astro";
         throw new Error(json.error || "Apps Script reportó fallo");
       }
 
+      const consecutivo = json.consecutivo || "";
+
       setBtnEstado("exito");
-      fsrToast("¡Reporte guardado!", "✅");
+      fsrToast(consecutivo ? `¡Guardado! ${consecutivo}` : "¡Reporte guardado!", "✅");
 
       setTimeout(() => {
         fsrModalShow({
           title: "Reporte guardado",
-          body: `El reporte de <strong>${datos.cliente}</strong> fue registrado correctamente.<br><small style="color:#888">Cédula/NIT: ${datos.cedula} · Técnico: ${datos.tecnico}</small>`,
+          body: `${consecutivo ? `<div style="font-size:1.4rem;font-weight:800;letter-spacing:2px;color:var(--clr-primary);margin-bottom:8px;">${consecutivo}</div>` : ""}El reporte de <strong>${datos.cliente}</strong> fue registrado correctamente.<br><small style="color:#888">Cédula/NIT: ${datos.cedula} · Técnico: ${datos.tecnico}</small>`,
           variante: "exito",
         });
         setBtnEstado("normal");
