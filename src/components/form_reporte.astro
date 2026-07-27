@@ -46,6 +46,24 @@ import FsToast from "./FsToast.astro";
 
       <div class="divider"></div>
 
+      <!-- ── PANEL DE REPORTES SIN SINCRONIZAR ── -->
+      <div id="fsr-pendientes" class="fsr-pendientes" style="display:none;">
+        <div class="fsr-pend-header">
+          <div class="fsr-pend-title flex-row">
+            <i class="bi bi-cloud-arrow-up"></i>
+            <span>Reportes sin sincronizar (<span id="fsr-pend-count">0</span>)</span>
+          </div>
+          <button
+            type="button"
+            id="fsr-pend-sync-all"
+            class="fsr-pend-syncall flex-row"
+          >
+            <i class="bi bi-arrow-repeat"></i> Sincronizar todos
+          </button>
+        </div>
+        <div id="fsr-pend-lista" class="fsr-pend-lista"></div>
+      </div>
+
       <!-- ── SECCIÓN 1: DATOS DEL CLIENTE ── -->
       <div class="form-section-title">
         <i class="bi bi-person-lines-fill"></i> Datos del Cliente
@@ -739,6 +757,175 @@ import FsToast from "./FsToast.astro";
 
   }
 
+  /* ── PANEL PENDIENTES ── */
+  .fsr-pendientes {
+    border: 1.5px solid var(--clr-gray);
+    border-radius: 14px;
+    background: #fffdf5;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+  }
+
+  .fsr-pend-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .fsr-pend-title {
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--clr-primary);
+  }
+
+  .fsr-pend-title .bi {
+    font-size: 16px;
+  }
+
+  .fsr-pend-syncall {
+    gap: 6px;
+    padding: 7px 14px;
+    background: var(--clr-primary);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .fsr-pend-syncall:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .fsr-pend-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fsr-pend-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--clr-gray);
+    border-radius: 11px;
+    background: var(--clr-white);
+  }
+
+  .fsr-pend-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .fsr-pend-cliente {
+    font-weight: 700;
+    color: var(--clr-dark);
+    font-size: 14px;
+  }
+
+  .fsr-pend-meta {
+    font-size: 12px;
+    color: var(--clr-dark2);
+  }
+
+  .fsr-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .fsr-badge-pend {
+    background: #fff4d6;
+    color: #96690a;
+  }
+
+  .fsr-badge-error {
+    background: #fde2e4;
+    color: #b3261e;
+  }
+
+  .fsr-badge-ok {
+    background: #dcf5e3;
+    color: #1e7a3c;
+  }
+
+  .fsr-pend-det {
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--clr-dark2);
+    word-break: break-word;
+  }
+
+  .fsr-pend-err {
+    color: #b3261e;
+  }
+
+  .fsr-pend-acciones {
+    gap: 6px;
+    flex-shrink: 0;
+    align-items: stretch;
+  }
+
+  .fsr-pend-retry {
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--clr-primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .fsr-pend-retry:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .fsr-pend-del {
+    padding: 6px 10px;
+    background: transparent;
+    color: var(--clr-dark2);
+    border: 1.5px solid var(--clr-gray);
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  @media (hover: hover) {
+    .fsr-pend-syncall:hover,
+    .fsr-pend-retry:hover {
+      opacity: 0.88;
+    }
+
+    .fsr-pend-del:hover {
+      color: var(--clr-accent);
+      border-color: var(--clr-accent);
+    }
+  }
+
   /* ── RESPONSIVE ── */
   @media (min-width: 500px) {
     .form-card {
@@ -786,6 +973,9 @@ import FsToast from "./FsToast.astro";
       const _hoy = new Date();
       document.getElementById("fecha-servicio").value =
         `${String(_hoy.getDate()).padStart(2, "0")}/${String(_hoy.getMonth() + 1).padStart(2, "0")}/${_hoy.getFullYear()}`;
+      // Mostrar cola local y tratar de sincronizar lo pendiente al entrar.
+      renderPendientes();
+      sincronizarPendientes();
     } else {
       fsrToast("Contraseña incorrecta", "🔒");
       input.value = "";
@@ -935,6 +1125,267 @@ import FsToast from "./FsToast.astro";
     document.getElementById("foto-info").style.display = "none";
   }
 
+  /* ────────────────────────────────────────────────────────────────
+     COLA LOCAL DE REPORTES (offline-first)
+
+     Todo reporte se guarda primero en localStorage y luego se intenta
+     sincronizar con el Apps Script. Si no hay red, queda "pendiente" y
+     se reintenta solo al recuperar conexión (evento online) o a mano.
+
+     Estados:
+       pendiente → guardado local, aún no llega a la base de datos
+       error     → se intentó enviar pero el servidor rechazó (no es falta de red)
+       (sincronizado) → llegó a la base; se elimina de la cola
+  ──────────────────────────────────────────────────────────────── */
+  const COLA_KEY = "fsr_reportes_pendientes";
+  let fsrSincronizando = false;
+
+  function esc(s) {
+    return String(s ?? "").replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+  }
+
+  /* La falta de red se detecta por navigator.onLine o por el TypeError
+     típico de fetch cuando no hay conexión ("Failed to fetch"). */
+  function esErrorDeRed(err) {
+    return (
+      !navigator.onLine ||
+      err instanceof TypeError ||
+      /failed to fetch|networkerror|load failed|network request failed/i.test(
+        err?.message || "",
+      )
+    );
+  }
+
+  function cargarCola() {
+    try {
+      const raw = localStorage.getItem(COLA_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function guardarCola(cola) {
+    try {
+      localStorage.setItem(COLA_KEY, JSON.stringify(cola));
+      return true;
+    } catch (err) {
+      // Suele ser QuotaExceededError: la foto base64 llenó el localStorage.
+      console.error("No se pudo guardar la cola local:", err);
+      fsrToast("Almacenamiento local lleno", "⚠️");
+      return false;
+    }
+  }
+
+  function agregarACola(datos) {
+    const cola = cargarCola();
+    const record = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+      datos,
+      estado: "pendiente",
+      error: "",
+      intentos: 0,
+      creado: new Date().toISOString(),
+    };
+    cola.push(record);
+    guardarCola(cola);
+    return record;
+  }
+
+  function actualizarRegistro(id, cambios) {
+    const cola = cargarCola();
+    const i = cola.findIndex((r) => r.id === id);
+    if (i === -1) return;
+    cola[i] = { ...cola[i], ...cambios };
+    guardarCola(cola);
+  }
+
+  function eliminarRegistro(id) {
+    guardarCola(cargarCola().filter((r) => r.id !== id));
+  }
+
+  /* Envío puro al Apps Script. Devuelve { consecutivo } o lanza error. */
+  async function enviarDatos(datos) {
+    if (!APPS_SCRIPT_URL) throw new Error("URL de Apps Script no configurada");
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(datos),
+      redirect: "follow",
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res
+      .json()
+      .catch(() => ({ ok: false, error: "Respuesta no es JSON" }));
+    if (!json.ok) throw new Error(json.error || "Apps Script reportó fallo");
+    return { consecutivo: json.consecutivo || "" };
+  }
+
+  /* Traduce el error técnico a una explicación en lenguaje natural que
+     le diga al técnico, en pocas palabras, qué fue lo que pasó. */
+  function mensajeNatural(err) {
+    if (esErrorDeRed(err)) {
+      return "No hay Internet en este momento, así que el reporte no se pudo enviar. Quedó guardado en el teléfono y se enviará solo cuando vuelva la conexión.";
+    }
+    const msg = (err?.message || String(err) || "").toLowerCase();
+    if (/url de apps script/.test(msg)) {
+      return "Falta configurar la dirección a donde se envían los reportes. Avisa al administrador para que la revise.";
+    }
+    if (/http\s*4\d\d/.test(msg)) {
+      return "El servidor no aceptó el reporte, seguramente porque faltó algún dato o la dirección de envío cambió. Revisa la información e inténtalo de nuevo; si sigue igual, avisa al administrador.";
+    }
+    if (/http\s*5\d\d/.test(msg)) {
+      return "El servidor tuvo un problema en este momento y no pudo guardar el reporte. Espera un rato y vuelve a intentarlo; tus datos siguen guardados en el teléfono.";
+    }
+    if (/respuesta no es json/.test(msg)) {
+      return "El servidor respondió algo inesperado y no se pudo confirmar el guardado. Vuelve a intentarlo en un momento; el reporte sigue guardado en el teléfono.";
+    }
+    if (/timeout|timed out|tard/.test(msg)) {
+      return "El envío tardó demasiado y se canceló. La conexión puede estar muy lenta; inténtalo de nuevo. El reporte sigue guardado en el teléfono.";
+    }
+    // Si el servidor devolvió un motivo en palabras (ej. "Faltan datos
+    // obligatorios"), lo mostramos tal cual porque explica bien qué pasó.
+    const motivo = (err?.message || "").trim();
+    if (motivo && /[a-záéíóúñ]/i.test(motivo) && !/apps script reportó fallo/i.test(motivo)) {
+      return `El servidor no aceptó el reporte: «${motivo}». Sigue guardado en el teléfono; corrige lo que haga falta y vuelve a intentarlo.`;
+    }
+    // Cualquier otro caso: mensaje genérico claro (sin jerga técnica).
+    return "No se pudo enviar el reporte por un problema inesperado. Sigue guardado en el teléfono; vuelve a intentarlo y, si continúa, avisa al administrador.";
+  }
+
+  /* Intenta sincronizar un registro. Actualiza su estado en la cola.
+     Devuelve true si llegó a la base de datos. */
+  async function intentarSincronizar(r) {
+    try {
+      const { consecutivo } = await enviarDatos(r.datos);
+      eliminarRegistro(r.id);
+      return { ok: true, consecutivo };
+    } catch (err) {
+      actualizarRegistro(r.id, {
+        estado: esErrorDeRed(err) ? "pendiente" : "error",
+        error: mensajeNatural(err),
+        intentos: (r.intentos || 0) + 1,
+      });
+      return { ok: false };
+    }
+  }
+
+  /* Auto-sync: recorre solo los pendientes (falta de red). Los "error"
+     de servidor se reintentan a mano para no repetir un envío inválido. */
+  async function sincronizarPendientes() {
+    if (fsrSincronizando || !navigator.onLine) return;
+    const pendientes = cargarCola().filter((r) => r.estado === "pendiente");
+    if (!pendientes.length) return;
+
+    fsrSincronizando = true;
+    setSyncAllEstado(true);
+    let ok = 0;
+    for (const r of pendientes) {
+      const res = await intentarSincronizar(r);
+      if (res.ok) ok++;
+    }
+    fsrSincronizando = false;
+    setSyncAllEstado(false);
+    renderPendientes();
+    if (ok) fsrToast(`${ok} reporte${ok > 1 ? "s" : ""} sincronizado${ok > 1 ? "s" : ""}`, "✅");
+  }
+
+  async function reintentarUno(id) {
+    if (!navigator.onLine) {
+      fsrToast("Sin conexión a Internet", "📡");
+      return;
+    }
+    const r = cargarCola().find((x) => x.id === id);
+    if (!r) return;
+    const btn = document.querySelector(`[data-retry="${id}"]`);
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Enviando...';
+    }
+    const res = await intentarSincronizar(r);
+    renderPendientes();
+    fsrToast(
+      res.ok ? `Sincronizado${res.consecutivo ? " " + res.consecutivo : ""}` : "No se pudo sincronizar",
+      res.ok ? "✅" : "❌",
+    );
+  }
+
+  function descartarUno(id) {
+    if (!confirm("¿Descartar este reporte? No se podrá recuperar.")) return;
+    eliminarRegistro(id);
+    renderPendientes();
+    fsrToast("Reporte descartado", "🗑️");
+  }
+
+  function setSyncAllEstado(cargando) {
+    const btn = document.getElementById("fsr-pend-sync-all");
+    if (!btn) return;
+    btn.disabled = cargando;
+    btn.innerHTML = cargando
+      ? '<i class="bi bi-hourglass-split"></i> Sincronizando...'
+      : '<i class="bi bi-arrow-repeat"></i> Sincronizar todos';
+  }
+
+  function badgeHTML(estado) {
+    if (estado === "error") {
+      return '<span class="fsr-badge fsr-badge-error"><i class="bi bi-exclamation-triangle-fill"></i> No se pudo enviar</span>';
+    }
+    return '<span class="fsr-badge fsr-badge-pend"><i class="bi bi-cloud-slash-fill"></i> Guardado · falta enviar</span>';
+  }
+
+  /* Texto explicativo bajo el badge, en lenguaje natural. */
+  function detalleEstado(r) {
+    if (r.estado === "error") {
+      return r.error || "No se pudo enviar por un problema inesperado. Sigue guardado en el teléfono.";
+    }
+    return "Sin Internet. Se enviará solo cuando vuelva la conexión, o toca «Reintentar».";
+  }
+
+  /* Pinta el panel de reportes en cola. Oculto si no hay ninguno. */
+  function renderPendientes() {
+    const panel = document.getElementById("fsr-pendientes");
+    const lista = document.getElementById("fsr-pend-lista");
+    const count = document.getElementById("fsr-pend-count");
+    if (!panel || !lista) return;
+
+    const cola = cargarCola();
+    if (!cola.length) {
+      panel.style.display = "none";
+      lista.innerHTML = "";
+      return;
+    }
+
+    panel.style.display = "block";
+    count.textContent = cola.length;
+    lista.innerHTML = cola
+      .map((r) => {
+        const meta = [r.datos.tipoServicio, r.datos.fecha]
+          .filter(Boolean)
+          .map(esc)
+          .join(" · ");
+        return `
+        <div class="fsr-pend-card" data-id="${esc(r.id)}">
+          <div class="fsr-pend-info">
+            <span class="fsr-pend-cliente">${esc(r.datos.cliente) || "(sin cliente)"}</span>
+            ${meta ? `<span class="fsr-pend-meta">${meta}</span>` : ""}
+            ${badgeHTML(r.estado)}
+            <span class="fsr-pend-det ${r.estado === "error" ? "fsr-pend-err" : ""}">${esc(detalleEstado(r))}</span>
+          </div>
+          <div class="fsr-pend-acciones flex-column">
+            <button type="button" class="fsr-pend-retry flex-row" data-retry="${esc(r.id)}">
+              <i class="bi bi-arrow-repeat"></i> Reintentar
+            </button>
+            <button type="button" class="fsr-pend-del" data-del="${esc(r.id)}" title="Descartar">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>`;
+      })
+      .join("");
+  }
+
   /* ── ENVIAR REPORTE ── */
   async function enviarReporte() {
     const v = (id) => document.getElementById(id)?.value.trim() ?? "";
@@ -991,52 +1442,67 @@ import FsToast from "./FsToast.astro";
     }
 
     setBtnEstado("cargando");
-    fsrToast("Guardando reporte...", "⏳");
 
-    try {
-      /* text/plain = simple request → sin preflight CORS.
-         Apps Script debe responder JSON con { ok: true } o { ok: false, error }. */
-      const res = await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(datos),
-        redirect: "follow",
+    // 1. Guardar SIEMPRE en local antes de intentar enviar → nunca se pierde.
+    const record = agregarACola(datos);
+    renderPendientes();
+
+    // 2. Sin conexión → queda pendiente, ni se intenta enviar.
+    if (!navigator.onLine) {
+      setBtnEstado("normal");
+      limpiarFormulario();
+      renderPendientes();
+      fsrToast("Guardado local · sin conexión", "📡");
+      fsrModalShow({
+        title: "Guardado sin conexión",
+        body: `El reporte de <strong>${esc(datos.cliente)}</strong> se guardó en este dispositivo.<br><small style="color:#888">Quedó <strong>pendiente de sincronización</strong>: se enviará solo cuando vuelva el Internet.</small>`,
+        variante: "aviso",
       });
+      return;
+    }
 
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
+    // 3. Hay conexión → intentar enviar.
+    fsrToast("Guardando reporte...", "⏳");
+    const res = await intentarSincronizar(record);
 
-      const json = await res.json().catch(() => ({ ok: false, error: "Respuesta no es JSON" }));
-      if (!json.ok) {
-        throw new Error(json.error || "Apps Script reportó fallo");
-      }
-
-      const consecutivo = json.consecutivo || "";
-
+    if (res.ok) {
+      const consecutivo = res.consecutivo || "";
       setBtnEstado("exito");
       fsrToast(consecutivo ? `¡Guardado! ${consecutivo}` : "¡Reporte guardado!", "✅");
-
       setTimeout(() => {
         fsrModalShow({
           title: "Reporte guardado",
-          body: `${consecutivo ? `<div style="font-size:1.4rem;font-weight:800;letter-spacing:2px;color:var(--clr-primary);margin-bottom:8px;">${consecutivo}</div>` : ""}El reporte de <strong>${datos.cliente}</strong> fue registrado correctamente.<br><small style="color:#888">Cédula/NIT: ${datos.cedula} · Técnico: ${datos.tecnico}</small>`,
+          body: `${consecutivo ? `<div style="font-size:1.4rem;font-weight:800;letter-spacing:2px;color:var(--clr-primary);margin-bottom:8px;">${consecutivo}</div>` : ""}El reporte de <strong>${esc(datos.cliente)}</strong> fue registrado correctamente.<br><small style="color:#888">Cédula/NIT: ${esc(datos.cedula)} · Técnico: ${esc(datos.tecnico)}</small>`,
           variante: "exito",
         });
         setBtnEstado("normal");
         limpiarFormulario();
+        renderPendientes();
       }, 800);
-    } catch (err) {
-      console.error("Error guardando reporte:", err);
-      setBtnEstado("normal");
-      fsrToast("Error al guardar el reporte", "❌");
-      setTimeout(() => {
-        fsrModalShow({
-          title: "Error al guardar",
-          body: `No se pudo guardar el reporte.<br><small style="color:#888">${err?.message ?? err}</small>`,
-          variante: "error",
-        });
-      }, 400);
+      return;
+    }
+
+    // 4. Falló el envío. El registro ya quedó marcado (pendiente | error).
+    const registroActual = cargarCola().find((r) => r.id === record.id);
+    const fueRed = !registroActual || registroActual.estado === "pendiente";
+    setBtnEstado("normal");
+    limpiarFormulario();
+    renderPendientes();
+
+    if (fueRed) {
+      fsrToast("Guardado local · sin conexión", "📡");
+      fsrModalShow({
+        title: "Guardado sin conexión",
+        body: `El reporte de <strong>${esc(datos.cliente)}</strong> se guardó en este dispositivo.<br><small style="color:#888">Quedó <strong>pendiente de sincronización</strong>: se reintentará cuando vuelva el Internet.</small>`,
+        variante: "aviso",
+      });
+    } else {
+      fsrToast("No se pudo enviar el reporte", "❌");
+      fsrModalShow({
+        title: "No se pudo enviar",
+        body: `${esc(registroActual?.error || "No se pudo enviar el reporte por un problema inesperado. Sigue guardado en el teléfono.")}<br><br><small style="color:#888">Puedes volver a enviarlo desde <strong>Reportes sin sincronizar</strong>.</small>`,
+        variante: "error",
+      });
     }
   }
 
@@ -1047,6 +1513,32 @@ import FsToast from "./FsToast.astro";
   document.getElementById("btn-galeria").addEventListener("click", () => fotoGalleryInput.click());
   fotoCameraInput.addEventListener("change", () => previsualizarFoto(fotoCameraInput));
   fotoGalleryInput.addEventListener("change", () => previsualizarFoto(fotoGalleryInput));
+
+  /* ── PANEL PENDIENTES: eventos ── */
+  document
+    .getElementById("fsr-pend-sync-all")
+    ?.addEventListener("click", sincronizarPendientes);
+
+  document
+    .getElementById("fsr-pend-lista")
+    ?.addEventListener("click", (e) => {
+      const retry = e.target.closest("[data-retry]");
+      if (retry) {
+        reintentarUno(retry.getAttribute("data-retry"));
+        return;
+      }
+      const del = e.target.closest("[data-del]");
+      if (del) descartarUno(del.getAttribute("data-del"));
+    });
+
+  /* ── CONECTIVIDAD ── */
+  window.addEventListener("online", () => {
+    fsrToast("Conexión restaurada · sincronizando...", "🌐");
+    sincronizarPendientes();
+  });
+  window.addEventListener("offline", () => {
+    fsrToast("Sin conexión · los reportes se guardarán localmente", "📡");
+  });
 
   window.verificarAcceso = verificarAcceso;
   window.enviarReporte = enviarReporte;
