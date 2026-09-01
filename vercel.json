@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!mantenimiento\\.html|img/|favicon\\.ico).*)",
+      "destination": "/mantenimiento.html"
+    }
+  ]
+}
