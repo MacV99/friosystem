@@ -9,9 +9,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev       # Dev server at localhost:4321 (hot reload)
-npm run build     # Production build → ./dist/
-npm run preview   # Preview production build locally
+pnpm run dev       # Dev server at localhost:4321 (hot reload)
+pnpm run build     # Production build → ./dist/
+pnpm run preview   # Preview production build locally
 ```
 
 No test or lint commands are configured.

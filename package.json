@@ -14,5 +14,11 @@
   },
   "devDependencies": {
     "playwright": "^1.60.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
