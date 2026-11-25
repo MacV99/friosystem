@@ -446,11 +446,93 @@ import SectionHeader from "../components/SectionHeader.astro";
     setTimeout(() => iconCart?.classList.remove("animate-cart"), 300);
   };
 
+  /* ── PRECIOS EDITABLES DESDE GOOGLE SHEETS ──────────────────────────
+     Pestaña "PRECIOS" publicada como CSV (Archivo → Compartir → Publicar
+     en la web → pestaña PRECIOS → CSV). Columnas: PRODUCTO, PRECIO,
+     PRECIO ANTERIOR. Si está vacía o falla, se usan los precios del JSON.
+  ─────────────────────────────────────────────────────────────────── */
+  const PRECIOS_CSV_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vTLng3XkAb9JG896pidqqMlH_q46Za3anbgs8cH72NeFGJ4hJZtZraaoW2addA4witXsiFvihNVDN1J/pub?gid=1664189234&single=true&output=csv";
+
+  const normNombre = (s) =>
+    String(s || "")
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
+  const parseCSV = (text) => {
+    const rows = [];
+    let row = [], cell = "", q = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) {
+        if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+        else if (c === '"') q = false;
+        else cell += c;
+      } else if (c === '"') q = true;
+      else if (c === ",") { row.push(cell); cell = ""; }
+      else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(cell); rows.push(row); row = []; cell = "";
+      } else cell += c;
+    }
+    if (cell || row.length) { row.push(cell); rows.push(row); }
+    return rows;
+  };
+
+  // "$ 4.499.900" → 4499900 ; vacío → null
+  const aNumero = (s) => {
+    const d = String(s || "").replace(/[^\d]/g, "");
+    return d ? Number(d) : null;
+  };
+
+  const cargarPrecios = async () => {
+    if (!PRECIOS_CSV_URL) return null;
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 4000);
+    try {
+      const sep = PRECIOS_CSV_URL.includes("?") ? "&" : "?";
+      const res = await fetch(`${PRECIOS_CSV_URL}${sep}rand=${Date.now()}`, { signal: ctrl.signal });
+      if (!res.ok) return null;
+      const rows = parseCSV(await res.text());
+      const head = (rows.shift() || []).map((h) => normNombre(h));
+      const iNom = head.findIndex((h) => h.includes("producto") || h.includes("nombre"));
+      const iAnt = head.findIndex((h) => h.includes("anterior") || h.includes("antes"));
+      const iPre = head.findIndex((h, i) => h.includes("precio") && i !== iAnt);
+      if (iNom < 0 || iPre < 0) return null;
+      const mapa = new Map();
+      rows.forEach((r) => {
+        const nom = normNombre(r[iNom]);
+        if (nom) mapa.set(nom, { price: aNumero(r[iPre]), originalPrice: iAnt >= 0 ? aNumero(r[iAnt]) : null });
+      });
+      return mapa;
+    } catch {
+      return null;
+    } finally {
+      clearTimeout(t);
+    }
+  };
+
+  const aplicarPrecios = (data, mapa) => {
+    if (!mapa) return;
+    Object.values(data).flat().forEach((p) => {
+      const nuevo = mapa.get(normNombre(p.name));
+      if (!nuevo) return;
+      p.price = nuevo.price ?? 0;
+      p.originalPrice = nuevo.originalPrice ?? null;
+    });
+  };
+
   // Init
   const initApp = () => {
-    fetch("/JSON/products.json")
-      .then((response) => response.json())
-      .then((data) => {
+    Promise.all([
+      fetch("/JSON/products.json").then((response) => response.json()),
+      cargarPrecios(),
+    ])
+      .then(([data, precios]) => {
+        aplicarPrecios(data, precios);
         allProductsByCategory = data;
         products = Object.values(data).flat();
         renderCategoryButtons();
