@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# archivos locales que no son parte de la página
+.mcp.json
+cotizaciones/
