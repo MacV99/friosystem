@@ -323,6 +323,36 @@ import FsToast from "./FsToast.astro";
         </select>
       </div>
 
+      <!-- ── FIRMA ── -->
+      <div class="section-divider"></div>
+      <div class="form-section-title">
+        <i class="bi bi-pen"></i> Firma de quien recibe
+      </div>
+
+      <div class="form-group">
+        <button type="button" id="firma-caja" class="firma-caja flex-column">
+          <span id="firma-vacia" class="firma-vacia flex-column">
+            <i class="bi bi-pen"></i>
+            <strong>Firmar</strong>
+            <small>Toca aquí para abrir el panel de firma</small>
+          </span>
+          <img id="firma-preview" alt="Firma" style="display:none;" />
+        </button>
+        <div id="firma-acciones" class="firma-acciones" style="display:none;">
+          <span class="firma-ok flex-row">
+            <i class="bi bi-check-circle-fill"></i> Firmado
+          </span>
+          <div class="flex-row firma-acciones-btns">
+            <button type="button" id="firma-cambiar" class="firma-mini flex-row">
+              <i class="bi bi-arrow-repeat"></i> Cambiar
+            </button>
+            <button type="button" id="firma-quitar" class="firma-mini firma-mini-del flex-row">
+              <i class="bi bi-trash"></i> Quitar
+            </button>
+          </div>
+        </div>
+      </div>
+
       <input type="hidden" id="fecha-servicio" />
 
       <!-- Botón -->
@@ -340,6 +370,51 @@ import FsToast from "./FsToast.astro";
         Los campos marcados con <span class="req" style="margin:0 2px;">*</span> son
         obligatorios
       </p>
+    </div>
+
+    <!-- ── PANEL DE FIRMA ── -->
+    <div id="firma-panel" class="firma-panel" aria-hidden="true">
+      <div
+        class="firma-hoja"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="firma-titulo"
+      >
+        <div class="firma-top">
+          <div class="firma-top-txt">
+            <h3 id="firma-titulo">Firma de quien recibe</h3>
+            <p id="firma-nombre">Firme dentro del recuadro</p>
+          </div>
+          <button
+            type="button"
+            id="firma-cerrar"
+            class="firma-cerrar flex-row"
+            aria-label="Cerrar"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="firma-lienzo-wrap">
+          <canvas id="firma-lienzo"></canvas>
+          <span id="firma-guia" class="firma-guia flex-row">
+            <i class="bi bi-hand-index-thumb"></i> Firme aquí con el dedo
+          </span>
+          <div class="firma-linea"><span>✕</span></div>
+        </div>
+
+        <div class="firma-botones">
+          <button type="button" id="firma-borrar" class="firma-btn-sec flex-row" disabled>
+            <i class="bi bi-eraser"></i> Borrar
+          </button>
+          <button type="button" id="firma-deshacer" class="firma-btn-sec flex-row" disabled>
+            <i class="bi bi-arrow-counterclockwise"></i> Deshacer
+          </button>
+          <button type="button" id="firma-aceptar" class="firma-btn-ok flex-row" disabled>
+            <i class="bi bi-check-lg"></i> Aceptar firma
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- ── MODAL ── -->
@@ -695,6 +770,314 @@ import FsToast from "./FsToast.astro";
     margin-bottom: 0;
   }
 
+  /* ── FIRMA: caja en el formulario ── */
+  .firma-caja {
+    width: 100%;
+    min-height: 130px;
+    padding: 0;
+    border: 2px dashed var(--clr-gray);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--clr-primary);
+    font-family: inherit;
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+
+  .firma-caja.tiene-firma {
+    border-style: solid;
+    border-color: var(--clr-green);
+    background: #fff;
+  }
+
+  .firma-vacia {
+    gap: 4px;
+    padding: 22px;
+  }
+
+  .firma-vacia .bi {
+    font-size: 30px;
+  }
+
+  .firma-vacia strong {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .firma-vacia small {
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  #firma-preview {
+    display: block;
+    width: 100%;
+    max-height: 170px;
+    padding: 12px;
+    object-fit: contain;
+  }
+
+  .firma-acciones {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .firma-ok {
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1e7a3c;
+  }
+
+  .firma-acciones-btns {
+    gap: 6px;
+  }
+
+  .firma-mini {
+    gap: 5px;
+    padding: 7px 12px;
+    border: 1.5px solid var(--clr-gray);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--clr-dark2);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  /* ── FIRMA: panel de dibujo ── */
+  .firma-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: var(--modal-backdrop);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  .firma-panel.firma-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .firma-hoja {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 760px;
+    max-height: 100dvh;
+    padding: 16px 14px calc(14px + env(safe-area-inset-bottom));
+    border-radius: 20px 20px 0 0;
+    background: var(--clr-white);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(24px);
+    transition: transform 0.25s ease;
+  }
+
+  .firma-visible .firma-hoja {
+    transform: translateY(0);
+  }
+
+  .firma-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .firma-top-txt {
+    min-width: 0;
+  }
+
+  .firma-top h3 {
+    margin: 0 0 2px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    color: var(--clr-dark);
+  }
+
+  .firma-top p {
+    margin: 0;
+    overflow: hidden;
+    font-size: 12px;
+    color: var(--clr-dark2);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .firma-cerrar {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border: 1.5px solid var(--clr-gray);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--clr-dark2);
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .firma-lienzo-wrap {
+    position: relative;
+    flex: 1 1 auto;
+    height: clamp(170px, 46dvh, 320px);
+    min-height: 150px;
+    border: 1.5px solid var(--clr-gray);
+    border-radius: 14px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  #firma-lienzo {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+  .firma-guia {
+    position: absolute;
+    inset: 0;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #c4c4c4;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  .firma-guia.firma-oculta {
+    opacity: 0;
+  }
+
+  .firma-linea {
+    position: absolute;
+    right: 8%;
+    bottom: 24%;
+    left: 8%;
+    border-bottom: 1.5px dashed #cfcfcf;
+    pointer-events: none;
+  }
+
+  .firma-linea span {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    font-size: 13px;
+    color: #c4c4c4;
+  }
+
+  .firma-botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .firma-btn-sec,
+  .firma-btn-ok {
+    gap: 7px;
+    padding: 13px 14px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .firma-btn-sec {
+    border: 1.5px solid var(--clr-gray);
+    background: transparent;
+    color: var(--clr-dark2);
+  }
+
+  .firma-btn-ok {
+    grid-column: 1 / -1;
+    border: none;
+    background: var(--clr-green);
+    color: var(--clr-white);
+    letter-spacing: 1px;
+  }
+
+  .firma-btn-sec:disabled,
+  .firma-btn-ok:disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  @media (hover: hover) {
+    .firma-caja:hover {
+      border-color: var(--clr-primary);
+      background: var(--clr-primary-light);
+    }
+
+    .firma-caja.tiene-firma:hover {
+      background: #fff;
+    }
+
+    .firma-mini:hover,
+    .firma-cerrar:hover,
+    .firma-btn-sec:hover {
+      border-color: var(--clr-primary);
+      color: var(--clr-primary);
+    }
+
+    .firma-mini-del:hover {
+      border-color: var(--clr-danger);
+      color: var(--clr-danger);
+    }
+
+    .firma-btn-ok:hover {
+      opacity: 0.88;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .firma-panel {
+      align-items: center;
+      padding: 20px;
+    }
+
+    .firma-hoja {
+      padding: 22px;
+      border-radius: 20px;
+    }
+
+    .firma-botones {
+      grid-template-columns: auto auto 1fr;
+    }
+
+    .firma-btn-ok {
+      grid-column: auto;
+    }
+  }
+
   /* ── BOTÓN GUARDAR ── */
   .btn-generar {
     width: 100%;
@@ -912,6 +1295,229 @@ import FsToast from "./FsToast.astro";
     }
   }
 
+  /* ── FIRMA: panel de dibujo ──────────────────────────────────────
+     Los trazos se guardan como listas de puntos (no como píxeles), así
+     se pueden deshacer, redibujar al girar el teléfono y exportar
+     recortados y nítidos sin importar el tamaño de la pantalla.
+  ──────────────────────────────────────────────────────────────── */
+  const FIRMA_TINTA = "#0a1a2f";
+  const FIRMA_GROSOR = 2.6;
+
+  let firmaBase64 = null; // imagen final que viaja con el reporte
+  let firmaGuardada = []; // trazos de la firma aceptada (para "Cambiar")
+  let firmaTrazos = []; // trazos en edición dentro del panel
+  let firmaTrazoActual = null;
+  let firmaAncho = 0;
+  let firmaAlto = 0;
+
+  const firmaPanel = document.getElementById("firma-panel");
+  const firmaLienzo = document.getElementById("firma-lienzo");
+  const firmaCtx = firmaLienzo.getContext("2d");
+
+  function firmaPintarTrazos(ctx, trazos, escala, dx, dy) {
+    ctx.strokeStyle = FIRMA_TINTA;
+    ctx.fillStyle = FIRMA_TINTA;
+    ctx.lineWidth = FIRMA_GROSOR * escala;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    for (const t of trazos) {
+      const p = t.map(([x, y]) => [(x - dx) * escala, (y - dy) * escala]);
+      if (p.length === 1) {
+        // Un toque sin arrastrar: se dibuja un punto.
+        ctx.beginPath();
+        ctx.arc(p[0][0], p[0][1], (FIRMA_GROSOR * escala) / 2, 0, Math.PI * 2);
+        ctx.fill();
+        continue;
+      }
+      // Curvas entre puntos medios: la línea sale suave, no quebrada.
+      ctx.beginPath();
+      ctx.moveTo(p[0][0], p[0][1]);
+      for (let i = 1; i < p.length - 1; i++) {
+        const mx = (p[i][0] + p[i + 1][0]) / 2;
+        const my = (p[i][1] + p[i + 1][1]) / 2;
+        ctx.quadraticCurveTo(p[i][0], p[i][1], mx, my);
+      }
+      const u = p[p.length - 1];
+      ctx.lineTo(u[0], u[1]);
+      ctx.stroke();
+    }
+  }
+
+  function firmaRedibujar() {
+    const dpr = window.devicePixelRatio || 1;
+    firmaCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    firmaCtx.clearRect(0, 0, firmaAncho, firmaAlto);
+    firmaPintarTrazos(firmaCtx, firmaTrazos, 1, 0, 0);
+    const vacio = firmaTrazos.length === 0;
+    document.getElementById("firma-guia").classList.toggle("firma-oculta", !vacio);
+    document.getElementById("firma-borrar").disabled = vacio;
+    document.getElementById("firma-deshacer").disabled = vacio;
+    document.getElementById("firma-aceptar").disabled = vacio;
+  }
+
+  /* Ajusta el lienzo al tamaño real en pantalla. Si cambió (giro del
+     teléfono), reacomoda lo ya dibujado para que no se pierda. */
+  function firmaAjustarLienzo() {
+    const r = firmaLienzo.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    if (firmaAncho && (r.width !== firmaAncho || r.height !== firmaAlto)) {
+      const s = Math.min(r.width / firmaAncho, r.height / firmaAlto);
+      const ox = (r.width - firmaAncho * s) / 2;
+      const oy = (r.height - firmaAlto * s) / 2;
+      firmaTrazos = firmaTrazos.map((t) =>
+        t.map(([x, y]) => [x * s + ox, y * s + oy]),
+      );
+    }
+    firmaAncho = r.width;
+    firmaAlto = r.height;
+    const dpr = window.devicePixelRatio || 1;
+    firmaLienzo.width = Math.round(r.width * dpr);
+    firmaLienzo.height = Math.round(r.height * dpr);
+    firmaRedibujar();
+  }
+
+  function firmaPunto(e) {
+    const r = firmaLienzo.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  }
+
+  firmaLienzo.addEventListener("pointerdown", (e) => {
+    if (e.button !== undefined && e.button > 0) return;
+    e.preventDefault();
+    firmaLienzo.setPointerCapture(e.pointerId);
+    firmaTrazoActual = [firmaPunto(e)];
+    firmaTrazos.push(firmaTrazoActual);
+    firmaRedibujar();
+  });
+
+  firmaLienzo.addEventListener("pointermove", (e) => {
+    if (!firmaTrazoActual) return;
+    e.preventDefault();
+    // getCoalescedEvents da todos los puntos intermedios → trazo más fiel.
+    const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
+    for (const ev of evs.length ? evs : [e]) {
+      const pt = firmaPunto(ev);
+      const ult = firmaTrazoActual[firmaTrazoActual.length - 1];
+      if (Math.hypot(pt[0] - ult[0], pt[1] - ult[1]) >= 1.2) {
+        firmaTrazoActual.push(pt);
+      }
+    }
+    firmaRedibujar();
+  });
+
+  const firmaSoltar = () => {
+    firmaTrazoActual = null;
+  };
+  firmaLienzo.addEventListener("pointerup", firmaSoltar);
+  firmaLienzo.addEventListener("pointercancel", firmaSoltar);
+
+  /* Devuelve la firma recortada a su contorno, sobre fondo blanco. */
+  function firmaExportar() {
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (const t of firmaTrazos) {
+      for (const [x, y] of t) {
+        if (x < x0) x0 = x;
+        if (y < y0) y0 = y;
+        if (x > x1) x1 = x;
+        if (y > y1) y1 = y;
+      }
+    }
+    const margen = 14;
+    x0 -= margen;
+    y0 -= margen;
+    const w = x1 - x0 + margen;
+    const h = y1 - y0 + margen;
+    // Tamaño fijo de salida: nítida en el documento y liviana para enviar.
+    const escala = Math.min(700 / w, 320 / h, 3);
+    const c = document.createElement("canvas");
+    c.width = Math.max(1, Math.round(w * escala));
+    c.height = Math.max(1, Math.round(h * escala));
+    const ctx = c.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, c.width, c.height);
+    firmaPintarTrazos(ctx, firmaTrazos, escala, x0, y0);
+    return c.toDataURL("image/png");
+  }
+
+  function firmaAbrir() {
+    const nombre =
+      document.getElementById("funcionario").value.trim() ||
+      document.getElementById("cliente").value.trim();
+    document.getElementById("firma-nombre").textContent = nombre
+      ? `Firma: ${nombre}`
+      : "Firme dentro del recuadro";
+    firmaTrazos = firmaGuardada.map((t) => t.map((p) => [...p]));
+    firmaTrazoActual = null;
+    firmaAncho = firmaGuardada.ancho || 0;
+    firmaAlto = firmaGuardada.alto || 0;
+    firmaPanel.classList.add("firma-visible");
+    firmaPanel.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    requestAnimationFrame(firmaAjustarLienzo);
+  }
+
+  function firmaCerrar() {
+    firmaPanel.classList.remove("firma-visible");
+    firmaPanel.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    firmaTrazoActual = null;
+  }
+
+  function firmaMostrarEnFormulario() {
+    const tiene = !!firmaBase64;
+    const img = document.getElementById("firma-preview");
+    if (tiene) img.src = firmaBase64;
+    img.style.display = tiene ? "block" : "none";
+    document.getElementById("firma-vacia").style.display = tiene ? "none" : "flex";
+    document.getElementById("firma-acciones").style.display = tiene ? "flex" : "none";
+    document.getElementById("firma-caja").classList.toggle("tiene-firma", tiene);
+  }
+
+  function firmaAceptar() {
+    if (!firmaTrazos.length) return;
+    firmaBase64 = firmaExportar();
+    firmaGuardada = firmaTrazos;
+    firmaGuardada.ancho = firmaAncho;
+    firmaGuardada.alto = firmaAlto;
+    firmaMostrarEnFormulario();
+    firmaCerrar();
+    fsrToast("Firma lista", "✅");
+  }
+
+  function firmaQuitar() {
+    firmaBase64 = null;
+    firmaGuardada = [];
+    firmaMostrarEnFormulario();
+  }
+
+  document.getElementById("firma-caja").addEventListener("click", firmaAbrir);
+  document.getElementById("firma-cambiar").addEventListener("click", () => {
+    firmaGuardada = [];
+    firmaAbrir();
+  });
+  document.getElementById("firma-quitar").addEventListener("click", firmaQuitar);
+  document.getElementById("firma-cerrar").addEventListener("click", firmaCerrar);
+  document.getElementById("firma-aceptar").addEventListener("click", firmaAceptar);
+  document.getElementById("firma-borrar").addEventListener("click", () => {
+    firmaTrazos = [];
+    firmaRedibujar();
+  });
+  document.getElementById("firma-deshacer").addEventListener("click", () => {
+    firmaTrazos.pop();
+    firmaRedibujar();
+  });
+  firmaPanel.addEventListener("click", (e) => {
+    if (e.target === firmaPanel) firmaCerrar();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && firmaPanel.classList.contains("firma-visible")) {
+      firmaCerrar();
+    }
+  });
+  window.addEventListener("resize", () => {
+    if (firmaPanel.classList.contains("firma-visible")) firmaAjustarLienzo();
+  });
+
   /* ── LIMPIAR FORMULARIO ── */
   function limpiarFormulario() {
     document
@@ -933,6 +1539,8 @@ import FsToast from "./FsToast.astro";
     document.getElementById("foto-placeholder").style.display = "flex";
     document.getElementById("foto-upload-area").classList.remove("tiene-foto");
     document.getElementById("foto-info").style.display = "none";
+    // Resetear firma
+    firmaQuitar();
   }
 
   /* ── ENVIAR REPORTE ── */
@@ -963,6 +1571,7 @@ import FsToast from "./FsToast.astro";
       funcionario: v("funcionario"),
       telefono: v("telefono"),
       foto: fotoBase64 ?? "",
+      firma: firmaBase64 ?? "",
       calificacion: v("calificacion"),
       tecnico: v("tecnico"),
       observacion: v("observacion"),

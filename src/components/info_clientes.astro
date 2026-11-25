@@ -520,7 +520,7 @@ import FsToast from "./FsToast.astro";
             —
           </div>
         </div>
-        <div style="flex:1;display:flex;flex-direction:column;">
+        <div style="flex:0.5;display:flex;flex-direction:column;border-right:1px solid #032132;">
           <div
             style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 8px;text-align:center;border-bottom:1px solid #032132;"
           >
@@ -531,10 +531,22 @@ import FsToast from "./FsToast.astro";
           >
             <div
               id="rh-tecnico"
-              style="font-size:13px;font-weight:700;text-align:center;"
+              style="font-size:11px;font-weight:700;text-align:center;"
             >
               —
             </div>
+          </div>
+        </div>
+        <div style="flex:0.5;display:flex;flex-direction:column;">
+          <div
+            style="background:#032132;color:white;font-size:8px;font-weight:700;padding:3px 8px;text-align:center;border-bottom:1px solid #032132;"
+          >
+            FIRMA DE QUIEN RECIBE
+          </div>
+          <div
+            id="rh-firma"
+            style="flex:1;margin:5px 8px;background:center/contain no-repeat;"
+          >
           </div>
         </div>
       </div>
@@ -949,6 +961,7 @@ import FsToast from "./FsToast.astro";
     const iFuncionario = findCol(headers, "nombre funcionario");
     const iTelefono = findCol(headers, "telefono", "teléfono");
     const iFoto = findCol(headers, "fotografico", "fotográfico");
+    const iFirma = findCol(headers, "firma");
     const iCalif = findCol(headers, "calificacion", "calificación");
     const iTecnico = findCol(headers, "tecnico", "técnico");
     const iObservacion = findCol(headers, "observacion", "observación");
@@ -993,6 +1006,7 @@ import FsToast from "./FsToast.astro";
           funcionario: cells[iFuncionario] || "",
           telefono: cells[iTelefono] || "",
           foto: cells[iFoto] || "",
+          firma: cells[iFirma] || "",
           calificacion: cells[iCalif] || "",
           tecnico: cells[iTecnico] || "",
           observacion: cells[iObservacion] || "",
@@ -1189,6 +1203,25 @@ import FsToast from "./FsToast.astro";
         fsToast("Error al generar reporte", "❌");
       }
     };
+
+    // Firma de quien recibe — misma ruta que la foto (base64 vía Apps Script).
+    // Si el registro no tiene firma, el espacio queda en blanco.
+    const firmaEl = document.getElementById("rh-firma");
+    firmaEl.style.backgroundImage = "none";
+    const firmaRaw = (d.firma || "").trim();
+    if (firmaRaw) {
+      const firmaData = firmaRaw.startsWith("data:image")
+        ? firmaRaw
+        : await obtenerFotoDataUrl(firmaRaw);
+      if (firmaData) {
+        firmaEl.style.backgroundImage = `url('${firmaData}')`;
+        await new Promise((r) => {
+          const im = new Image();
+          im.onload = im.onerror = r;
+          im.src = firmaData;
+        });
+      }
+    }
 
     // Para el PDF: pedir base64 al Apps Script (evita CORS en html2canvas) y reemplazar background-image.
     if (fotoUrl) {
